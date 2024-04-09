@@ -77,33 +77,10 @@ extension ResourceRequest {
         }
 
         if let httpBody {
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = try JSONEncoder().encode(httpBody)
         }
 
         return request
     }
 }
-
-///// Describes a request to the plex.tv service.
-//public protocol AudiobookshelfServiceRequest: BaseRequest {
-//    func asURLRequest(using token: String?) throws -> URLRequest
-//}
-//
-//public extension AudiobookshelfServiceRequest {
-//    func asURLRequest(using token: String?) throws -> URLRequest {
-//        let path = "https://plex.tv/\(self.path)"
-//        guard let url = URL(string: path)?.appendingQueryItems(queryItems ?? []) else {
-//            throw AudiobookshelfError.invalidRequest(.invalidURL(path))
-//        }
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = httpMethod
-//        request.addValue(accept, forHTTPHeaderField: "accept")
-//
-//        if let token = token {
-//            request.addValue(token, forHTTPHeaderField: "X-Audiobookshelf-Token")
-//        }
-//
-//        return request
-//    }
-//}

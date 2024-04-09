@@ -22,7 +22,8 @@ class LoginTests: BaseTestCase {
         )
 
         XCTAssertEqual(data.headers, [
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Content-Type": "application/json"
         ])
 
         XCTAssertEqual(data.httpBody, [
