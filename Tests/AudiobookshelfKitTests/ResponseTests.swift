@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import AudiobookshelfKit
+import AudiobookshelfKit
 
 class ResponseTests: XCTestCase {
     func loadResponse<R: ResourceRequest>(
@@ -30,7 +30,7 @@ extension ResponseTests {
 
         XCTAssertEqual(response.user.id, "root")
         XCTAssertEqual(response.user.username, "root")
-        XCTAssertEqual(response.user.type, "root")
+        XCTAssertEqual(response.user.type, .root)
         XCTAssertEqual(response.user.token, "exJhbGciOiJI6IkpXVCJ9.eyJ1c2Vyi5NDEyODc4fQ.ZraBFohS4Tg39NszY")
         let mediaProgress = response.user.mediaProgress[0]
         XCTAssertEqual(response.user.mediaProgress.count, 1)
@@ -75,7 +75,7 @@ extension ResponseTests {
         XCTAssertEqual(response.serverSettings.scannerUseTone, false)
         XCTAssertEqual(response.serverSettings.storeCoverWithItem, false)
         XCTAssertEqual(response.serverSettings.storeMetadataWithItem, false)
-        XCTAssertEqual(response.serverSettings.metadataFileFormat, "json")
+        XCTAssertEqual(response.serverSettings.metadataFileFormat, .json)
         XCTAssertEqual(response.serverSettings.rateLimitLoginRequests, 10)
         XCTAssertEqual(response.serverSettings.rateLimitLoginWindow, 600000)
         XCTAssertEqual(response.serverSettings.backupSchedule, "30 1 * * *")

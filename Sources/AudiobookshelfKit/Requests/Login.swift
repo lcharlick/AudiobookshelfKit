@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Audiobookshelf.Request {
-    /// Basic auth with username / password.
+    /// This endpoint logs in a client to the server, returning information about the user and server.
     struct Login: ResourceRequest {
         public let path = "login"
         public let httpMethod = "POST"
@@ -29,10 +29,15 @@ public extension Audiobookshelf.Request {
 
 public extension Audiobookshelf.Request.Login {
     struct Response: Codable {
-        let user: User
-        let userDefaultLibraryId: String
-        let serverSettings: ServerSettings
+        /// The authenticated user.
+        public let user: User
+        /// The ID of the first library in the list the user has access to.
+        public let userDefaultLibraryId: String
+        /// The server's settings.
+        public let serverSettings: ServerSettings
+        /// The server's installation source.
         private let Source: String
+        /// The server's installation source.
         public var source: String { Source }
     }
 }

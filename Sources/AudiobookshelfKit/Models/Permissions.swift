@@ -8,12 +8,19 @@
 
 import Foundation
 
-struct Permissions: Codable, Hashable {
-    let download: Bool
-    let update: Bool
-    let delete: Bool
-    let upload: Bool
-    let accessAllLibraries: Bool
-    let accessAllTags: Bool
-    let accessExplicitContent: Bool
+public struct Permissions: Codable, Hashable {
+    /// Whether the user can download items to the server.
+    public let download: Bool
+    /// Whether the user can update library items.
+    public let update: Bool
+    /// Whether the user can delete library items.
+    public let delete: Bool
+    /// Whether the user can upload items to the server.
+    public let upload: Bool
+    /// Whether the user can access all libraries.
+    public let accessAllLibraries: Bool
+    /// Whether the user can access all tags.
+    public let accessAllTags: Bool
+    /// Whether the user can access explicit content.
+    public let accessExplicitContent: Bool
 }
