@@ -1,5 +1,5 @@
 //
-//  ResponseTests.swift
+//  LoginTests.swift
 //  AudiobookshelfKitTests
 //
 //  Created by Lachlan Charlick on 8/4/24.
@@ -9,20 +9,29 @@
 import XCTest
 import AudiobookshelfKit
 
-class ResponseTests: XCTestCase {
-    func loadResponse<R: ResourceRequest>(
-        _ name: String,
-        for _: R.Type
-    ) throws -> R.Response {
-        let data = try loadResource(name, ext: "json")
-        return try R.response(from: data)
+class LoginTests: BaseTestCase {
+    func testRequest() throws {
+        let request = try Audiobookshelf.Request.Login(username: "juno", password: "w00f")
+            .asURLRequest(from: testURL, using: nil)
+
+        let data = RequestData(request: request)
+
+        XCTAssertEqual(
+            data.baseURL,
+            testURL.appendingPathComponent("login")
+        )
+
+        XCTAssertEqual(data.headers, [
+            "Accept": "application/json"
+        ])
+
+        XCTAssertEqual(data.httpBody, [
+            "username": "juno",
+            "password": "w00f",
+        ])
     }
-}
 
-// MARK: - Login.
-
-extension ResponseTests {
-    func testLogin() throws {
+    func testResponse() throws {
         let response = try loadResponse(
             "login",
             for: Audiobookshelf.Request.Login.self
@@ -94,19 +103,5 @@ extension ResponseTests {
         XCTAssertEqual(response.serverSettings.logLevel, 2)
         XCTAssertEqual(response.serverSettings.version, "2.2.5")
         XCTAssertEqual(response.source, "docker")
-    }
-}
-
-// MARK: - Extensions.
-
-private extension URL {
-    var queryItems: [URLQueryItem]? {
-        URLComponents(url: self, resolvingAgainstBaseURL: true)?.queryItems
-    }
-
-    func removingQueryItems() -> URL {
-        var comps = URLComponents(url: self, resolvingAgainstBaseURL: true)!
-        comps.queryItems = nil
-        return comps.url!
     }
 }
