@@ -13,9 +13,9 @@ struct ContentView: View {
     @State private var isLoading = false
     @State private var successMessage: String?
     @State private var errorMessage: String?
-    @State private var server = ""
-    @State private var username = ""
-    @State private var password = ""
+    @State private var server = ProcessInfo.processInfo.environment["AUDIOBOOKSHELF_SERVER"] ?? ""
+    @State private var username = ProcessInfo.processInfo.environment["AUDIOBOOKSHELF_USERNAME"] ?? ""
+    @State private var password = ProcessInfo.processInfo.environment["AUDIOBOOKSHELF_PASSWORD"] ?? ""
 
     private func signIn() {
         errorMessage = nil
@@ -53,9 +53,10 @@ struct ContentView: View {
             VStack {
                 TextField("Server address", text: $server)
                 TextField("Username", text: $username)
-                TextField("Password", text: $password)
+                SecureField("Password", text: $password)
             }
             .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
             Button(action: signIn) {
                 Text("Sign in")
             }
