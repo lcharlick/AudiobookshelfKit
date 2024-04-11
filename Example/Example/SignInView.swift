@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SignInView.swift
 //  Example
 //
 //  Created by Lachlan Charlick on 9/4/2024.
@@ -8,8 +8,10 @@
 import SwiftUI
 import AudiobookshelfKit
 
-struct ContentView: View {
-    private let client = Audiobookshelf(sessionConfiguration: .default)
+struct SignInView: View {
+    @Environment(\.client) private var client
+    @Environment(Router.self) private var router
+
     @State private var isLoading = false
     @State private var successMessage: String?
     @State private var errorMessage: String?
@@ -34,6 +36,8 @@ struct ContentView: View {
             switch result {
             case .success(let response):
                 successMessage = "Successfully signed in as \(response.user.username)."
+                let serverInfo = ServerInfo(url: URL(string: server)!, token: response.user.token)
+                router.path.append(.libraries(serverInfo))
             case .failure(let error):
                 errorMessage = error.description
             }
@@ -65,13 +69,14 @@ struct ContentView: View {
         }
         .textFieldStyle(.roundedBorder)
         .padding()
+        .navigationTitle("AudiobookshelfKit")
     }
 }
 
 extension AudiobookshelfError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .invalidRequest(let reason):
+        case .invalidRequest:
             return "Invalid request."
         case .networkError(_, let reason):
             switch reason {
@@ -92,5 +97,5 @@ extension AudiobookshelfError: CustomStringConvertible {
 }
 
 #Preview {
-    ContentView()
+    SignInView()
 }

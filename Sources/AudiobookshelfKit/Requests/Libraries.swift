@@ -9,7 +9,7 @@
 public extension Audiobookshelf.Request {
     /// This endpoint retrieves all libraries accessible to the user.
     struct Libraries: ResourceRequest {
-        public let path = "libraries"
+        public let path = "api/libraries"
 
         public init() {}
     }

@@ -16,7 +16,7 @@ class LibrariesTests: BaseTestCase {
         
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("libraries"))
+        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/libraries"))
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
             "Authorization": "Bearer my-token"
