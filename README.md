@@ -1,0 +1,1 @@
+Work in progress Audiobookshelf API client and example app. Will be used as the foundation for Prologue's Audiobookshelf support.
