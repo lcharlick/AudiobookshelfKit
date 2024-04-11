@@ -13,11 +13,17 @@ public struct MediaProgress: Codable, Hashable {
     /// If the media progress is for a book, this will just be the libraryItemId.
     /// If for a podcast episode, it will be a hyphenated combination of the libraryItemId and episodeId.
     public let id: String
+    /// The ID of the user the media progress is for.
+    public let userId: String
     /// The ID of the library item the media progress is of.
     public let libraryItemId: String
     /// The ID of the podcast episode the media progress is of.
     /// Will be nil if the progress is for a book.
     public let episodeId: String?
+    ///
+    public let mediaItemId: String
+    ///
+    public let mediaItemType: MediaType
     /// The total duration (in seconds) of the media.
     /// Will be 0 if the media was marked as finished without the user listening to it.
     public let duration: TimeInterval

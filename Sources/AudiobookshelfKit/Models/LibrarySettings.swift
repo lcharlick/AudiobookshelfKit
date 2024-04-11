@@ -21,12 +21,4 @@ public struct LibrarySettings: Codable, Hashable {
     /// The cron expression for when to automatically scan the library folders.
     /// If null, automatic scanning will be disabled.
     public let autoScanCronExpression: String?
-
-    public init(coverAspectRatio: Int, disableWatcher: Bool, skipMatchingMediaWithAsin: Bool, skipMatchingMediaWithIsbn: Bool, autoScanCronExpression: String?) {
-        self.coverAspectRatio = coverAspectRatio
-        self.disableWatcher = disableWatcher
-        self.skipMatchingMediaWithAsin = skipMatchingMediaWithAsin
-        self.skipMatchingMediaWithIsbn = skipMatchingMediaWithIsbn
-        self.autoScanCronExpression = autoScanCronExpression
-    }
 }

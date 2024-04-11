@@ -29,17 +29,4 @@ public struct Library: Codable, Hashable {
     public let createdAt: Date
     /// The time when the library was last updated.
     public let lastUpdate: Date
-
-    public init(id: String, name: String, folders: [Folder], displayOrder: Int, icon: String, mediaType: MediaType, provider: String, settings: LibrarySettings, createdAt: Date, lastUpdate: Date) {
-        self.id = id
-        self.name = name
-        self.folders = folders
-        self.displayOrder = displayOrder
-        self.icon = icon
-        self.mediaType = mediaType
-        self.provider = provider
-        self.settings = settings
-        self.createdAt = createdAt
-        self.lastUpdate = lastUpdate
-    }
 }

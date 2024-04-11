@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ServerSettings: Codable {
+public struct ServerSettings: Codable, Hashable {
     /// The ID of the server settings.
     public let id: String
     /// Whether the scanner will attempt to find a cover if your audiobook does not have an embedded cover or a cover image inside the folder.
@@ -20,9 +20,9 @@ public struct ServerSettings: Codable {
     /// Subtitles must be separated by -, i.e. `/audiobooks/Book Title - A Subtitle Here/` has the subtitle `A Subtitle Here`.
     public let scannerParseSubtitle: Bool
     /// Whether to use audio file ID3 meta tags instead of folder names for book details.
-    public let scannerPreferAudioMetadata: Bool
+    public let scannerPreferAudioMetadata: Bool?
     /// Whether to use OPF file metadata instead of folder names for book details.
-    public let scannerPreferOpfMetadata: Bool
+    public let scannerPreferOpfMetadata: Bool?
     /// Whether matched data will override item details when using Quick Match.
     /// By default, Quick Match will only fill in missing details.
     public let scannerPreferMatchedMetadata: Bool
@@ -30,13 +30,13 @@ public struct ServerSettings: Codable {
     /// Requires server restart for changes to take effect.
     public let scannerDisableWatcher: Bool
     /// Whether to use the custom metadata in MP3 files from Overdrive for chapter timings automatically.
-    public let scannerPreferOverdriveMediaMarker: Bool
+    public let scannerPreferOverdriveMediaMarker: Bool?
     /// 
-    public let scannerUseSingleThreadedProber: Bool
+    public let scannerUseSingleThreadedProber: Bool?
     /// 
-    public let scannerMaxThreads: Int
+    public let scannerMaxThreads: Int?
     /// 
-    public let scannerUseTone: Bool
+    public let scannerUseTone: Bool?
     /// Whether to store covers in the library item's folder.
     /// By default, covers are stored in `/metadata/items`.
     /// Only one file named cover will be kept.
@@ -52,13 +52,14 @@ public struct ServerSettings: Codable {
     /// The length (in ms) of each login rate limit window.
     public let rateLimitLoginWindow: Int
     /// The cron expression for when to do automatic backups.
-    public let backupSchedule: String
+    // TODO: This seems to be a string OR boolean, but the API docs don't specify.
+    // public let backupSchedule: String
     /// The number of backups to keep.
     public let backupsToKeep: Int
     /// The maximum backup size (in GB) before they fail, a safeguard against misconfiguration.
     public let maxBackupSize: Int
     /// Whether backups should include library item covers and author images located in metadata.
-    public let backupMetadataCovers: Bool
+    // public let backupMetadataCovers: Bool
     /// The number of daily logs to keep.
     public let loggerDailyLogsToKeep: Int
     /// The number of scanner logs to keep.
@@ -76,6 +77,8 @@ public struct ServerSettings: Codable {
     /// What date format to use.
     /// Options are `MM/dd/yyyy`, `dd/MM/yyyy`, `dd.MM.yyyy`, `yyyy-MM-dd`, `MMM do, yyyy`, `MMMM do, yyyy`, `dd MMM yyyy`, or `dd MMMM yyyy`.
     public let dateFormat: String
+    /// What time format to use.
+    public let timeFormat: String
     /// The default server language.
     public let language: String
     /// What log level the server should use when logging.

@@ -11,8 +11,12 @@ import Foundation
 public struct User: Codable, Hashable {
     /// The ID of the user. Only the root user has the root ID.
     public let id: String
+    /// 
+    public let oldUserId: String?
     /// The username of the user.
     public let username: String
+    /// The email of the user.
+    public let email: String?
     /// The type of the user. There will be only one root user which is created when the server first starts.
     public let type: UserType
     /// The authentication token of the user.
@@ -36,7 +40,7 @@ public struct User: Codable, Hashable {
     /// The IDs of libraries accessible to the user. An empty array means all libraries are accessible.
     public let librariesAccessible: [String]
     /// The tags accessible to the user. An empty array means all tags are accessible.
-    public let itemTagsAccessible: [String]
+    public let itemTagsAccessible: [String]?
 }
 
 public enum UserType: String, Codable {

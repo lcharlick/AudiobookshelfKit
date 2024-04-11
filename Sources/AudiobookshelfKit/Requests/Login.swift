@@ -28,7 +28,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.Login {
-    struct Response: Codable {
+    struct Response: Codable, Hashable {
         /// The authenticated user.
         public let user: User
         /// The ID of the first library in the list the user has access to.
