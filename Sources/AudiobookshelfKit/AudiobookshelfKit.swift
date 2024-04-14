@@ -26,42 +26,36 @@ public final class Audiobookshelf {
 
     private func request<Response>(
         _ request: URLRequest,
-        transformer: @escaping (Data) throws -> Response,
-        completion: @escaping (Result<Response, AudiobookshelfError>) -> Void
-    ) -> URLSessionTask? {
-        let task = session.dataTask(with: request) { data, response, error in
-            guard let data = data, let response = response as? HTTPURLResponse else {
-                completion(.failure(
-                    .networkError(request.url!, .httpError(error))
-                ))
-                return
-            }
+        transformer: @escaping (Data) throws -> Response
+    ) async -> Result<Response, AudiobookshelfError> {
 
-            guard Constants.acceptableStatusCodes.contains(response.statusCode) else {
-                completion(.failure(
-                    .networkError(request.url!, .unacceptableStatusCode(response.statusCode))
-                ))
-                return
-            }
+        let data: Data
+        let response: URLResponse
 
-            do {
-                completion(.success(try transformer(data)))
-            } catch {
-                completion(.failure(.decodingFailed(request.url!, error)))
-            }
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch let error {
+            return .failure(.networkError(request.url!, .urlSessionError(error)))
         }
 
-        task.resume()
-
-        return task
+        if let response = response as? HTTPURLResponse {
+            guard Constants.acceptableStatusCodes.contains(response.statusCode) else {
+                return .failure(.networkError(request.url!, .unacceptableStatusCode(response.statusCode)))
+            }
+        }
+        
+        do {
+            return .success(try transformer(data))
+        } catch {
+            return .failure(.decodingFailed(request.url!, error))
+        }
     }
 
     @discardableResult public func request<Request: ResourceRequest>(
         _ request: Request,
         from url: URL,
-        token: String? = nil,
-        completion: @escaping (Result<Request.Response, AudiobookshelfError>) -> Void
-    ) -> URLSessionTask? {
+        token: String? = nil
+    ) async -> Result<Request.Response, AudiobookshelfError> {
         let urlRequest: URLRequest
 
         do {
@@ -70,17 +64,14 @@ public final class Audiobookshelf {
                 using: token
             )
         } catch let error as AudiobookshelfError {
-            completion(.failure(error))
-            return nil
+            return .failure(error)
         } catch {
-            completion(.failure(.invalidRequest(.unknown(error))))
-            return nil
+            return .failure(.invalidRequest(.unknown(error)))
         }
 
-        return self.request(
+        return await self.request(
             urlRequest,
-            transformer: Request.response(from:),
-            completion: completion
+            transformer: Request.response(from:)
         )
     }
 }
@@ -113,7 +104,7 @@ public enum AudiobookshelfError: Error {
 
     public enum NetworkFailureReason {
         case unacceptableStatusCode(Int)
-        case httpError(Error?)
+        case urlSessionError(Error)
     }
 }
 

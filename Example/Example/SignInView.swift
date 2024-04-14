@@ -19,7 +19,7 @@ struct SignInView: View {
     @State private var username = ProcessInfo.processInfo.environment["AUDIOBOOKSHELF_USERNAME"] ?? ""
     @State private var password = ProcessInfo.processInfo.environment["AUDIOBOOKSHELF_PASSWORD"] ?? ""
 
-    private func signIn() {
+    private func signIn() async {
         errorMessage = nil
         successMessage = nil
 
@@ -31,16 +31,15 @@ struct SignInView: View {
         isLoading = true
 
         let request = Audiobookshelf.Request.Login(username: username, password: password)
-        client.request(request, from: serverUrl) { result in
-            isLoading = false
-            switch result {
-            case .success(let response):
-                successMessage = "Successfully signed in as \(response.user.username)."
-                let serverInfo = ServerInfo(url: URL(string: server)!, token: response.user.token)
-                router.path.append(.libraries(serverInfo))
-            case .failure(let error):
-                errorMessage = error.description
-            }
+        let result = await client.request(request, from: serverUrl)
+        isLoading = false
+        switch result {
+        case .success(let response):
+            successMessage = "Successfully signed in as \(response.user.username)."
+            let serverInfo = ServerInfo(url: URL(string: server)!, token: response.user.token)
+            router.path.append(.libraries(serverInfo))
+        case .failure(let error):
+            errorMessage = error.description
         }
     }
 
@@ -61,7 +60,11 @@ struct SignInView: View {
             }
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            Button(action: signIn) {
+            Button(action: {
+                Task {
+                    await signIn()
+                }
+            }) {
                 Text("Sign in")
             }
             .buttonStyle(.borderedProminent)
@@ -80,11 +83,8 @@ extension AudiobookshelfError: CustomStringConvertible {
             return "Invalid request."
         case .networkError(_, let reason):
             switch reason {
-            case .httpError(let error):
-                if let error {
-                    return "HTTP error: \(error)"
-                }
-                return "An unknown HTTP error occurred."
+            case .urlSessionError(let error):
+                return "HTTP error: \(error)"
             case .unacceptableStatusCode(let statusCode):
                 return "Unacceptable status code: \(statusCode)"
             }

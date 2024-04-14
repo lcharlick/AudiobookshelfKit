@@ -13,17 +13,15 @@ struct LibrariesView: View {
     @Environment(\.client) private var client
     @State private var libraries: [Library]?
     @State private var errorMessage: String?
-    @State private var task: URLSessionTask?
 
-    private func fetchLibraries() {
+    private func fetchLibraries() async {
         let request = Audiobookshelf.Request.Libraries()
-        task = client.request(request, from: serverInfo.url, token: serverInfo.token) { result in
-            switch result {
-            case .success(let response):
-                libraries = response.libraries
-            case .failure(let error):
-                errorMessage = error.description
-            }
+        let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
+        switch result {
+        case .success(let response):
+            libraries = response.libraries
+        case .failure(let error):
+            errorMessage = error.description
         }
     }
 
@@ -43,11 +41,8 @@ struct LibrariesView: View {
                 ProgressView()
             }
         }
-        .onAppear {
-            fetchLibraries()
-        }
-        .onDisappear {
-            task?.cancel()
+        .task {
+            await fetchLibraries()
         }
         .navigationTitle("Libraries")
     }
