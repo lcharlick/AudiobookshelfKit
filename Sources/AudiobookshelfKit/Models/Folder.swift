@@ -17,11 +17,4 @@ public struct Folder: Codable, Hashable {
     public let libraryId: String
     /// The time (in ms since POSIX epoch) when the folder was added.
     public let addedAt: Date
-
-    public init(id: String, fullPath: String, libraryId: String, addedAt: Date) {
-        self.id = id
-        self.fullPath = fullPath
-        self.libraryId = libraryId
-        self.addedAt = addedAt
-    }
 }
