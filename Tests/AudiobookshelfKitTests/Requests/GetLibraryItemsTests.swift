@@ -6,8 +6,8 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-import XCTest
 import AudiobookshelfKit
+import XCTest
 
 class GetLibraryItemsTests: BaseTestCase {
     func testRequest() throws {
@@ -16,19 +16,19 @@ class GetLibraryItemsTests: BaseTestCase {
             limit: 5,
             page: 0
         )
-            .asURLRequest(from: testURL, using: "my-token")
-        
+        .asURLRequest(from: testURL, using: "my-token")
+
         let data = RequestData(request: request)
 
         XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("/api/libraries/my-library/items"))
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
-            "Authorization": "Bearer my-token"
+            "Authorization": "Bearer my-token",
         ])
 
         XCTAssertEqual(data.queryItems, [
             "limit": "5",
-            "page": "0"
+            "page": "0",
         ])
     }
 
@@ -42,14 +42,14 @@ class GetLibraryItemsTests: BaseTestCase {
             collapsedSeries: true,
             include: "rssfeed"
         )
-            .asURLRequest(from: testURL, using: "my-token")
-        
+        .asURLRequest(from: testURL, using: "my-token")
+
         let data = RequestData(request: request)
 
         XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("/api/libraries/my-library/items"))
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
-            "Authorization": "Bearer my-token"
+            "Authorization": "Bearer my-token",
         ])
 
         XCTAssertEqual(data.queryItems, [
@@ -58,7 +58,7 @@ class GetLibraryItemsTests: BaseTestCase {
             "sort": "media.metadata.title",
             "desc": "1",
             "collapsedSeries": "1",
-            "include": "rssfeed"
+            "include": "rssfeed",
         ])
     }
 
@@ -79,11 +79,11 @@ class GetLibraryItemsTests: BaseTestCase {
         XCTAssertEqual(firstItem.path, "/Volumes/media/audiobooks_screenshots/JRR Tolkien/The Hobbit")
         XCTAssertEqual(firstItem.relPath, "JRR Tolkien/The Hobbit")
         XCTAssertEqual(firstItem.isFile, false)
-        XCTAssertEqual(firstItem.mtimeMs, Date(timeIntervalSince1970: 1596375037000 / 1000))
-        XCTAssertEqual(firstItem.ctimeMs, Date(timeIntervalSince1970: 1596375037000 / 1000))
-        XCTAssertEqual(firstItem.birthtimeMs, Date(timeIntervalSince1970: 1596368362000 / 1000))
-        XCTAssertEqual(firstItem.addedAt, Date(timeIntervalSince1970: 1654499247059 / 1000))
-        XCTAssertEqual(firstItem.updatedAt, Date(timeIntervalSince1970: 1713354157355 / 1000))
+        XCTAssertEqual(firstItem.mtimeMs, Date(timeIntervalSince1970: 1_596_375_037_000 / 1000))
+        XCTAssertEqual(firstItem.ctimeMs, Date(timeIntervalSince1970: 1_596_375_037_000 / 1000))
+        XCTAssertEqual(firstItem.birthtimeMs, Date(timeIntervalSince1970: 1_596_368_362_000 / 1000))
+        XCTAssertEqual(firstItem.addedAt, Date(timeIntervalSince1970: 1_654_499_247_059 / 1000))
+        XCTAssertEqual(firstItem.updatedAt, Date(timeIntervalSince1970: 1_713_354_157_355 / 1000))
         XCTAssertEqual(firstItem.isMissing, false)
         XCTAssertEqual(firstItem.isInvalid, false)
         XCTAssertEqual(firstItem.mediaType, .book)
@@ -111,8 +111,8 @@ class GetLibraryItemsTests: BaseTestCase {
         XCTAssertEqual(firstItem.media.numAudioFiles, 1)
         XCTAssertEqual(firstItem.media.numChapters, 19)
         XCTAssertEqual(firstItem.media.duration, 39720.024)
-        XCTAssertEqual(firstItem.media.size, 18226998)
+        XCTAssertEqual(firstItem.media.size, 18_226_998)
         XCTAssertEqual(firstItem.numFiles, 1)
-        XCTAssertEqual(firstItem.size, 18226998)
+        XCTAssertEqual(firstItem.size, 18_226_998)
     }
 }

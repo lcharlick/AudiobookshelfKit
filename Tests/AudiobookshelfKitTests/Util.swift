@@ -42,7 +42,7 @@ struct RequestData {
         if let httpBody = request.httpBody {
             self.httpBody = try! JSONDecoder().decode([String: String].self, from: httpBody)
         } else {
-            self.httpBody = nil
+            httpBody = nil
         }
     }
 

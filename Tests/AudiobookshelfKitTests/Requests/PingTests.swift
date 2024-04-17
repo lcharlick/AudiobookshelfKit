@@ -6,20 +6,20 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-import XCTest
 import AudiobookshelfKit
+import XCTest
 
 class PingTests: BaseTestCase {
     func testRequest() throws {
         let request = try Audiobookshelf.Request.Ping()
             .asURLRequest(from: testURL, using: "my-token")
-        
+
         let data = RequestData(request: request)
 
         XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("ping"))
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
-            "Authorization": "Bearer my-token"
+            "Authorization": "Bearer my-token",
         ])
     }
 

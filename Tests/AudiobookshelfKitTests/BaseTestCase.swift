@@ -6,8 +6,8 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-import XCTest
 import AudiobookshelfKit
+import XCTest
 
 class BaseTestCase: XCTestCase {
     let testURL = URL(string: "http://192.168.0.100:32400")!

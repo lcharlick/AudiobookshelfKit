@@ -5,8 +5,8 @@
 //  Created by Lachlan Charlick on 9/4/2024.
 //
 
-import SwiftUI
 import AudiobookshelfKit
+import SwiftUI
 
 struct SignInView: View {
     @Environment(\.client) private var client
@@ -34,11 +34,11 @@ struct SignInView: View {
         let result = await client.request(request, from: serverUrl)
         isLoading = false
         switch result {
-        case .success(let response):
+        case let .success(response):
             successMessage = "Successfully signed in as \(response.user.username)."
             let serverInfo = ServerInfo(url: URL(string: server)!, token: response.user.token)
             router.path.append(.libraries(serverInfo))
-        case .failure(let error):
+        case let .failure(error):
             errorMessage = error.description
         }
     }
@@ -81,14 +81,14 @@ extension AudiobookshelfError: CustomStringConvertible {
         switch self {
         case .invalidRequest:
             return "Invalid request."
-        case .networkError(_, let reason):
+        case let .networkError(_, reason):
             switch reason {
-            case .urlSessionError(let error):
+            case let .urlSessionError(error):
                 return "HTTP error: \(error)"
-            case .unacceptableStatusCode(let statusCode):
+            case let .unacceptableStatusCode(statusCode):
                 return "Unacceptable status code: \(statusCode)"
             }
-        case .decodingFailed(_, _):
+        case .decodingFailed:
             return "Decoding failed"
         case .notAuthenticated:
             return "Not authenticated"

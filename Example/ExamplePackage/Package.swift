@@ -18,8 +18,8 @@ let package = Package(
         .target(
             name: "ExamplePackage",
             dependencies: [
-                "AudiobookshelfKit"
+                "AudiobookshelfKit",
             ]
-        )
+        ),
     ]
 )

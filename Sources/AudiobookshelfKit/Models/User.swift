@@ -11,7 +11,7 @@ import Foundation
 public struct User: Codable, Hashable {
     /// The ID of the user. Only the root user has the root ID.
     public let id: String
-    /// 
+    ///
     public let oldUserId: String?
     /// The username of the user.
     public let username: String

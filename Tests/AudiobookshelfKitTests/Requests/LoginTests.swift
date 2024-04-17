@@ -6,8 +6,8 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-import XCTest
 @testable import AudiobookshelfKit
+import XCTest
 
 class LoginTests: BaseTestCase {
     func testRequest() throws {
@@ -23,7 +23,7 @@ class LoginTests: BaseTestCase {
 
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         ])
 
         XCTAssertEqual(data.httpBody, [
@@ -52,22 +52,22 @@ class LoginTests: BaseTestCase {
         XCTAssertEqual(mediaProgress.episodeId, nil)
         XCTAssertEqual(mediaProgress.mediaItemId, "66d835f9-5899-41e2-8184-2b235f6ad998")
         XCTAssertEqual(mediaProgress.mediaItemType, .book)
-        XCTAssertEqual(mediaProgress.duration, 102531.286)
+        XCTAssertEqual(mediaProgress.duration, 102_531.286)
         XCTAssertEqual(mediaProgress.progress, 6.908974757226784e-05)
         XCTAssertEqual(mediaProgress.currentTime, 7.083860668)
         XCTAssertEqual(mediaProgress.isFinished, false)
         XCTAssertEqual(mediaProgress.hideFromContinueListening, false)
         // XCTAssertEqual(mediaProgress.ebookLocation, nil)
         // XCTAssertEqual(mediaProgress.ebookProgress, nil)
-        XCTAssertEqual(mediaProgress.lastUpdate, Date(timeIntervalSince1970: 1660451502259 / 1000))
-        XCTAssertEqual(mediaProgress.startedAt, Date(timeIntervalSince1970: 1660451494311 / 1000))
+        XCTAssertEqual(mediaProgress.lastUpdate, Date(timeIntervalSince1970: 1_660_451_502_259 / 1000))
+        XCTAssertEqual(mediaProgress.startedAt, Date(timeIntervalSince1970: 1_660_451_494_311 / 1000))
         XCTAssertEqual(mediaProgress.finishedAt, nil)
         XCTAssertEqual(response.user.seriesHideFromContinueListening.count, 0)
         XCTAssertEqual(response.user.bookmarks.count, 0)
         XCTAssertEqual(response.user.isActive, true)
         XCTAssertEqual(response.user.isLocked, false)
-        XCTAssertEqual(response.user.lastSeen, Date(timeIntervalSince1970: 1712674531253 / 1000))
-        XCTAssertEqual(response.user.createdAt, Date(timeIntervalSince1970: 1650709131028 / 1000))
+        XCTAssertEqual(response.user.lastSeen, Date(timeIntervalSince1970: 1_712_674_531_253 / 1000))
+        XCTAssertEqual(response.user.createdAt, Date(timeIntervalSince1970: 1_650_709_131_028 / 1000))
         XCTAssertEqual(response.user.permissions.download, true)
         XCTAssertEqual(response.user.permissions.update, true)
         XCTAssertEqual(response.user.permissions.delete, true)
@@ -89,7 +89,7 @@ class LoginTests: BaseTestCase {
         XCTAssertEqual(response.serverSettings.storeMetadataWithItem, false)
         XCTAssertEqual(response.serverSettings.metadataFileFormat, .json)
         XCTAssertEqual(response.serverSettings.rateLimitLoginRequests, 10)
-        XCTAssertEqual(response.serverSettings.rateLimitLoginWindow, 600000)
+        XCTAssertEqual(response.serverSettings.rateLimitLoginWindow, 600_000)
         // XCTAssertEqual(response.serverSettings.backupSchedule, false)
         XCTAssertEqual(response.serverSettings.backupsToKeep, 2)
         XCTAssertEqual(response.serverSettings.maxBackupSize, 1)

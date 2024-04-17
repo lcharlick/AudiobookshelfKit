@@ -5,8 +5,8 @@
 //  Created by Lachlan Charlick on 9/4/2024.
 //
 
-import SwiftUI
 import AudiobookshelfKit
+import SwiftUI
 
 @main
 struct ExampleApp: App {
@@ -18,7 +18,7 @@ struct ExampleApp: App {
                 SignInView()
                     .navigationDestination(for: Route.self) { route in
                         switch route {
-                        case .libraries(let serverInfo):
+                        case let .libraries(serverInfo):
                             LibrariesView(serverInfo: serverInfo)
                         }
                     }
@@ -38,8 +38,8 @@ private struct ClientKey: EnvironmentKey {
     static var defaultValue: Audiobookshelf { Audiobookshelf(sessionConfiguration: .default) }
 }
 
-extension EnvironmentValues {
-    public var client: Audiobookshelf {
+public extension EnvironmentValues {
+    var client: Audiobookshelf {
         get { self[ClientKey.self] }
         set { self[ClientKey.self] = newValue }
     }

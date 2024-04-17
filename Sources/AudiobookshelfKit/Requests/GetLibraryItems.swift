@@ -41,7 +41,7 @@ public extension Audiobookshelf.Request {
         private let include: String?
 
         /// - Parameters:
-        ///   - libraryID: 
+        ///   - libraryID:
         ///   - limit: Limit the number of returned results per page. If 0, no limit will be applied.
         ///   - page: The page number (0 indexed) to request. If there is no limit applied, then page will have no effect and all results will be returned.
         ///   - sort: What to sort the results by. Specify the attribute to sort by using JavaScript object notation. For example, to sort by title use sort=media.metadata.title. When filtering for a series, sort can also be sequence.

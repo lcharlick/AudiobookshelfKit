@@ -28,13 +28,12 @@ public final class Audiobookshelf {
         _ request: URLRequest,
         transformer: @escaping (Data) throws -> Response
     ) async -> Result<Response, AudiobookshelfError> {
-
         let data: Data
         let response: URLResponse
 
         do {
             (data, response) = try await session.data(for: request)
-        } catch let error {
+        } catch {
             return .failure(.networkError(request.url!, .urlSessionError(error)))
         }
 
@@ -43,9 +42,9 @@ public final class Audiobookshelf {
                 return .failure(.networkError(request.url!, .unacceptableStatusCode(response.statusCode)))
             }
         }
-        
+
         do {
-            return .success(try transformer(data))
+            return try .success(transformer(data))
         } catch {
             return .failure(.decodingFailed(request.url!, error))
         }
@@ -107,4 +106,3 @@ public enum AudiobookshelfError: Error {
         case urlSessionError(Error)
     }
 }
-

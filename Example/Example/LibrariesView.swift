@@ -5,8 +5,8 @@
 //  Created by Lachlan Charlick on 12/4/2024.
 //
 
-import SwiftUI
 import AudiobookshelfKit
+import SwiftUI
 
 struct LibrariesView: View {
     let serverInfo: ServerInfo
@@ -18,9 +18,9 @@ struct LibrariesView: View {
         let request = Audiobookshelf.Request.Libraries()
         let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
         switch result {
-        case .success(let response):
+        case let .success(response):
             libraries = response.libraries
-        case .failure(let error):
+        case let .failure(error):
             errorMessage = error.description
         }
     }

@@ -6,20 +6,20 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-import XCTest
 import AudiobookshelfKit
+import XCTest
 
 class LibrariesTests: BaseTestCase {
     func testRequest() throws {
         let request = try Audiobookshelf.Request.Libraries()
             .asURLRequest(from: testURL, using: "my-token")
-        
+
         let data = RequestData(request: request)
 
         XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/libraries"))
         XCTAssertEqual(data.headers, [
             "Accept": "application/json",
-            "Authorization": "Bearer my-token"
+            "Authorization": "Bearer my-token",
         ])
     }
 
@@ -39,7 +39,7 @@ class LibrariesTests: BaseTestCase {
         XCTAssertEqual(audiobooksFolder.id, "audiobooks")
         XCTAssertEqual(audiobooksFolder.fullPath, "/audiobooks")
         XCTAssertEqual(audiobooksFolder.libraryId, "main")
-        XCTAssertEqual(audiobooksFolder.addedAt, Date(timeIntervalSince1970: 1633522963509 / 1000))
+        XCTAssertEqual(audiobooksFolder.addedAt, Date(timeIntervalSince1970: 1_633_522_963_509 / 1000))
         XCTAssertEqual(mainLibrary.displayOrder, 1)
         XCTAssertEqual(mainLibrary.icon, "audiobookshelf")
         XCTAssertEqual(mainLibrary.mediaType, .book)
@@ -49,9 +49,9 @@ class LibrariesTests: BaseTestCase {
         XCTAssertEqual(mainLibrary.settings.skipMatchingMediaWithAsin, false)
         XCTAssertEqual(mainLibrary.settings.skipMatchingMediaWithIsbn, false)
         XCTAssertEqual(mainLibrary.settings.autoScanCronExpression, nil)
-        XCTAssertEqual(mainLibrary.createdAt, Date(timeIntervalSince1970: 1633522963509 / 1000))
-        XCTAssertEqual(mainLibrary.lastUpdate, Date(timeIntervalSince1970: 1646520916818 / 1000))
-        
+        XCTAssertEqual(mainLibrary.createdAt, Date(timeIntervalSince1970: 1_633_522_963_509 / 1000))
+        XCTAssertEqual(mainLibrary.lastUpdate, Date(timeIntervalSince1970: 1_646_520_916_818 / 1000))
+
         let podcastsLibrary = libraries[1]
         XCTAssertEqual(podcastsLibrary.id, "lib_c1u6t4p45c35rf0nzd")
         XCTAssertEqual(podcastsLibrary.name, "Podcasts")
@@ -60,7 +60,7 @@ class LibrariesTests: BaseTestCase {
         XCTAssertEqual(podcastsFolder.id, "fol_bev1zuxhb0j0s1wehr")
         XCTAssertEqual(podcastsFolder.fullPath, "/podcasts")
         XCTAssertEqual(podcastsFolder.libraryId, "lib_c1u6t4p45c35rf0nzd")
-        XCTAssertEqual(podcastsFolder.addedAt, Date(timeIntervalSince1970: 1650462940610 / 1000))
+        XCTAssertEqual(podcastsFolder.addedAt, Date(timeIntervalSince1970: 1_650_462_940_610 / 1000))
         XCTAssertEqual(podcastsLibrary.displayOrder, 4)
         XCTAssertEqual(podcastsLibrary.icon, "database")
         XCTAssertEqual(podcastsLibrary.mediaType, .podcast)
@@ -70,7 +70,7 @@ class LibrariesTests: BaseTestCase {
         XCTAssertEqual(podcastsLibrary.settings.skipMatchingMediaWithAsin, false)
         XCTAssertEqual(podcastsLibrary.settings.skipMatchingMediaWithIsbn, false)
         XCTAssertEqual(podcastsLibrary.settings.autoScanCronExpression, nil)
-        XCTAssertEqual(podcastsLibrary.createdAt, Date(timeIntervalSince1970: 1650462940610 / 1000))
-        XCTAssertEqual(podcastsLibrary.lastUpdate, Date(timeIntervalSince1970: 1650462940610 / 1000))
+        XCTAssertEqual(podcastsLibrary.createdAt, Date(timeIntervalSince1970: 1_650_462_940_610 / 1000))
+        XCTAssertEqual(podcastsLibrary.lastUpdate, Date(timeIntervalSince1970: 1_650_462_940_610 / 1000))
     }
 }

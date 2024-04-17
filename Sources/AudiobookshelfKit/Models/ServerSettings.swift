@@ -31,11 +31,11 @@ public struct ServerSettings: Codable, Hashable {
     public let scannerDisableWatcher: Bool
     /// Whether to use the custom metadata in MP3 files from Overdrive for chapter timings automatically.
     public let scannerPreferOverdriveMediaMarker: Bool?
-    /// 
+    ///
     public let scannerUseSingleThreadedProber: Bool?
-    /// 
+    ///
     public let scannerMaxThreads: Int?
-    /// 
+    ///
     public let scannerUseTone: Bool?
     /// Whether to store covers in the library item's folder.
     /// By default, covers are stored in `/metadata/items`.
