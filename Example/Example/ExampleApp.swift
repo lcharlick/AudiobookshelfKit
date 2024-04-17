@@ -20,6 +20,8 @@ struct ExampleApp: App {
                         switch route {
                         case let .libraries(serverInfo):
                             LibrariesView(serverInfo: serverInfo)
+                        case let .library(libraryID, serverInfo):
+                            LibraryView(libraryID: libraryID, serverInfo: serverInfo)
                         }
                     }
             }
@@ -32,15 +34,28 @@ struct ExampleApp: App {
 struct ServerInfo: Hashable {
     let url: URL
     let token: String
+
+    static let mock = ServerInfo(url: URL(string: "https://abs.myserver.com")!, token: "12345")
 }
 
 private struct ClientKey: EnvironmentKey {
     static var defaultValue: Audiobookshelf { Audiobookshelf(sessionConfiguration: .default) }
 }
 
-public extension EnvironmentValues {
+extension EnvironmentValues {
     var client: Audiobookshelf {
         get { self[ClientKey.self] }
         set { self[ClientKey.self] = newValue }
+    }
+}
+
+private struct IsPreviewKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+extension EnvironmentValues {
+    var isPreview: Bool {
+        get { self[IsPreviewKey.self] }
+        set { self[IsPreviewKey.self] = newValue }
     }
 }

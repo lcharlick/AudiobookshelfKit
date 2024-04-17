@@ -1,5 +1,4 @@
-{
-  "results": [
+[
     {
       "id": "bc0719db-2124-4ba2-9860-1b729cbfcc6e",
       "ino": "147827",
@@ -1122,14 +1121,4 @@
       "numFiles": 4,
       "size": 361104256
     }
-  ],
-  "total": 22,
-  "limit": 0,
-  "page": 0,
-  "sortDesc": false,
-  "mediaType": "book",
-  "minified": false,
-  "collapseseries": false,
-  "include": "",
-  "offset": 0
-}
+]

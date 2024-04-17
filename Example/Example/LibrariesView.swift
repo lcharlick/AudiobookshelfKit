@@ -10,11 +10,14 @@ import SwiftUI
 
 struct LibrariesView: View {
     let serverInfo: ServerInfo
+
     @Environment(\.client) private var client
+    @Environment(\.isPreview) private var isPreview
+
     @State private var libraries: [Library]?
     @State private var errorMessage: String?
 
-    private func fetchLibraries() async {
+    private func getLibraries() async {
         let request = Audiobookshelf.Request.Libraries()
         let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
         switch result {
@@ -34,7 +37,9 @@ struct LibrariesView: View {
             if let libraries {
                 List {
                     ForEach(libraries) { library in
-                        Text(library.name)
+                        NavigationLink(value: Route.library(libraryID: library.id, serverInfo: serverInfo)) {
+                            Text(library.name)
+                        }
                     }
                 }
             } else {
@@ -42,12 +47,16 @@ struct LibrariesView: View {
             }
         }
         .task {
-            await fetchLibraries()
+            if !isPreview {
+                await getLibraries()
+            }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Libraries")
     }
 }
 
 #Preview {
-    LibrariesView(serverInfo: ServerInfo(url: URL(string: "https://abs.myserver.com")!, token: "12345"))
+    LibrariesView(serverInfo: .mock)
+        .environment(\.isPreview, true)
 }

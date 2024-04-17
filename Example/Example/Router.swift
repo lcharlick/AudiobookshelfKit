@@ -14,4 +14,5 @@ import Observation
 
 enum Route: Hashable {
     case libraries(ServerInfo)
+    case library(libraryID: String, serverInfo: ServerInfo)
 }

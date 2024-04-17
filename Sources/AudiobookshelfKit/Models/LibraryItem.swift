@@ -88,7 +88,7 @@ public struct Book: Codable, Hashable, Identifiable {
         /// The genres of the book.
         public let genres: [String]
         /// The year the book was published.
-        public let publishedYear: String
+        public let publishedYear: String?
         /// The date the book was published.
         public let publishedDate: Date?
         /// The publisher of the book.

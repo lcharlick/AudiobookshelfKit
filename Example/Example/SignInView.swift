@@ -88,8 +88,8 @@ extension AudiobookshelfError: CustomStringConvertible {
             case let .unacceptableStatusCode(statusCode):
                 return "Unacceptable status code: \(statusCode)"
             }
-        case .decodingFailed:
-            return "Decoding failed"
+        case let .decodingFailed(_, error):
+            return "Decoding failed: \(error)"
         case .notAuthenticated:
             return "Not authenticated"
         }
