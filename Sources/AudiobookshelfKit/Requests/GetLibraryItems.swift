@@ -21,7 +21,7 @@ public extension Audiobookshelf.Request {
                 items.append(URLQueryItem(name: "sort", value: sort))
             }
             if let desc = desc {
-                items.append(URLQueryItem(name: "desc", value: String(desc ? 1 : 0)))
+                items.append(URLQueryItem(name: "desc", value: desc))
             }
             if let collapsedSeries = collapsedSeries {
                 items.append(URLQueryItem(name: "collapsedSeries", value: String(collapsedSeries ? 1 : 0)))

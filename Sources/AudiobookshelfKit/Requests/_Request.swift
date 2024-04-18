@@ -8,7 +8,8 @@
 
 import Foundation
 
-public protocol BaseRequest {
+/// Describes a request to an Audiobookshelf resource (e.g. server).
+public protocol ResourceRequest {
     associatedtype Response
 
     var path: String { get }
@@ -21,14 +22,14 @@ public protocol BaseRequest {
     static func response(from data: Data) throws -> Response
 }
 
-public extension BaseRequest {
+public extension ResourceRequest {
     var httpMethod: String { "GET" }
     var accept: String { "application/json" }
     var queryItems: [URLQueryItem]? { nil }
     var httpBody: [String: String]? { nil }
 }
 
-public extension BaseRequest where Response: Codable {
+public extension ResourceRequest where Response: Codable {
     static func _response(from data: Data) throws -> Response {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .millisecondsSince1970
@@ -47,18 +48,15 @@ public extension BaseRequest where Response: Codable {
     }
 }
 
-/// Describes a request to an Audiobookshelf resource (e.g. server).
-public protocol ResourceRequest: BaseRequest {}
-
-extension ResourceRequest {
-    public func asURLRequest(
+public extension ResourceRequest {
+    func asURLRequest(
         from url: URL,
         using token: String?
     ) throws -> URLRequest {
         try _asURLRequest(from: url, using: token)
     }
 
-    func _asURLRequest(
+    internal func _asURLRequest(
         from url: URL,
         using token: String?
     ) throws -> URLRequest {

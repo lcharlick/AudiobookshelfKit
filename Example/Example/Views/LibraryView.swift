@@ -48,7 +48,10 @@ struct LibraryView: View {
                     .foregroundStyle(.red)
             } else {
                 ForEach(items) { item in
-                    Text(item.media.metadata.title)
+                    HStack {
+                        Cover(serverInfo: serverInfo, itemID: item.id)
+                        Text(item.media.metadata.title)
+                    }
                 }
             }
         }
