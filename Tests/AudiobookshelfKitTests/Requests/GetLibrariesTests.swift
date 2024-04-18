@@ -11,7 +11,7 @@ import XCTest
 
 class LibrariesTests: BaseTestCase {
     func testRequest() throws {
-        let request = try Audiobookshelf.Request.Libraries()
+        let request = try Audiobookshelf.Request.GetLibraries()
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
@@ -26,7 +26,7 @@ class LibrariesTests: BaseTestCase {
     func testResponse() throws {
         let response = try loadResponse(
             "libraries",
-            for: Audiobookshelf.Request.Libraries.self
+            for: Audiobookshelf.Request.GetLibraries.self
         )
 
         let libraries = response.libraries

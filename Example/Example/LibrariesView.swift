@@ -18,7 +18,7 @@ struct LibrariesView: View {
     @State private var errorMessage: String?
 
     private func getLibraries() async {
-        let request = Audiobookshelf.Request.Libraries()
+        let request = Audiobookshelf.Request.GetLibraries()
         let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
         switch result {
         case let .success(response):
