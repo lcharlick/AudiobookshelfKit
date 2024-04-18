@@ -1,5 +1,5 @@
 //
-//  Author.swift
+//  AuthorMinified.swift
 //  AudiobookshelfKit
 //
 //  Created by Lachlan Charlick on 18/4/24.
