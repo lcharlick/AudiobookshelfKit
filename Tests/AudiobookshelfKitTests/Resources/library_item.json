@@ -1,0 +1,380 @@
+{
+	"id": "bc0719db-2124-4ba2-9860-1b729cbfcc6e",
+	"ino": "147827",
+	"oldLibraryItemId": null,
+	"libraryId": "71288985-7f00-4a29-b671-836edde7d3a4",
+	"folderId": "107b1c26-1f79-4118-acc5-531cc41a9f80",
+	"path": "/Volumes/media/audiobooks_screenshots/JRR Tolkien/The Hobbit",
+	"relPath": "JRR Tolkien/The Hobbit",
+	"isFile": false,
+	"mtimeMs": 1596375037000,
+	"ctimeMs": 1596375037000,
+	"birthtimeMs": 1596368362000,
+	"addedAt": 1654499247059,
+	"updatedAt": 1713354157355,
+	"lastScan": 1713354157355,
+	"scanVersion": "2.8.1",
+	"isMissing": false,
+	"isInvalid": false,
+	"mediaType": "book",
+	"media": {
+		"id": "dbb1da04-8049-4fba-b9b6-bca66e5c9d6a",
+		"libraryItemId": "bc0719db-2124-4ba2-9860-1b729cbfcc6e",
+		"metadata": {
+			"title": "The Hobbit",
+			"titleIgnorePrefix": "Hobbit, The",
+			"subtitle": null,
+			"authors": [
+				{
+					"id": "55550aac-c2f4-4649-a517-e03dce886076",
+					"name": "JRR Tolkien"
+				}
+			],
+			"narrators": [
+				"Rob Inglis"
+			],
+			"series": [],
+			"genres": [
+				"Fantasy"
+			],
+			"publishedYear": "1937",
+			"publishedDate": null,
+			"publisher": null,
+			"description": null,
+			"isbn": null,
+			"asin": null,
+			"language": null,
+			"explicit": false,
+			"authorName": "JRR Tolkien",
+			"authorNameLF": "Tolkien, JRR",
+			"narratorName": "Rob Inglis",
+			"seriesName": "",
+			"abridged": false
+		},
+		"coverPath": "/Users/lcharlick/git/audiobookshelf/metadata/items/li_3xi3eu3m5ey3gcj45x/cover.png",
+		"tags": [],
+		"audioFiles": [
+			{
+				"index": 1,
+				"ino": "147831",
+				"metadata": {
+					"filename": "The Hobbit.m4a",
+					"ext": ".m4a",
+					"path": "/Volumes/media/audiobooks_screenshots/JRR Tolkien/The Hobbit/The Hobbit.m4a",
+					"relPath": "The Hobbit.m4a",
+					"size": 18226998,
+					"mtimeMs": 1602044390000,
+					"ctimeMs": 1602044390000,
+					"birthtimeMs": 1596369649000
+				},
+				"addedAt": 1654499251112,
+				"updatedAt": 1654499251112,
+				"trackNumFromMeta": 1,
+				"discNumFromMeta": null,
+				"trackNumFromFilename": null,
+				"discNumFromFilename": null,
+				"manuallyVerified": false,
+				"exclude": false,
+				"error": null,
+				"format": "QuickTime / MOV",
+				"duration": 39720.024,
+				"bitRate": 2090,
+				"language": "und",
+				"codec": "aac",
+				"timeBase": "1/44100",
+				"channels": 2,
+				"channelLayout": "stereo",
+				"chapters": [
+					{
+						"id": 0,
+						"start": 0,
+						"end": 3678,
+						"title": "An Unexpected Party"
+					},
+					{
+						"id": 1,
+						"start": 3678,
+						"end": 5844,
+						"title": "Roast Mutton"
+					},
+					{
+						"id": 2,
+						"start": 5844,
+						"end": 7012,
+						"title": "A Short Rest"
+					},
+					{
+						"id": 3,
+						"start": 7012,
+						"end": 8644,
+						"title": "Over Hill and Under Hill"
+					},
+					{
+						"id": 4,
+						"start": 8644,
+						"end": 11940,
+						"title": "Riddles In The Dark"
+					},
+					{
+						"id": 5,
+						"start": 11940,
+						"end": 14551,
+						"title": "Out Of The Frying-Pan Into The Fire"
+					},
+					{
+						"id": 6,
+						"start": 14551,
+						"end": 17927,
+						"title": "Queer Lodgings"
+					},
+					{
+						"id": 7,
+						"start": 17927,
+						"end": 21967,
+						"title": "Flies And Spiders"
+					},
+					{
+						"id": 8,
+						"start": 21967,
+						"end": 24244,
+						"title": "Barrels Out Of Bond"
+					},
+					{
+						"id": 9,
+						"start": 24244,
+						"end": 25845,
+						"title": "A Warm Welcome"
+					},
+					{
+						"id": 10,
+						"start": 25845,
+						"end": 27079,
+						"title": "On The Doorstep"
+					},
+					{
+						"id": 11,
+						"start": 27079,
+						"end": 30156,
+						"title": "Inside Information"
+					},
+					{
+						"id": 12,
+						"start": 30156,
+						"end": 31791,
+						"title": "Not At Home"
+					},
+					{
+						"id": 13,
+						"start": 31791,
+						"end": 33097,
+						"title": "Fire And Water"
+					},
+					{
+						"id": 14,
+						"start": 33097,
+						"end": 34563,
+						"title": "The Gathering Of The Clouds"
+					},
+					{
+						"id": 15,
+						"start": 34563,
+						"end": 35459,
+						"title": "A Thief In The Night"
+					},
+					{
+						"id": 16,
+						"start": 35459,
+						"end": 37116,
+						"title": "The Clouds Burst"
+					},
+					{
+						"id": 17,
+						"start": 37116,
+						"end": 38327,
+						"title": "The Return Journey"
+					},
+					{
+						"id": 18,
+						"start": 38327,
+						"end": 39720.023,
+						"title": "The Last Stage"
+					}
+				],
+				"embeddedCoverArt": "png",
+				"metaTags": {
+					"tagAlbum": "The Hobbit",
+					"tagArtist": "J. R. R. Tolkien",
+					"tagGenre": "Fantasy",
+					"tagTitle": "The Hobbit",
+					"tagTrack": "1",
+					"tagAlbumArtist": "J. R. R. Tolkien",
+					"tagDate": "1937",
+					"tagComposer": "Rob Inglis",
+					"tagComment": "Bilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely travelling further than the pantry of his hobbit-hole in Bag End. But his contentment is disturbed when the wizard, Gandalf, and a company of 13 dwarves arrive on his doorstep one day to whisk him away on an unexpected journey ‘there and back again’. They have a plot to raid the treasure hoard of Smaug the Magnificent, a large and very dangerous dragon....  The prelude to The Lord of the Rings, The Hobbit has sold many millions of copies since its publication in 1937, establishing itself as one of the most beloved and influential books of the 20th century.",
+					"tagEncoder": "Lavf58.45.100"
+				},
+				"mimeType": "audio/mp4"
+			}
+		],
+		"chapters": [
+			{
+				"id": 0,
+				"start": 0,
+				"end": 3678,
+				"title": "An Unexpected Party"
+			},
+			{
+				"id": 1,
+				"start": 3678,
+				"end": 5844,
+				"title": "Roast Mutton"
+			},
+			{
+				"id": 2,
+				"start": 5844,
+				"end": 7012,
+				"title": "A Short Rest"
+			},
+			{
+				"id": 3,
+				"start": 7012,
+				"end": 8644,
+				"title": "Over Hill and Under Hill"
+			},
+			{
+				"id": 4,
+				"start": 8644,
+				"end": 11940,
+				"title": "Riddles In The Dark"
+			},
+			{
+				"id": 5,
+				"start": 11940,
+				"end": 14551,
+				"title": "Out Of The Frying-Pan Into The Fire"
+			},
+			{
+				"id": 6,
+				"start": 14551,
+				"end": 17927,
+				"title": "Queer Lodgings"
+			},
+			{
+				"id": 7,
+				"start": 17927,
+				"end": 21967,
+				"title": "Flies And Spiders"
+			},
+			{
+				"id": 8,
+				"start": 21967,
+				"end": 24244,
+				"title": "Barrels Out Of Bond"
+			},
+			{
+				"id": 9,
+				"start": 24244,
+				"end": 25845,
+				"title": "A Warm Welcome"
+			},
+			{
+				"id": 10,
+				"start": 25845,
+				"end": 27079,
+				"title": "On The Doorstep"
+			},
+			{
+				"id": 11,
+				"start": 27079,
+				"end": 30156,
+				"title": "Inside Information"
+			},
+			{
+				"id": 12,
+				"start": 30156,
+				"end": 31791,
+				"title": "Not At Home"
+			},
+			{
+				"id": 13,
+				"start": 31791,
+				"end": 33097,
+				"title": "Fire And Water"
+			},
+			{
+				"id": 14,
+				"start": 33097,
+				"end": 34563,
+				"title": "The Gathering Of The Clouds"
+			},
+			{
+				"id": 15,
+				"start": 34563,
+				"end": 35459,
+				"title": "A Thief In The Night"
+			},
+			{
+				"id": 16,
+				"start": 35459,
+				"end": 37116,
+				"title": "The Clouds Burst"
+			},
+			{
+				"id": 17,
+				"start": 37116,
+				"end": 38327,
+				"title": "The Return Journey"
+			},
+			{
+				"id": 18,
+				"start": 38327,
+				"end": 39720.023,
+				"title": "The Last Stage"
+			}
+		],
+		"duration": 39720.024,
+		"size": 18226998,
+		"tracks": [
+			{
+				"index": 1,
+				"startOffset": 0,
+				"duration": 39720.024,
+				"title": "The Hobbit.m4a",
+				"contentUrl": "/api/items/bc0719db-2124-4ba2-9860-1b729cbfcc6e/file/147831",
+				"mimeType": "audio/mp4",
+				"codec": "aac",
+				"metadata": {
+					"filename": "The Hobbit.m4a",
+					"ext": ".m4a",
+					"path": "/Volumes/media/audiobooks_screenshots/JRR Tolkien/The Hobbit/The Hobbit.m4a",
+					"relPath": "The Hobbit.m4a",
+					"size": 18226998,
+					"mtimeMs": 1602044390000,
+					"ctimeMs": 1602044390000,
+					"birthtimeMs": 1596369649000
+				}
+			}
+		],
+		"ebookFile": null
+	},
+	"libraryFiles": [
+		{
+			"ino": "147831",
+			"metadata": {
+				"filename": "The Hobbit.m4a",
+				"ext": ".m4a",
+				"path": "/Volumes/media/audiobooks_screenshots/JRR Tolkien/The Hobbit/The Hobbit.m4a",
+				"relPath": "The Hobbit.m4a",
+				"size": 18226998,
+				"mtimeMs": 1602044390000,
+				"ctimeMs": 1602044390000,
+				"birthtimeMs": 1596369649000
+			},
+			"isSupplementary": null,
+			"addedAt": 1654499247031,
+			"updatedAt": 1654499247031,
+			"fileType": "audio"
+		}
+	],
+	"size": 18226998
+}
