@@ -11,6 +11,7 @@ import SwiftUI
 struct SignInView: View {
     @Environment(\.client) private var client
     @Environment(Router.self) private var router
+    @Environment(ServerInfo.self) private var serverInfo
 
     @State private var isLoading = false
     @State private var successMessage: String?
@@ -36,8 +37,9 @@ struct SignInView: View {
         switch result {
         case let .success(response):
             successMessage = "Successfully signed in as \(response.user.username)."
-            let serverInfo = ServerInfo(url: URL(string: server)!, token: response.user.token)
-            router.path.append(.libraries(serverInfo))
+            serverInfo.url = URL(string: server)!
+            serverInfo.token = response.user.token
+            router.path.append(.libraries)
         case let .failure(error):
             errorMessage = error.description
         }
@@ -98,4 +100,6 @@ extension AudiobookshelfError: CustomStringConvertible {
 
 #Preview {
     SignInView()
+        .environment(ServerInfo.mock)
+        .environment(Router())
 }

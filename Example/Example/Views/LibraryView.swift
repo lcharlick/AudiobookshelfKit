@@ -9,29 +9,27 @@ import AudiobookshelfKit
 import SwiftUI
 
 struct LibraryView: View {
-    let serverInfo: ServerInfo
-    let libraryID: String
+    let id: String
 
     @Environment(\.client) private var client
+    @Environment(ServerInfo.self) private var serverInfo
     @Environment(\.isPreview) private var isPreview
 
     @State private var items: [AudiobookshelfKit.LibraryItem]
     @State private var errorMessage: String?
 
-    init(libraryID: String, serverInfo: ServerInfo) {
-        self.libraryID = libraryID
-        self.serverInfo = serverInfo
+    init(id: String) {
+        self.id = id
         items = []
     }
 
-    init(libraryID: String, serverInfo: ServerInfo, items: [AudiobookshelfKit.LibraryItem]) {
-        self.libraryID = libraryID
-        self.serverInfo = serverInfo
+    init(id: String, items: [AudiobookshelfKit.LibraryItem]) {
+        self.id = id
         self.items = items
     }
 
     private func getLibraryItems() async {
-        let request = Audiobookshelf.Request.GetLibraryItems(libraryID: libraryID, limit: 10, page: 1)
+        let request = Audiobookshelf.Request.GetLibraryItems(libraryID: id, limit: 10, page: 1)
         let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
         switch result {
         case let .success(response):
@@ -49,7 +47,7 @@ struct LibraryView: View {
             } else {
                 ForEach(items) { item in
                     HStack {
-                        Cover(serverInfo: serverInfo, itemID: item.id)
+                        Cover(itemID: item.id)
                         Text(item.media.metadata.title)
                     }
                 }
@@ -69,6 +67,7 @@ struct LibraryView: View {
 #Preview {
     let data = try! Data(contentsOf: Bundle.main.url(forResource: "library_items", withExtension: "json")!)
     let items = try! JSONDecoder().decode([AudiobookshelfKit.LibraryItem].self, from: data)
-    return LibraryView(libraryID: "my-library", serverInfo: .mock, items: items)
+    return LibraryView(id: "my-library", items: items)
+        .environment(ServerInfo.mock)
         .environment(\.isPreview, true)
 }

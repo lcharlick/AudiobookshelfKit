@@ -10,10 +10,10 @@ import Foundation
 import SwiftUI
 
 struct Cover: View {
-    let serverInfo: ServerInfo
     let itemID: String
 
     @Environment(\.client) private var client
+    @Environment(ServerInfo.self) private var serverInfo
     @Environment(\.isPreview) private var isPreview
     @Environment(\.displayScale) private var displayScale
 
@@ -61,5 +61,6 @@ struct Cover: View {
 }
 
 #Preview {
-    Cover(serverInfo: .mock, itemID: "my-item")
+    Cover(itemID: "my-item")
+        .environment(ServerInfo.mock)
 }

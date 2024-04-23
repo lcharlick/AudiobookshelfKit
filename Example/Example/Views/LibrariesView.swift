@@ -9,9 +9,8 @@ import AudiobookshelfKit
 import SwiftUI
 
 struct LibrariesView: View {
-    let serverInfo: ServerInfo
-
     @Environment(\.client) private var client
+    @Environment(ServerInfo.self) private var serverInfo
     @Environment(\.isPreview) private var isPreview
 
     @State private var libraries: [Library]?
@@ -37,7 +36,7 @@ struct LibrariesView: View {
             if let libraries {
                 List {
                     ForEach(libraries) { library in
-                        NavigationLink(value: Route.library(libraryID: library.id, serverInfo: serverInfo)) {
+                        NavigationLink(value: Route.library(id: library.id)) {
                             Text(library.name)
                         }
                     }
@@ -57,6 +56,7 @@ struct LibrariesView: View {
 }
 
 #Preview {
-    LibrariesView(serverInfo: .mock)
+    LibrariesView()
+        .environment(ServerInfo.mock)
         .environment(\.isPreview, true)
 }
