@@ -27,7 +27,8 @@ struct Cover: View {
     private func getCover() async {
         let request = Audiobookshelf.Request.GetLibraryItemCover(
             id: itemID,
-            height: Int(Constants.height * displayScale)
+            height: Int(Constants.height * displayScale),
+            format: .webp
         )
         let result = await client.request(request, from: serverInfo.url, token: serverInfo.token)
         switch result {
