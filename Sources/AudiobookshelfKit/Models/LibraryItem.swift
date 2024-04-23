@@ -78,7 +78,7 @@ public extension LibraryItem.Book {
         /// The title of the book.
         public let title: String
         /// The sort title of the book.
-        public let titleIgnorePrefix: String
+        public let titleIgnorePrefix: String?
         /// The subtitle of the book.
         public let subtitle: String?
         /// The authors of the book.

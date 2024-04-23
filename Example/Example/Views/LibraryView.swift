@@ -46,9 +46,11 @@ struct LibraryView: View {
                     .foregroundStyle(.red)
             } else {
                 ForEach(items) { item in
-                    HStack {
-                        Cover(itemID: item.id)
-                        Text(item.media.metadata.title)
+                    NavigationLink(value: Route.book(id: item.id, title: item.media.metadata.title)) {
+                        HStack {
+                            Cover(itemID: item.id)
+                            Text(item.media.metadata.title)
+                        }
                     }
                 }
             }

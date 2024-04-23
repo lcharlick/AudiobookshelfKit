@@ -38,7 +38,7 @@ public struct LibraryItemExpanded: Codable, Hashable, Identifiable {
     /// The time (in ms since POSIX epoch) when the library item was last scanned. Will be null if the server has not yet scanned the library item.
     public let lastScan: Date?
     /// The version of the scanner when last scanned. Will be nil if it has not been scanned.
-    public let scanVersion: String
+    public let scanVersion: String?
     /// Whether the library item was scanned and no longer exists.
     public let isMissing: Bool
     /// Whether the library item was scanned and no longer has media files.
@@ -73,13 +73,13 @@ public extension LibraryItemExpanded {
 public extension LibraryItemExpanded.Book {
     struct MediaMetadata: Codable, Hashable {
         public let title: String
-        public let titleIgnorePrefix: String
+        public let titleIgnorePrefix: String?
         public let subtitle: String?
         public let authors: [AuthorMinified]
         public let narrators: [String]
         public let series: [SeriesSequence]
         public let genres: [String]
-        public let publishedYear: String
+        public let publishedYear: String?
         public let publishedDate: Date?
         public let publisher: String?
         public let description: String?

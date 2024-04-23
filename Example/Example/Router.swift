@@ -15,4 +15,5 @@ import Observation
 enum Route: Hashable {
     case libraries
     case library(id: String)
+    case book(id: String, title: String)
 }

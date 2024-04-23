@@ -23,6 +23,8 @@ struct ExampleApp: App {
                             LibrariesView()
                         case let .library(id):
                             LibraryView(id: id)
+                        case let .book(id, title):
+                            BookView(id: id, title: title)
                         }
                     }
             }

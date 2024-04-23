@@ -13,6 +13,10 @@ public extension Audiobookshelf.Request {
     struct GetLibraryItem: ResourceRequest {
         public var path: String { "api/items/\(id)" }
 
+        public var queryItems: [URLQueryItem]? = [
+            URLQueryItem(name: "expanded", value: true),
+        ]
+
         private let id: String
 
         public init(id: String) {

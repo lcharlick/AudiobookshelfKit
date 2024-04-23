@@ -5,8 +5,8 @@
 //  Created by Lachlan Charlick on 23/4/2024.
 //
 
-import SwiftUI
 import AudiobookshelfKit
+import SwiftUI
 
 private struct ClientKey: EnvironmentKey {
     static var defaultValue: Audiobookshelf { Audiobookshelf(sessionConfiguration: .default) }

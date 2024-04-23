@@ -23,6 +23,9 @@ class GetLibraryItemTests: BaseTestCase {
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
+        XCTAssertEqual(data.queryItems, [
+            "expanded": "1",
+        ])
     }
 
     func testResponse() throws {
