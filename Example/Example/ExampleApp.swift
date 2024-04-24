@@ -24,7 +24,7 @@ struct ExampleApp: App {
                         case let .library(id):
                             LibraryView(id: id)
                         case let .book(id, title):
-                            BookView(id: id, title: title)
+                            BookDetailView(id: id, title: title)
                         }
                     }
             }
