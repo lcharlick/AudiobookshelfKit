@@ -10,8 +10,15 @@ import SwiftUI
 
 @main
 struct ExampleApp: App {
-    @State private var router = Router()
-    @State private var serverInfo = ServerInfo()
+    @State private var router: Router
+    @State private var player: Player
+    @State private var serverInfo: ServerInfo
+
+    init() {
+        router = Router()
+        player = Player()
+        serverInfo = ServerInfo()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -30,7 +37,8 @@ struct ExampleApp: App {
             }
         }
         .environment(\.client, Audiobookshelf(sessionConfiguration: .default))
-        .environment(serverInfo)
         .environment(router)
+        .environment(player)
+        .environment(serverInfo)
     }
 }

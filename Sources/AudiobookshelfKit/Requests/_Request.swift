@@ -51,26 +51,31 @@ public extension ResourceRequest where Response: Codable {
 public extension ResourceRequest {
     func asURLRequest(
         from url: URL,
-        using token: String?
+        using token: String?,
+        tokenStrategy: TokenStrategy = .header
     ) throws -> URLRequest {
-        try _asURLRequest(from: url, using: token)
+        try _asURLRequest(from: url, using: token, tokenStrategy: tokenStrategy)
     }
 
     internal func _asURLRequest(
         from url: URL,
-        using token: String?
+        using token: String?,
+        tokenStrategy: TokenStrategy
     ) throws -> URLRequest {
-        guard let url = url.appendingPathComponent(path)
-            .appendingQueryItems(queryItems ?? [])
-        else {
-            throw AudiobookshelfError.invalidRequest(.invalidQueryItems(queryItems ?? []))
+        var queryItems = self.queryItems ?? []
+        if tokenStrategy == .queryItem, let token {
+            queryItems.append(URLQueryItem(name: "token", value: token))
+        }
+
+        guard let url = url.appendingPathComponent(path).appendingQueryItems(queryItems) else {
+            throw AudiobookshelfError.invalidRequest(.invalidQueryItems(queryItems))
         }
 
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
         request.addValue(accept, forHTTPHeaderField: "accept")
 
-        if let token = token {
+        if tokenStrategy == .header, let token = token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
 
@@ -81,4 +86,9 @@ public extension ResourceRequest {
 
         return request
     }
+}
+
+public enum TokenStrategy {
+    case header
+    case queryItem
 }

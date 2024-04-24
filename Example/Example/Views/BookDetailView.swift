@@ -25,11 +25,11 @@ struct BookDetailView: View {
     }
 
     #if DEBUG
-    init(item: LibraryItemExpanded) {
-        self.id = item.id
-        self.title = item.media.metadata.title
-        _item = State(initialValue: item)
-    }
+        init(item: LibraryItemExpanded) {
+            id = item.id
+            title = item.media.metadata.title
+            _item = State(initialValue: item)
+        }
     #endif
 
     private func getLibraryItem() async {
@@ -67,6 +67,9 @@ struct BookDetailView: View {
 private struct BookView: View {
     let item: LibraryItemExpanded
 
+    @Environment(Player.self) private var player
+    @Environment(ServerInfo.self) private var serverInfo
+
     var body: some View {
         List {
             VStack {
@@ -75,7 +78,9 @@ private struct BookView: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                 Text("By \(item.media.metadata.authorName)")
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    player.play(item: item, serverInfo: serverInfo)
+                }, label: {
                     Text("Play")
                 })
                 .buttonStyle(.borderedProminent)
@@ -99,5 +104,6 @@ private struct BookView: View {
         BookDetailView(item: item)
             .environment(\.isPreview, true)
             .environment(ServerInfo.mock)
+            .environment(Player())
     }
 }
