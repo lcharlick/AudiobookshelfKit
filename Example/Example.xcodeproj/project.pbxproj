@@ -84,7 +84,6 @@
 				48010CFD2BC5856B00A8468C /* ExampleApp.swift */,
 				48010D012BC5856C00A8468C /* Assets.xcassets */,
 				48010D032BC5856C00A8468C /* Preview Content */,
-				48D6E9CD2BC82EEB00DC58FD /* Router.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -132,6 +131,7 @@
 		4859EBFE2BD920A0005653D4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48D6E9CD2BC82EEB00DC58FD /* Router.swift */,
 				4859EBFF2BD920AA005653D4 /* Player.swift */,
 			);
 			path = Services;
