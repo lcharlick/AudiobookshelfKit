@@ -29,4 +29,6 @@ public struct Library: Codable, Hashable, Identifiable {
     public let createdAt: Date
     /// The time when the library was last updated.
     public let lastUpdate: Date
+    /// The time when the library was last scanned.
+    public let lastScan: Date?
 }
