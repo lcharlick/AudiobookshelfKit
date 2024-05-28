@@ -1,0 +1,40 @@
+{
+  "authors": [
+    {
+      "id": "7e2f3c5b-9778-4505-8719-8fdce133600f",
+      "asin": null,
+      "name": "Brandon Sanderson",
+      "description": null,
+      "imagePath": null,
+      "addedAt": 1713354162111,
+      "updatedAt": 1713354162111,
+      "libraryId": "71288985-7f00-4a29-b671-836edde7d3a4",
+      "numBooks": 3,
+      "lastFirst": "Sanderson, Brandon"
+    },
+    {
+      "id": "55550aac-c2f4-4649-a517-e03dce886076",
+      "asin": null,
+      "name": "JRR Tolkien",
+      "description": null,
+      "imagePath": null,
+      "addedAt": 1654499251578,
+      "updatedAt": 1654499251578,
+      "libraryId": "71288985-7f00-4a29-b671-836edde7d3a4",
+      "numBooks": 7,
+      "lastFirst": "Tolkien, JRR"
+    },
+    {
+      "id": "e49320dc-f3f5-4c59-bee8-1b6a39ab4eb4",
+      "asin": null,
+      "name": "Robert Jordan",
+      "description": null,
+      "imagePath": null,
+      "addedAt": 1713354158273,
+      "updatedAt": 1713354158273,
+      "libraryId": "71288985-7f00-4a29-b671-836edde7d3a4",
+      "numBooks": 15,
+      "lastFirst": "Jordan, Robert"
+    }
+  ]
+}
