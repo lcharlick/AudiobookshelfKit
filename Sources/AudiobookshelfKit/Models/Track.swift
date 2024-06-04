@@ -10,7 +10,7 @@ import Foundation
 
 public struct Track: Codable, Hashable {
     public let index: Int
-    public let startOffset: Int
+    public let startOffset: TimeInterval
     public let duration: TimeInterval
     public let title: String
     public let contentUrl: String
