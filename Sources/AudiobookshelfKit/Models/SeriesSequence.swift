@@ -9,5 +9,5 @@
 public struct SeriesSequence: Codable, Hashable {
     public let id: String
     public let name: String
-    public let sequence: String
+    public let sequence: String?
 }
