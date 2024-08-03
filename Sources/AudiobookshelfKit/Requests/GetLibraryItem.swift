@@ -15,6 +15,7 @@ public extension Audiobookshelf.Request {
 
         public var queryItems: [URLQueryItem]? = [
             URLQueryItem(name: "expanded", value: true),
+            URLQueryItem(name: "include", value: "authors,progress"),
         ]
 
         private let id: String

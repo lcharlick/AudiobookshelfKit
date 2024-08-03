@@ -25,6 +25,7 @@ class GetLibraryItemTests: BaseTestCase {
         ])
         XCTAssertEqual(data.queryItems, [
             "expanded": "1",
+            "include": "authors,progress"
         ])
     }
 
