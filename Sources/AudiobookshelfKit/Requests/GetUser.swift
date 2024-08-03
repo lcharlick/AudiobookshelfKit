@@ -11,7 +11,8 @@ import Foundation
 public extension Audiobookshelf.Request {
     /// This endpoint retrieves your user.
     struct GetUser: ResourceRequest {
-        public var path = "api/me"
+        public let path = "api/me"
+        public init() {}
     }
 }
 
