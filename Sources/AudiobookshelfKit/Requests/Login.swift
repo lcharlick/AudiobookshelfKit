@@ -13,7 +13,7 @@ public extension Audiobookshelf.Request {
     struct Login: ResourceRequest {
         public let path = "login"
         public let httpMethod = "POST"
-        public var httpBody: [String: String]? {
+        public var httpBody: Codable? {
             ["username": username, "password": password]
         }
 

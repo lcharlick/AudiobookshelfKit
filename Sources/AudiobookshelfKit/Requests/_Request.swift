@@ -17,7 +17,7 @@ public protocol ResourceRequest {
     var accept: String { get }
 
     var queryItems: [URLQueryItem]? { get }
-    var httpBody: [String: String]? { get }
+    var httpBody: Codable? { get }
 
     static func response(from data: Data) throws -> Response
 }
@@ -26,7 +26,7 @@ public extension ResourceRequest {
     var httpMethod: String { "GET" }
     var accept: String { "application/json" }
     var queryItems: [URLQueryItem]? { nil }
-    var httpBody: [String: String]? { nil }
+    var httpBody: Codable? { nil }
 }
 
 public extension ResourceRequest where Response: Codable {

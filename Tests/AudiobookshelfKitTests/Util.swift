@@ -39,8 +39,10 @@ struct RequestData {
         } ?? []
 
         queryItems = Dictionary(uniqueKeysWithValues: items)
+
+        self.rawHttpBody = request.httpBody
         if let httpBody = request.httpBody {
-            self.httpBody = try! JSONDecoder().decode([String: String].self, from: httpBody)
+            self.httpBody = try? JSONDecoder().decode([String: String].self, from: httpBody)
         } else {
             httpBody = nil
         }
@@ -50,6 +52,7 @@ struct RequestData {
     let httpMethod: String?
     let queryItems: [String: String?]
     let headers: [String: String]?
+    let rawHttpBody: Data?
     let httpBody: [String: String]?
 }
 
