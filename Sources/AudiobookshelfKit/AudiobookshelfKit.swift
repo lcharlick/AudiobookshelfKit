@@ -33,8 +33,10 @@ public final class Audiobookshelf {
 
         do {
             (data, response) = try await session.data(for: request)
+        } catch let error as URLError {
+            return .failure(.networkError(request.url!, .transportError(error)))
         } catch {
-            return .failure(.networkError(request.url!, .urlSessionError(error)))
+            return .failure(.networkError(request.url!, .unknown(error)))
         }
 
         if let response = response as? HTTPURLResponse {
@@ -103,6 +105,7 @@ public enum AudiobookshelfError: Error {
 
     public enum NetworkFailureReason {
         case unacceptableStatusCode(Int)
-        case urlSessionError(Error)
+        case transportError(URLError)
+        case unknown(Error)
     }
 }
