@@ -11,4 +11,5 @@ import Foundation
 public enum MediaType: String, Codable {
     case book
     case podcast
+    case podcastEpisode
 }
