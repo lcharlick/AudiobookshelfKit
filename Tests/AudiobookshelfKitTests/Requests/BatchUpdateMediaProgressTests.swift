@@ -24,23 +24,23 @@ class BatchUpdateMediaProgressTests: BaseTestCase {
             "Content-Type": "application/json",
         ])
 
-        let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!) 
+        let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!)
 
         XCTAssertEqual(httpBody, [])
     }
 
     func testRequestWithParameters() throws {
         let parameters = Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters(
-                libraryItemId: "123",
-                episodeId: "456",
-                duration: 123,
-                progress: 0.5,
-                currentTime: 60,
-                isFinished: false,
-                hideFromContinueListening: false,
-                finishedAt: Date(),
-                startedAt: Date()
-            )
+            libraryItemId: "123",
+            episodeId: "456",
+            duration: 123,
+            progress: 0.5,
+            currentTime: 60,
+            isFinished: false,
+            hideFromContinueListening: false,
+            finishedAt: Date(),
+            startedAt: Date()
+        )
         let request = try Audiobookshelf.Request.BatchUpdateMediaProgress([parameters])
             .asURLRequest(from: testURL, using: "my-token")
 
@@ -53,7 +53,7 @@ class BatchUpdateMediaProgressTests: BaseTestCase {
             "Content-Type": "application/json",
         ])
 
-        let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!) 
+        let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!)
 
         XCTAssertEqual(httpBody, [parameters])
     }

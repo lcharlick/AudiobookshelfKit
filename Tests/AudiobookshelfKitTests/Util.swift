@@ -40,7 +40,7 @@ struct RequestData {
 
         queryItems = Dictionary(uniqueKeysWithValues: items)
 
-        self.rawHttpBody = request.httpBody
+        rawHttpBody = request.httpBody
         if let httpBody = request.httpBody {
             self.httpBody = try? JSONDecoder().decode([String: String].self, from: httpBody)
         } else {

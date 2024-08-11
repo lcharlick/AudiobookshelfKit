@@ -69,7 +69,7 @@ class LoginTests: BaseTestCase {
         XCTAssertEqual(bookmark.libraryItemId, "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458")
         XCTAssertEqual(bookmark.title, "1234")
         XCTAssertEqual(bookmark.time, 6446)
-        XCTAssertEqual(bookmark.createdAt, Date(timeIntervalSince1970: 1723386963225 / 1000))
+        XCTAssertEqual(bookmark.createdAt, Date(timeIntervalSince1970: 1_723_386_963_225 / 1000))
 
         XCTAssertEqual(response.user.isActive, true)
         XCTAssertEqual(response.user.isLocked, false)
