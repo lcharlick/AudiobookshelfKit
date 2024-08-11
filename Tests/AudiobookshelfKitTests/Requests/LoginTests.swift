@@ -63,7 +63,14 @@ class LoginTests: BaseTestCase {
         XCTAssertEqual(mediaProgress.startedAt, Date(timeIntervalSince1970: 1_660_451_494_311 / 1000))
         XCTAssertEqual(mediaProgress.finishedAt, nil)
         XCTAssertEqual(response.user.seriesHideFromContinueListening.count, 0)
-        XCTAssertEqual(response.user.bookmarks.count, 0)
+        XCTAssertEqual(response.user.bookmarks.count, 1)
+
+        let bookmark = response.user.bookmarks[0]
+        XCTAssertEqual(bookmark.libraryItemId, "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458")
+        XCTAssertEqual(bookmark.title, "1234")
+        XCTAssertEqual(bookmark.time, 6446)
+        XCTAssertEqual(bookmark.createdAt, Date(timeIntervalSince1970: 1723386963225 / 1000))
+
         XCTAssertEqual(response.user.isActive, true)
         XCTAssertEqual(response.user.isLocked, false)
         XCTAssertEqual(response.user.lastSeen, Date(timeIntervalSince1970: 1_712_674_531_253 / 1000))

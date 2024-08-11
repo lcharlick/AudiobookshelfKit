@@ -45,7 +45,14 @@
       }
     ],
     "seriesHideFromContinueListening": [],
-    "bookmarks": [],
+    "bookmarks": [
+      {
+        "libraryItemId": "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458",
+        "title": "1234",
+        "time": 6446,
+        "createdAt": 1723386963225
+      }
+    ],
     "isActive": true,
     "isLocked": false,
     "lastSeen": 1712674531253,

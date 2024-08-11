@@ -26,7 +26,7 @@ public struct User: Codable, Hashable {
     /// The IDs of series to hide from the user's "Continue Series" shelf.
     public let seriesHideFromContinueListening: [String]
     /// The user's bookmarks.
-    public let bookmarks: [String]
+    public let bookmarks: [Bookmark]
     /// Whether the user's account is active.
     public let isActive: Bool
     /// Whether the user is locked.
