@@ -26,7 +26,7 @@ public struct MediaProgress: Codable, Hashable {
     public let mediaItemType: MediaType
     /// The total duration (in seconds) of the media.
     /// Will be 0 if the media was marked as finished without the user listening to it.
-    public let duration: TimeInterval
+    public let duration: TimeInterval?
     /// The percentage completion progress of the media.
     /// Will be 1 if the media is finished.
     public let progress: Double
