@@ -9,14 +9,15 @@
 import AudiobookshelfKit
 import XCTest
 
-class BaseTestCase: XCTestCase {
-    let testURL = URL(string: "http://192.168.0.100:32400")!
+let testURL = URL(string: "http://192.168.0.100:32400")!
 
-    func loadResponse<R: ResourceRequest>(
-        _ name: String,
-        for _: R.Type
-    ) throws -> R.Response {
-        let data = try loadResource(name, ext: "json")
-        return try R.response(from: data)
-    }
+func loadResponse<R: ResourceRequest>(
+    _ name: String,
+    for _: R.Type
+) throws -> R.Response {
+    let data = try loadResource(name, ext: "json")
+    return try R.response(from: data)
+}
+
+class BaseTestCase: XCTestCase {
 }
