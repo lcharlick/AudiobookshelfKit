@@ -81,7 +81,9 @@ public extension ResourceRequest {
 
         if let httpBody {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = try JSONEncoder().encode(httpBody)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .millisecondsSince1970
+            request.httpBody = try encoder.encode(httpBody)
         }
 
         return request
