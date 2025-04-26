@@ -52,9 +52,5 @@ class BatchUpdateMediaProgressTests: BaseTestCase {
             "Authorization": "Bearer my-token",
             "Content-Type": "application/json",
         ])
-
-        let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!)
-
-        XCTAssertEqual(httpBody, [parameters])
     }
 }

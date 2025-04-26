@@ -13,7 +13,7 @@ public extension Audiobookshelf.Request {
         public let path = "api/session/local-all"
         public let httpMethod: String = "POST"
         public var httpBody: Codable? {
-            RequestBody(sessions: sessions)
+            RequestBody(sessions: sessions, deviceInfo: sessions.first?.deviceInfo)
         }
 
         private let sessions: [Session]
@@ -35,6 +35,7 @@ public extension Audiobookshelf.Request.SyncLocalSession {
 
     struct RequestBody: Codable {
         public let sessions: [Session]
+        public let deviceInfo: DeviceInfo?
     }
 
     struct Result: Codable {
@@ -61,6 +62,8 @@ public extension Audiobookshelf.Request.SyncLocalSession {
         public let displayAuthor: String
         /// The given device info when the playback session was requested.
         public let deviceInfo: DeviceInfo
+        /// What play method the playback session is using. See below for values.
+        public let playMethod: PlayMethod
         /// The time (in seconds) where the playback session started.
         public let startTime: TimeInterval
         /// The amount of time (in seconds) the user has spent listening using this playback session.
@@ -79,6 +82,7 @@ public extension Audiobookshelf.Request.SyncLocalSession {
             displayTitle: String,
             displayAuthor: String,
             deviceInfo: DeviceInfo,
+            playMethod: PlayMethod,
             startTime: TimeInterval,
             timeListening: TimeInterval,
             currentTime: TimeInterval,
@@ -91,42 +95,12 @@ public extension Audiobookshelf.Request.SyncLocalSession {
             self.displayTitle = displayTitle
             self.displayAuthor = displayAuthor
             self.deviceInfo = deviceInfo
+            self.playMethod = playMethod
             self.startTime = startTime
             self.timeListening = timeListening
             self.currentTime = currentTime
             self.startedAt = startedAt
             self.updatedAt = updatedAt
-        }
-    }
-
-    struct DeviceInfo: Codable {
-        /// The ID of the device.
-        public let deviceId: String
-        /// The client device's manufacturer, as provided in the request.
-        public let manufacturer: String?
-        /// The client device's model, as provided in the request.
-        public let model: String?
-        /// For an Android device, the Android SDK version of the client, as provided in the request.
-        public let sdkVersion: Int?
-        /// Name of the client, as provided in the request.
-        public let clientName: String
-        /// Version of the client, as provided in the request.
-        public let clientVersion: String
-
-        public init(
-            deviceId: String,
-            manufacturer: String?,
-            model: String?,
-            sdkVersion: Int?,
-            clientName: String,
-            clientVersion: String
-        ) {
-            self.deviceId = deviceId
-            self.manufacturer = manufacturer
-            self.model = model
-            self.sdkVersion = sdkVersion
-            self.clientName = clientName
-            self.clientVersion = clientVersion
         }
     }
 }
