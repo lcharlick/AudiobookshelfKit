@@ -90,7 +90,7 @@ public extension LibraryItem.Book {
         /// The series the book belongs to.
         public let seriesName: String?
         /// The genres of the book.
-        public let genres: [String]
+        public let genres: [String]?
         /// The year the book was published.
         public let publishedYear: String?
         /// The date the book was published.

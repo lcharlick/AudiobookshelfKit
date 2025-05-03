@@ -78,7 +78,7 @@ public extension LibraryItemExpanded.Book {
         public let authors: [AuthorMinified]
         public let narrators: [String]
         public let series: [SeriesSequence]
-        public let genres: [String]
+        public let genres: [String]?
         public let publishedYear: String?
         public let publishedDate: Date?
         public let publisher: String?
