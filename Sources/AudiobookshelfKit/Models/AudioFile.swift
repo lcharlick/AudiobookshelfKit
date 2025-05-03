@@ -36,7 +36,7 @@ public struct AudioFile: Codable, Hashable {
     /// The format of the audio file.
     public let format: String
     /// The total length (in seconds) of the audio file.
-    public let duration: TimeInterval
+    public let duration: TimeInterval?
     /// The bit rate (in bit/s) of the audio file.
     public let bitRate: Int
     /// The language of the audio file.
