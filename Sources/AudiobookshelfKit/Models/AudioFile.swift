@@ -48,7 +48,7 @@ public struct AudioFile: Codable, Hashable {
     /// The number of channels the audio file has.
     public let channels: Int
     /// The layout of the audio file's channels.
-    public let channelLayout: String
+    public let channelLayout: String?
     /// If the audio file is part of an audiobook, the chapters the file contains.
     public let chapters: [Chapter]
     /// The type of embedded cover art in the audio file. Will be nil if none exists.
