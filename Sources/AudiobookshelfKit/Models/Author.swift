@@ -28,5 +28,5 @@ public struct Author: Codable, Hashable {
     /// The number of books associated with the author in the library.
     public let numBooks: Int
     /// The name of the author, last name first.
-    public let lastFirst: String
+    public let lastFirst: String?
 }
