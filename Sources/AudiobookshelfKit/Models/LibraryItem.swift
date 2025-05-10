@@ -45,7 +45,7 @@ public struct LibraryItem: Codable, Hashable, Identifiable {
     /// The media of the library item.
     public let media: Book
     /// The number of files the library item contains.
-    public let numFiles: Int
+    public let numFiles: Int?
     /// The size of the library item in bytes.
     public let size: Int64
 }
@@ -61,11 +61,11 @@ public extension LibraryItem {
         /// The book's tags.
         public let tags: [String]
         /// The number of tracks the book contains.
-        public let numTracks: Int
+        public let numTracks: Int?
         /// The number of audio files the book contains.
-        public let numAudioFiles: Int
+        public let numAudioFiles: Int?
         /// The number of chapters the book contains.
-        public let numChapters: Int
+        public let numChapters: Int?
         /// The duration of the book in seconds.
         public let duration: TimeInterval
         /// The size of the book in bytes.
