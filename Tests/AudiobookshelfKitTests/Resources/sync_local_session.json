@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "id": "play_session_1",
+      "success": true,
+      "error": null,
+      "progressSynced": true
+    },
+    {
+      "id": "play_session_2",
+      "success": false,
+      "error": "Session not found",
+      "progressSynced": null
+    }
+  ]
+}

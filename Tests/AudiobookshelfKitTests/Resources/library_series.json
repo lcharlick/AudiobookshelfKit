@@ -1,0 +1,93 @@
+{
+  "results": [
+    {
+      "id": "ser_cabkj4jeu8be3rap4g",
+      "name": "Sword of Truth",
+      "nameIgnorePrefix": "Sword of Truth",
+      "description": "The Sword of Truth is a series of epic fantasy novels by Terry Goodkind.",
+      "addedAt": 1650621073750,
+      "updatedAt": 1650621110769,
+      "libraryId": "lib_c1u6t4p45c35rf0nzd",
+      "books": [
+        {
+          "id": "li_8gch9ve09orgn4fdz8",
+          "ino": "649641337522215266",
+          "oldLibraryItemId": null,
+          "libraryId": "lib_c1u6t4p45c35rf0nzd",
+          "folderId": "fol_bev1zuxhb0j0s1wehr",
+          "path": "/audiobooks/Terry Goodkind/Sword of Truth/Wizards First Rule",
+          "relPath": "Terry Goodkind/Sword of Truth/Wizards First Rule",
+          "isFile": false,
+          "mtimeMs": 1650621074299,
+          "ctimeMs": 1650621074299,
+          "birthtimeMs": 0,
+          "addedAt": 1650621073750,
+          "updatedAt": 1650621110769,
+          "lastScan": 1651830827825,
+          "scanVersion": "2.0.21",
+          "isMissing": false,
+          "isInvalid": false,
+          "mediaType": "book",
+          "media": {
+            "id": "book_1",
+            "libraryItemId": "li_8gch9ve09orgn4fdz8",
+            "metadata": {
+              "title": "Wizards First Rule",
+              "titleIgnorePrefix": "Wizards First Rule",
+              "subtitle": null,
+              "authors": [
+                {
+                  "id": "aut_z3leimgybl7uf3y4ab",
+                  "name": "Terry Goodkind"
+                }
+              ],
+              "narrators": ["Sam Tsoutsouvas"],
+              "series": [
+                {
+                  "id": "ser_cabkj4jeu8be3rap4g",
+                  "name": "Sword of Truth",
+                  "sequence": "1"
+                }
+              ],
+              "genres": ["Fantasy"],
+              "publishedYear": "2008",
+              "publishedDate": null,
+              "publisher": "Brilliance Audio",
+              "description": "The masterpiece that started Terry Goodkind's New York Times bestselling epic Sword of Truth",
+              "isbn": null,
+              "asin": "B002V0QK4C",
+              "language": null,
+              "explicit": false,
+              "authorName": "Terry Goodkind",
+              "authorNameLF": "Goodkind, Terry",
+              "narratorName": "Sam Tsoutsouvas",
+              "seriesName": "Sword of Truth",
+              "abridged": false
+            },
+            "coverPath": "/metadata/items/li_8gch9ve09orgn4fdz8/cover.jpg",
+            "tags": [],
+            "audioFiles": [],
+            "chapters": [],
+            "duration": 33854.905,
+            "size": 268824228,
+            "tracks": [],
+            "ebookFile": null,
+            "numTracks": 20,
+            "numAudioFiles": 20,
+            "numChapters": 0
+          },
+          "libraryFiles": [],
+          "size": 268824228,
+          "numFiles": 20
+        }
+      ]
+    }
+  ],
+  "total": 1,
+  "limit": 10,
+  "page": 0,
+  "sortBy": "name",
+  "sortDesc": false,
+  "minified": false,
+  "include": null
+}

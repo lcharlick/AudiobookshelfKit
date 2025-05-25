@@ -1,0 +1,165 @@
+{
+  "id": "aut_z3leimgybl7uf3y4ab",
+  "asin": "B000APZOQA",
+  "name": "Terry Goodkind",
+  "description": "Terry Goodkind is a #1 New York Times Bestselling Author and creator of the critically acclaimed masterwork, 'The Sword of Truth'. He has written 30+ major, bestselling novels, has been published in more than 20 languages world-wide, and has sold more than 26 Million books. 'The Sword of Truth' is a revered literary tour de force, comprised of 17 volumes, borne from over 25 years of dedicated writing.",
+  "imagePath": "/metadata/authors/aut_z3leimgybl7uf3y4ab/image.jpg",
+  "addedAt": 1650621073750,
+  "updatedAt": 1650621073750,
+  "libraryId": "lib_c1u6t4p45c35rf0nzd",
+  "libraryItems": [
+    {
+      "id": "li_8gch9ve09orgn4fdz8",
+      "ino": "649641337522215266",
+      "oldLibraryItemId": null,
+      "libraryId": "lib_c1u6t4p45c35rf0nzd",
+      "folderId": "fol_bev1zuxhb0j0s1wehr",
+      "path": "/audiobooks/Terry Goodkind/Sword of Truth/Wizards First Rule",
+      "relPath": "Terry Goodkind/Sword of Truth/Wizards First Rule",
+      "isFile": false,
+      "mtimeMs": 1650621074299,
+      "ctimeMs": 1650621074299,
+      "birthtimeMs": 0,
+      "addedAt": 1650621073750,
+      "updatedAt": 1650621110769,
+      "lastScan": 1651830827825,
+      "scanVersion": "2.0.21",
+      "isMissing": false,
+      "isInvalid": false,
+      "mediaType": "book",
+      "media": {
+        "id": "book_1",
+        "libraryItemId": "li_8gch9ve09orgn4fdz8",
+        "metadata": {
+          "title": "Wizards First Rule",
+          "titleIgnorePrefix": "Wizards First Rule",
+          "subtitle": null,
+          "authors": [
+            {
+              "id": "aut_z3leimgybl7uf3y4ab",
+              "name": "Terry Goodkind"
+            }
+          ],
+          "narrators": ["Sam Tsoutsouvas"],
+          "series": [
+            {
+              "id": "ser_cabkj4jeu8be3rap4g",
+              "name": "Sword of Truth",
+              "sequence": "1"
+            }
+          ],
+          "genres": ["Fantasy"],
+          "publishedYear": "2008",
+          "publishedDate": null,
+          "publisher": "Brilliance Audio",
+          "description": "The masterpiece that started Terry Goodkind's New York Times bestselling epic Sword of Truth",
+          "isbn": null,
+          "asin": "B002V0QK4C",
+          "language": null,
+          "explicit": false,
+          "authorName": "Terry Goodkind",
+          "authorNameLF": "Goodkind, Terry",
+          "narratorName": "Sam Tsoutsouvas",
+          "seriesName": "Sword of Truth",
+          "abridged": false
+        },
+        "coverPath": "/metadata/items/li_8gch9ve09orgn4fdz8/cover.jpg",
+        "tags": [],
+        "audioFiles": [
+          {
+            "index": 1,
+            "ino": "649644248522215280",
+            "metadata": {
+              "filename": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "ext": ".mp3",
+              "path": "/audiobooks/Terry Goodkind/Sword of Truth/Wizards First Rule/Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "relPath": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "size": 48037888,
+              "mtimeMs": 1632223180278,
+              "ctimeMs": 1645978261001,
+              "birthtimeMs": 0
+            },
+            "addedAt": 1650621074131,
+            "updatedAt": 1651830828023,
+            "trackNumFromMeta": 1,
+            "discNumFromMeta": null,
+            "trackNumFromFilename": 1,
+            "discNumFromFilename": null,
+            "manuallyVerified": false,
+            "exclude": false,
+            "error": null,
+            "format": "MP2/3 (MPEG audio layer 2/3)",
+            "duration": 6004.6675,
+            "bitRate": 64000,
+            "language": null,
+            "codec": "mp3",
+            "timeBase": "1/14112000",
+            "channels": 2,
+            "channelLayout": "stereo",
+            "chapters": [],
+            "embeddedCoverArt": null,
+            "metaTags": {
+              "tagAlbum": "SOT Bk01 - Wizards First Rule",
+              "tagArtist": "Terry Goodkind",
+              "tagGenre": "Audiobook Fantasy",
+              "tagTitle": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01",
+              "tagTrack": "01/20",
+              "tagAlbumArtist": "Terry Goodkind",
+              "tagComposer": "Terry Goodkind"
+            },
+            "mimeType": "audio/mpeg"
+          }
+        ],
+        "chapters": [],
+        "duration": 33854.905,
+        "size": 268824228,
+        "tracks": [
+          {
+            "index": 1,
+            "startOffset": 0,
+            "duration": 6004.6675,
+            "title": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+            "contentUrl": "/api/items/li_8gch9ve09orgn4fdz8/file/649644248522215280",
+            "mimeType": "audio/mpeg",
+            "codec": "mp3",
+            "metadata": {
+              "filename": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "ext": ".mp3",
+              "path": "/audiobooks/Terry Goodkind/Sword of Truth/Wizards First Rule/Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "relPath": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+              "size": 48037888,
+              "mtimeMs": 1632223180278,
+              "ctimeMs": 1645978261001,
+              "birthtimeMs": 0
+            }
+          }
+        ],
+        "ebookFile": null,
+        "numTracks": 1,
+        "numAudioFiles": 1,
+        "numChapters": 0
+      },
+      "libraryFiles": [
+        {
+          "ino": "649644248522215280",
+          "metadata": {
+            "filename": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+            "ext": ".mp3",
+            "path": "/audiobooks/Terry Goodkind/Sword of Truth/Wizards First Rule/Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+            "relPath": "Terry Goodkind - SOT Bk01 - Wizards First Rule 01.mp3",
+            "size": 48037888,
+            "mtimeMs": 1632223180278,
+            "ctimeMs": 1645978261001,
+            "birthtimeMs": 0
+          },
+          "isSupplementary": null,
+          "addedAt": 1650621074130,
+          "updatedAt": 1650621074130,
+          "fileType": "audio"
+        }
+      ],
+      "size": 268824228,
+      "numFiles": 1
+    }
+  ]
+}

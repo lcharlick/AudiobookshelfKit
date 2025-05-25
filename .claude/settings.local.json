@@ -6,7 +6,10 @@
       "Bash(swift test:*)",
       "Bash(xcodebuild test:*)",
       "Bash(sed:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(jq:*)",
+      "Bash(swiftformat:*)"
     ],
     "deny": []
   }

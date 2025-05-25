@@ -73,12 +73,12 @@ struct GetLibraryPlaylistsTests {
         #expect(playlist.coverPath == nil)
         #expect(playlist.lastUpdate == Date(timeIntervalSince1970: 1_669_623_431_313 / 1000))
         #expect(playlist.createdAt == Date(timeIntervalSince1970: 1_669_623_431_313 / 1000))
-        
+
         #expect(playlist.items.count == 1)
         let playlistItem = playlist.items[0]
         #expect(playlistItem.libraryItemId == "li_8gch9ve09orgn4fdz8")
         #expect(playlistItem.episodeId == nil)
-        
+
         let libraryItem = try #require(playlistItem.libraryItem)
         #expect(libraryItem.id == "li_8gch9ve09orgn4fdz8")
         #expect(libraryItem.ino == "649641337522215266")
@@ -90,7 +90,7 @@ struct GetLibraryPlaylistsTests {
         #expect(libraryItem.isMissing == false)
         #expect(libraryItem.isInvalid == false)
         #expect(libraryItem.mediaType == .book)
-        
+
         #expect(libraryItem.media.metadata.title == "Wizards First Rule")
         #expect(libraryItem.media.metadata.titleIgnorePrefix == "Wizards First Rule")
         #expect(libraryItem.media.metadata.subtitle == nil)
@@ -104,7 +104,7 @@ struct GetLibraryPlaylistsTests {
         #expect(libraryItem.media.metadata.asin == "B002V0QK4C")
         #expect(libraryItem.media.metadata.explicit == false)
         #expect(libraryItem.media.metadata.abridged == false)
-        
+
         #expect(libraryItem.media.coverPath == "/metadata/items/li_8gch9ve09orgn4fdz8/cover.jpg")
         #expect(libraryItem.media.tags == ["Fantasy", "Epic"])
         #expect(libraryItem.media.duration == 33854.905)
