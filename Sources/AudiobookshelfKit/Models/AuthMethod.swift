@@ -34,7 +34,7 @@ public enum AuthMethod: Codable, Hashable {
             try container.encode("local")
         case .openid:
             try container.encode("openid")
-        case .unknown(let value):
+        case let .unknown(value):
             try container.encode(value)
         }
     }

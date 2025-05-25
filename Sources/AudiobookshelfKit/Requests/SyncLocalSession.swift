@@ -23,7 +23,7 @@ public extension Audiobookshelf.Request {
         }
 
         public init(_ parameters: [Session]) {
-            self.sessions = parameters
+            sessions = parameters
         }
     }
 }

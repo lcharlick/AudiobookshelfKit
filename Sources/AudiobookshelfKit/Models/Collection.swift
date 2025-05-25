@@ -25,4 +25,4 @@ public struct Collection: Codable, Hashable, Identifiable {
     public let lastUpdate: Date
     /// The time (in ms since POSIX epoch) when the collection was created.
     public let createdAt: Date
-} 
+}

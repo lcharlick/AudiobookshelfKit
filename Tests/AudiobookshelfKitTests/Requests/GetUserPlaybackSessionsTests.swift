@@ -1,5 +1,5 @@
 //
-//  GetUserSessionsTests.swift
+//  GetUserPlaybackSessionsTests.swift
 //  AudiobookshelfKitTests
 //
 //  Created by Lachlan Charlick on 18/4/25.
@@ -24,7 +24,7 @@ struct GetUserSessionsTests {
         ])
         #expect(data.queryItems == [:])
     }
-    
+
     @Test func request_withPaging() throws {
         let request = try Audiobookshelf.Request.GetUserPlaybackSessions(userId: "user123", page: 2, itemsPerPage: 10)
             .asURLRequest(from: testURL, using: "my-token")
@@ -38,10 +38,10 @@ struct GetUserSessionsTests {
         ])
         #expect(data.queryItems == [
             "page": "2",
-            "itemsPerPage": "10"
+            "itemsPerPage": "10",
         ])
     }
-    
+
     @Test func response() throws {
         let data = """
         {
@@ -113,12 +113,12 @@ struct GetUserSessionsTests {
         """.data(using: .utf8)!
 
         let response = try Audiobookshelf.Request.GetUserPlaybackSessions.response(from: data)
-        
+
         #expect(response.sessions.count == 1)
         #expect(response.total == 1)
         #expect(response.numPages == 1)
         #expect(response.itemsPerPage == 10)
-        
+
         let session = response.sessions[0]
         #expect(session.id == "123e4567-e89b-12d3-a456-426614174000")
         #expect(session.libraryItemId == "lib123")
@@ -134,7 +134,7 @@ struct GetUserSessionsTests {
         #expect(session.startTime == 0)
         #expect(session.timeListening == 300)
         #expect(session.currentTime == 300)
-        #expect(session.startedAt.timeIntervalSince1970 == 1710864000)
-        #expect(session.updatedAt.timeIntervalSince1970 == 1710864300)
+        #expect(session.startedAt.timeIntervalSince1970 == 1_710_864_000)
+        #expect(session.updatedAt.timeIntervalSince1970 == 1_710_864_300)
     }
-} 
+}

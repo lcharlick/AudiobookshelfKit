@@ -60,4 +60,4 @@ struct GetLibraryCollectionsTests {
             "page": "0",
         ])
     }
-} 
+}

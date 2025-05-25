@@ -19,7 +19,7 @@ public extension Audiobookshelf.Request {
                 URLQueryItem(name: "limit", value: limit),
                 URLQueryItem(name: "sortBy", value: sortBy),
                 URLQueryItem(name: "sortDesc", value: sortDesc),
-                URLQueryItem(name: "minified", value: minified)
+                URLQueryItem(name: "minified", value: minified),
             ]
         }
 
@@ -35,8 +35,8 @@ public extension Audiobookshelf.Request {
         ///   - page: The page number (0 indexed) to request.
         ///   - limit: Limit the number of returned results per page. Must be greater than 0.
         ///   - sortBy: What to sort the results by. By default, the results will be sorted by series name. Other sort options are: numBooks, totalDuration, and addedAt.
-        ///   - sortDesc: Whether to reverse the sort order. 
-        ///   - minified: 
+        ///   - sortDesc: Whether to reverse the sort order.
+        ///   - minified:
         public init(
             libraryID: String,
             page: Int,
@@ -55,8 +55,8 @@ public extension Audiobookshelf.Request {
     }
 }
 
-extension Audiobookshelf.Request.GetLibrarySeries {
-    public struct Response: Codable {
+public extension Audiobookshelf.Request.GetLibrarySeries {
+    struct Response: Codable {
         public let results: [Series]
         public let total: Int
         public let limit: Int

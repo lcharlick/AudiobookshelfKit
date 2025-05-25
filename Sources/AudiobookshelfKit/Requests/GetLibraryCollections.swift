@@ -12,11 +12,11 @@ public extension Audiobookshelf.Request {
     /// This endpoint retrieves a library's collections.
     struct GetLibraryCollections: ResourceRequest {
         public var path: String { "api/libraries/\(libraryID)/collections" }
-        
+
         public var queryItems: [URLQueryItem]? {
             var items = [
                 URLQueryItem(name: "limit", value: String(limit)),
-                URLQueryItem(name: "page", value: String(page))
+                URLQueryItem(name: "page", value: String(page)),
             ]
             if let sort {
                 items.append(URLQueryItem(name: "sort", value: sort))
@@ -32,7 +32,7 @@ public extension Audiobookshelf.Request {
             }
             return items
         }
-        
+
         private let libraryID: String
         private let page: Int
         private let limit: Int
@@ -40,7 +40,7 @@ public extension Audiobookshelf.Request {
         private let desc: Bool?
         private let minified: Bool?
         private let include: String?
-        
+
         /// - Parameters:
         ///   - libraryID: The ID of the library.
         ///   - page: The page number (0 indexed) to request. If there is no limit applied, then page will have no effect and all results will be returned.
@@ -90,4 +90,4 @@ public extension Audiobookshelf.Request.GetLibraryCollections {
         /// The requested include.
         public let include: String?
     }
-} 
+}

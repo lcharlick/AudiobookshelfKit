@@ -6,9 +6,9 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
+import AudiobookshelfKit
 import Foundation
 import Testing
-import AudiobookshelfKit
 
 struct StatusTests {
     @Test func request() throws {
