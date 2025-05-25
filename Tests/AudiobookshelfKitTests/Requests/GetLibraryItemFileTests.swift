@@ -7,33 +7,34 @@
 //
 
 import AudiobookshelfKit
-import XCTest
+import Foundation
+import Testing
 
-class GetLibraryItemFileTests: BaseTestCase {
-    func testRequest() throws {
+struct GetLibraryItemFileTests {
+    @Test func request() throws {
         let request = try Audiobookshelf.Request.GetLibraryItemFile(id: "my-item", ino: "my-inode")
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/items/my-item/file/my-inode"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/items/my-item/file/my-inode"))
+        #expect(data.headers == [
             "Accept": "audio/*",
             "Authorization": "Bearer my-token",
         ])
-        XCTAssertEqual(data.queryItems, [:])
+        #expect(data.queryItems == [:])
     }
 
-    func testRequest_queryItemTokenStrategy() throws {
+    @Test func request_queryItemTokenStrategy() throws {
         let request = try Audiobookshelf.Request.GetLibraryItemFile(id: "my-item", ino: "my-inode")
             .asURLRequest(from: testURL, using: "my-token", tokenStrategy: .queryItem)
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/items/my-item/file/my-inode"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/items/my-item/file/my-inode"))
+        #expect(data.headers == [
             "Accept": "audio/*",
         ])
-        XCTAssertEqual(data.queryItems, ["token": "my-token"])
+        #expect(data.queryItems == ["token": "my-token"])
     }
 }

@@ -7,41 +7,42 @@
 //
 
 import AudiobookshelfKit
-import XCTest
+import Foundation
+import Testing
 
-class GetUserSessionsTests: BaseTestCase {
-    func testRequest() throws {
+struct GetUserSessionsTests {
+    @Test func request() throws {
         let request = try Audiobookshelf.Request.GetUserPlaybackSessions(userId: "user123")
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/users/user123/listening-sessions"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/users/user123/listening-sessions"))
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-        XCTAssertEqual(data.queryItems, [:])
+        #expect(data.queryItems == [:])
     }
     
-    func testRequest_withPaging() throws {
+    @Test func request_withPaging() throws {
         let request = try Audiobookshelf.Request.GetUserPlaybackSessions(userId: "user123", page: 2, itemsPerPage: 10)
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/users/user123/listening-sessions"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/users/user123/listening-sessions"))
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-        XCTAssertEqual(data.queryItems, [
+        #expect(data.queryItems == [
             "page": "2",
             "itemsPerPage": "10"
         ])
     }
     
-    func testResponse() throws {
+    @Test func response() throws {
         let data = """
         {
             "sessions": [
@@ -113,27 +114,27 @@ class GetUserSessionsTests: BaseTestCase {
 
         let response = try Audiobookshelf.Request.GetUserPlaybackSessions.response(from: data)
         
-        XCTAssertEqual(response.sessions.count, 1)
-        XCTAssertEqual(response.total, 1)
-        XCTAssertEqual(response.numPages, 1)
-        XCTAssertEqual(response.itemsPerPage, 10)
+        #expect(response.sessions.count == 1)
+        #expect(response.total == 1)
+        #expect(response.numPages == 1)
+        #expect(response.itemsPerPage == 10)
         
         let session = response.sessions[0]
-        XCTAssertEqual(session.id, "123e4567-e89b-12d3-a456-426614174000")
-        XCTAssertEqual(session.libraryItemId, "lib123")
-        XCTAssertNil(session.episodeId)
-        XCTAssertEqual(session.displayTitle, "Test Book")
-        XCTAssertEqual(session.displayAuthor, "Test Author")
-        XCTAssertEqual(session.deviceInfo.deviceId, "device123")
-        XCTAssertEqual(session.deviceInfo.manufacturer, "Apple")
-        XCTAssertEqual(session.deviceInfo.model, "iPhone")
-        XCTAssertNil(session.deviceInfo.sdkVersion)
-        XCTAssertEqual(session.deviceInfo.clientName, "Test Client")
-        XCTAssertEqual(session.deviceInfo.clientVersion, "1.0.0")
-        XCTAssertEqual(session.startTime, 0)
-        XCTAssertEqual(session.timeListening, 300)
-        XCTAssertEqual(session.currentTime, 300)
-        XCTAssertEqual(session.startedAt.timeIntervalSince1970, 1710864000)
-        XCTAssertEqual(session.updatedAt.timeIntervalSince1970, 1710864300)
+        #expect(session.id == "123e4567-e89b-12d3-a456-426614174000")
+        #expect(session.libraryItemId == "lib123")
+        #expect(session.episodeId == nil)
+        #expect(session.displayTitle == "Test Book")
+        #expect(session.displayAuthor == "Test Author")
+        #expect(session.deviceInfo.deviceId == "device123")
+        #expect(session.deviceInfo.manufacturer == "Apple")
+        #expect(session.deviceInfo.model == "iPhone")
+        #expect(session.deviceInfo.sdkVersion == nil)
+        #expect(session.deviceInfo.clientName == "Test Client")
+        #expect(session.deviceInfo.clientVersion == "1.0.0")
+        #expect(session.startTime == 0)
+        #expect(session.timeListening == 300)
+        #expect(session.currentTime == 300)
+        #expect(session.startedAt.timeIntervalSince1970 == 1710864000)
+        #expect(session.updatedAt.timeIntervalSince1970 == 1710864300)
     }
 } 

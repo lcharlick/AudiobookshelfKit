@@ -97,13 +97,13 @@ public enum AudiobookshelfError: Error {
     /// A token was not supplied for a request that required one.
     case notAuthenticated
 
-    public enum RequestFailureReason {
+    public enum RequestFailureReason: Sendable {
         case invalidURL(String)
         case invalidQueryItems([URLQueryItem])
         case unknown(Error)
     }
 
-    public enum NetworkFailureReason {
+    public enum NetworkFailureReason: Sendable {
         case unacceptableStatusCode(Int)
         case transportError(URLError)
         case unknown(Error)

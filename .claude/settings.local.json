@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "WebFetch(domain:api.audiobookshelf.org)",
+      "Bash(swift test:*)",
+      "Bash(xcodebuild test:*)",
+      "Bash(sed:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}

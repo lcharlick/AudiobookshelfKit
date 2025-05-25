@@ -18,6 +18,3 @@ func loadResponse<R: ResourceRequest>(
     let data = try loadResource(name, ext: "json")
     return try R.response(from: data)
 }
-
-class BaseTestCase: XCTestCase {
-}

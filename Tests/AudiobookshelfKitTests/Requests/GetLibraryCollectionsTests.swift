@@ -7,14 +7,15 @@
 //
 
 import AudiobookshelfKit
-import XCTest
+import Foundation
+import Testing
 
-class GetLibraryCollectionsTests: BaseTestCase {
-    func testRequest() throws {
+struct GetLibraryCollectionsTests {
+    @Test func request() throws {
         let request = try Audiobookshelf.Request.GetLibraryCollections(
             libraryID: "my-library",
-            limit: 10,
             page: 1,
+            limit: 10,
             sort: "name",
             desc: true,
             minified: true,
@@ -24,12 +25,12 @@ class GetLibraryCollectionsTests: BaseTestCase {
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("/api/libraries/my-library/collections"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("/api/libraries/my-library/collections"))
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-        XCTAssertEqual(data.queryItems, [
+        #expect(data.queryItems == [
             "limit": "10",
             "page": "1",
             "sort": "name",
@@ -39,19 +40,24 @@ class GetLibraryCollectionsTests: BaseTestCase {
         ])
     }
 
-    func testRequest_optionalParameters() throws {
+    @Test func request_optionalParameters() throws {
         let request = try Audiobookshelf.Request.GetLibraryCollections(
-            libraryID: "my-library"
+            libraryID: "my-library",
+            page: 0,
+            limit: 0
         )
         .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("/api/libraries/my-library/collections"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("/api/libraries/my-library/collections"))
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-        XCTAssertEqual(data.queryItems, [:])
+        #expect(data.queryItems == [
+            "limit": "0",
+            "page": "0",
+        ])
     }
 } 

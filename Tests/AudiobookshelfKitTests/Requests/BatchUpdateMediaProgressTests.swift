@@ -7,18 +7,19 @@
 //
 
 import AudiobookshelfKit
-import XCTest
+import Foundation
+import Testing
 
-class BatchUpdateMediaProgressTests: BaseTestCase {
-    func testRequest() throws {
+struct BatchUpdateMediaProgressTests {
+    @Test func request() throws {
         let request = try Audiobookshelf.Request.BatchUpdateMediaProgress([])
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/me/progress/batch/update"))
-        XCTAssertEqual(data.httpMethod, "PATCH")
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/me/progress/batch/update"))
+        #expect(data.httpMethod == "PATCH")
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
             "Content-Type": "application/json",
@@ -26,10 +27,10 @@ class BatchUpdateMediaProgressTests: BaseTestCase {
 
         let httpBody = try JSONDecoder().decode([Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters].self, from: data.rawHttpBody!)
 
-        XCTAssertEqual(httpBody, [])
+        #expect(httpBody == [])
     }
 
-    func testRequestWithParameters() throws {
+    @Test func requestWithParameters() throws {
         let parameters = Audiobookshelf.Request.BatchUpdateMediaProgress.Parameters(
             libraryItemId: "123",
             episodeId: "456",
@@ -46,8 +47,8 @@ class BatchUpdateMediaProgressTests: BaseTestCase {
 
         let data = RequestData(request: request)
 
-        XCTAssertEqual(data.baseURL, testURL.appendingPathComponent("api/me/progress/batch/update"))
-        XCTAssertEqual(data.headers, [
+        #expect(data.baseURL == testURL.appendingPathComponent("api/me/progress/batch/update"))
+        #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
             "Content-Type": "application/json",

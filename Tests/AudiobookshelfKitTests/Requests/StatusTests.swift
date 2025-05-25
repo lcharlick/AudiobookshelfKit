@@ -11,8 +11,7 @@ import Testing
 import AudiobookshelfKit
 
 struct StatusTests {
-    @Test
-    func testRequest() throws {
+    @Test func request() throws {
         let request = try Audiobookshelf.Request.Status()
             .asURLRequest(from: testURL, using: nil)
 
@@ -24,8 +23,7 @@ struct StatusTests {
         ])
     }
 
-    @Test
-    func testResponse() throws {
+    @Test func response() throws {
         let data = """
         {
           "app": "audiobookshelf",
