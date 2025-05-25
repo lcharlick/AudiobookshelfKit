@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct LibraryFile: Codable, Hashable {
+public struct LibraryFile: Codable, Hashable, Sendable {
     public let ino: String
     public let metadata: Metadata
     public let isSupplementary: Bool?
@@ -18,7 +18,7 @@ public struct LibraryFile: Codable, Hashable {
 }
 
 public extension LibraryFile {
-    struct Metadata: Codable, Hashable {
+    struct Metadata: Codable, Hashable, Sendable {
         public let filename: String
         public let ext: String
         public let path: String

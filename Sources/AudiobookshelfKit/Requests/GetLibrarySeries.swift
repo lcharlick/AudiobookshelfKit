@@ -56,7 +56,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetLibrarySeries {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         public let results: [Series]
         public let total: Int
         public let limit: Int

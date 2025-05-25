@@ -9,7 +9,7 @@
 
 import Foundation
 
-public struct LibraryItem: Codable, Hashable, Identifiable {
+public struct LibraryItem: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library item.
     public let id: String
     /// The inode of the library item.
@@ -51,7 +51,7 @@ public struct LibraryItem: Codable, Hashable, Identifiable {
 }
 
 public extension LibraryItem {
-    struct Book: Codable, Hashable, Identifiable {
+    struct Book: Codable, Hashable, Identifiable, Sendable {
         /// The ID of the book.
         public let id: String
         /// The book's metadata.
@@ -74,7 +74,7 @@ public extension LibraryItem {
 }
 
 public extension LibraryItem.Book {
-    struct Metadata: Codable, Hashable {
+    struct Metadata: Codable, Hashable, Sendable {
         /// The title of the book.
         public let title: String
         /// The sort title of the book.

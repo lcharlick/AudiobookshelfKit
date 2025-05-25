@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Bookmark: Codable, Hashable {
+public struct Bookmark: Codable, Hashable, Sendable {
     /// The ID of the library item the bookmark is for.
     public let libraryItemId: String
     /// The title of the bookmark.

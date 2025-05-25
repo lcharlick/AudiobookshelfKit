@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum MediaType: String, Codable {
+public enum MediaType: String, Codable, Sendable {
     case book
     case podcast
     case podcastEpisode

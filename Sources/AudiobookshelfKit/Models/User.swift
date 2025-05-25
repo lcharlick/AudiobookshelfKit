@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct User: Codable, Hashable {
+public struct User: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the user. Only the root user has the root ID.
     public let id: String
     ///
@@ -43,7 +43,7 @@ public struct User: Codable, Hashable {
     public let itemTagsAccessible: [String]?
 }
 
-public enum UserType: String, Codable {
+public enum UserType: String, Codable, Sendable {
     case root
     case guest
     case user

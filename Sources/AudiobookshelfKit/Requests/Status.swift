@@ -18,7 +18,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.Status {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         public let app: String
         public let serverVersion: String
         public let isInit: Bool
@@ -44,7 +44,7 @@ public extension Audiobookshelf.Request.Status {
             }
         #endif
 
-        public struct AuthFormData: Codable {
+        public struct AuthFormData: Codable, Sendable {
             public let authLoginCustomMessage: String?
             public let authOpenIDButtonText: String?
             public let authOpenIDAutoLaunch: Bool?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MediaProgress: Codable, Hashable {
+public struct MediaProgress: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the media progress.
     /// If the media progress is for a book, this will just be the libraryItemId.
     /// If for a podcast episode, it will be a hyphenated combination of the libraryItemId and episodeId.

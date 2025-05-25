@@ -70,7 +70,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetLibraryCollections {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         /// The requested collections.
         public let results: [Collection]
         /// The total number of results.

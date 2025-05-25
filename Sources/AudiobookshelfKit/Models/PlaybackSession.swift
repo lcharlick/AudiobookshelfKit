@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PlaybackSession: Codable {
+public struct PlaybackSession: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the playback session.
     public let id: String
     /// The ID of the user the playback session is for.

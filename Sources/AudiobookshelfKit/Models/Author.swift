@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Author: Codable, Hashable {
+public struct Author: Codable, Hashable, Sendable {
     /// The ID of the author.
     public let id: String
     /// The ASIN of the author. Will be null if unknown.

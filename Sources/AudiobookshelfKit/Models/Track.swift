@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Track: Codable, Hashable {
+public struct Track: Codable, Hashable, Sendable {
     public let index: Int
     public let startOffset: TimeInterval
     public let duration: TimeInterval

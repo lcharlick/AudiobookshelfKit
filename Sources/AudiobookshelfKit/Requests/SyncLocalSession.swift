@@ -29,7 +29,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.SyncLocalSession {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         public let results: [Result]
     }
 
@@ -38,7 +38,7 @@ public extension Audiobookshelf.Request.SyncLocalSession {
         public let deviceInfo: DeviceInfo?
     }
 
-    struct Result: Codable {
+    struct Result: Codable, Hashable, Identifiable, Sendable {
         /// The ID of the playback session.
         public let id: String
         /// Whether the session was successfully synced.

@@ -16,7 +16,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetLibraries {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         /// The requested libraries.
         public let libraries: [Library]
     }

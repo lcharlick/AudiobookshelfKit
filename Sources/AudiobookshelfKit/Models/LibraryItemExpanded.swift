@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct LibraryItemExpanded: Codable, Hashable, Identifiable {
+public struct LibraryItemExpanded: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library item.
     public let id: String
     /// The inode of the library item.
@@ -54,7 +54,7 @@ public struct LibraryItemExpanded: Codable, Hashable, Identifiable {
 }
 
 public extension LibraryItemExpanded {
-    struct Book: Codable, Hashable, Identifiable {
+    struct Book: Codable, Hashable, Identifiable, Sendable {
         public let id: String
         public let libraryItemId: String
         public let metadata: MediaMetadata
@@ -71,7 +71,7 @@ public extension LibraryItemExpanded {
 }
 
 public extension LibraryItemExpanded.Book {
-    struct MediaMetadata: Codable, Hashable {
+    struct MediaMetadata: Codable, Hashable, Sendable {
         public let title: String
         public let titleIgnorePrefix: String?
         public let subtitle: String?

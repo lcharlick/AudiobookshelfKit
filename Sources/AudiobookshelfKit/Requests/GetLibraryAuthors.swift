@@ -24,7 +24,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetLibraryAuthors {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         public let authors: [Author]
     }
 }

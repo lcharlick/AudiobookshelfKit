@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ServerSettings: Codable, Hashable {
+public struct ServerSettings: Codable, Hashable, Sendable {
     /// The ID of the server settings.
     public let id: String
     /// Whether the scanner will attempt to find a cover if your audiobook does not have an embedded cover or a cover image inside the folder.
@@ -88,7 +88,7 @@ public struct ServerSettings: Codable, Hashable {
     public let version: String
 }
 
-public enum MetatadataFileFormat: String, Codable {
+public enum MetatadataFileFormat: String, Codable, Sendable {
     case json
     case abs
 }

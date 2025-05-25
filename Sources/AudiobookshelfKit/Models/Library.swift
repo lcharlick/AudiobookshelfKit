@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Library: Codable, Hashable, Identifiable {
+public struct Library: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library.
     public let id: String
     /// The name of the library.

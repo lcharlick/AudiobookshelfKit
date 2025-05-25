@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum AuthMethod: Codable, Hashable {
+public enum AuthMethod: Codable, Hashable, Sendable {
     case local
     case openid
     case unknown(String)

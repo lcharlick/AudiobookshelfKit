@@ -6,7 +6,7 @@
 //  Copyright © 2024 Lachlan Charlick. All rights reserved.
 //
 
-public struct SeriesSequence: Codable, Hashable {
+public struct SeriesSequence: Codable, Hashable, Identifiable, Sendable {
     public let id: String
     public let name: String
     public let sequence: String?

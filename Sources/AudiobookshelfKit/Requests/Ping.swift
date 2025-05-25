@@ -16,7 +16,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.Ping {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         /// Will always be `true`.
         public let success: Bool
     }

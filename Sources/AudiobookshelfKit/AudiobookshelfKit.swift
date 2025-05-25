@@ -86,7 +86,7 @@ public extension Audiobookshelf {
 
 // MARK: - Errors.
 
-public enum AudiobookshelfError: Error {
+public enum AudiobookshelfError: Error, Sendable {
     /// An error occurred while constructing the request.
     case invalidRequest(RequestFailureReason)
     /// An networking error occurred.

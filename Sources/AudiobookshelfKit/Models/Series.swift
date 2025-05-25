@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Series: Codable {
+public struct Series: Codable, Identifiable, Sendable {
     public let id: String
     public let name: String
     public let nameIgnorePrefix: String

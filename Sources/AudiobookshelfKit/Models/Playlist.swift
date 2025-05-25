@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Playlist: Codable, Hashable, Identifiable {
+public struct Playlist: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the playlist.
     public let id: String
     /// The ID of the library the playlist belongs to.
@@ -29,7 +29,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
     public let createdAt: Date
 }
 
-public struct PlaylistItem: Codable, Hashable {
+public struct PlaylistItem: Codable, Hashable, Sendable {
     /// The ID of the library item.
     public let libraryItemId: String
     /// The ID of the podcast episode.

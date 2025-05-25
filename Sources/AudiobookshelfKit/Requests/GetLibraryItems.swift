@@ -69,7 +69,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetLibraryItems {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         public let results: [LibraryItem]
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Permissions: Codable, Hashable {
+public struct Permissions: Codable, Hashable, Sendable {
     /// Whether the user can download items to the server.
     public let download: Bool
     /// Whether the user can update library items.

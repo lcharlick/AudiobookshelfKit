@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Collection: Codable, Hashable, Identifiable {
+public struct Collection: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the collection.
     public let id: String
     /// The ID of the library the collection belongs to.

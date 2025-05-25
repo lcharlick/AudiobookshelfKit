@@ -37,7 +37,7 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.GetUserPlaybackSessions {
-    struct Response: Codable {
+    struct Response: Codable, Sendable {
         /// The requested sessions.
         public let sessions: [PlaybackSession]
         /// The total number of sessions.

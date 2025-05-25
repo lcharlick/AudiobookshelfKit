@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Chapter: Codable, Hashable, Identifiable {
+public struct Chapter: Codable, Hashable, Identifiable, Sendable {
     public let id: Int
     public let start: TimeInterval
     public let end: TimeInterval

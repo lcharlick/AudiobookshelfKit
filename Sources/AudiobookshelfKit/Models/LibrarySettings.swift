@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct LibrarySettings: Codable, Hashable {
+public struct LibrarySettings: Codable, Hashable, Sendable {
     /// Whether the library should use square book covers.
     /// Must be 0 (for false) or 1 (for true).
     public let coverAspectRatio: Int

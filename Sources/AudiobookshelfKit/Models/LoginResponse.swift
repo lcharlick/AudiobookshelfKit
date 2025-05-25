@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct LoginResponse: Codable, Hashable {
+public struct LoginResponse: Codable, Hashable, Sendable {
     /// The authenticated user.
     public let user: User
     /// The ID of the first library in the list the user has access to.

@@ -6,7 +6,7 @@
 //  Copyright © 2025 Lachlan Charlick. All rights reserved.
 //
 
-public struct DeviceInfo: Codable {
+public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
     /// Unique identifier.
     public let id: String?
     /// User identifier.

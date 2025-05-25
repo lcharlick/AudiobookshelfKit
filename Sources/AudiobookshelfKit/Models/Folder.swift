@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Folder: Codable, Hashable {
+public struct Folder: Codable, Hashable, Sendable {
     /// The ID of the folder.
     public let id: String
     /// The path on the server for the folder.

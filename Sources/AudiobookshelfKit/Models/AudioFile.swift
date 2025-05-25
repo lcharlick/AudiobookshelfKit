@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AudioFile: Codable, Hashable {
+public struct AudioFile: Codable, Hashable, Sendable {
     /// The index of the audio file.
     public let index: Int
     /// The inode of the audio file.
@@ -60,7 +60,7 @@ public struct AudioFile: Codable, Hashable {
 }
 
 public extension AudioFile {
-    struct MetaTags: Codable, Hashable {
+    struct MetaTags: Codable, Hashable, Sendable {
         public let tagAlbum: String?
         public let tagArtist: String?
         public let tagGenre: String?
