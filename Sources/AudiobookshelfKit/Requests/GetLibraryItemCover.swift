@@ -16,16 +16,16 @@ public extension Audiobookshelf.Request {
 
         public var queryItems: [URLQueryItem]? {
             var items = [URLQueryItem]()
-            if let width = width {
+            if let width {
                 items.append(.init(name: "width", value: String(width)))
             }
-            if let height = height {
+            if let height {
                 items.append(.init(name: "height", value: String(height)))
             }
-            if let format = format {
+            if let format {
                 items.append(.init(name: "format", value: format.rawValue))
             }
-            if let raw = raw {
+            if let raw {
                 items.append(.init(name: "raw", value: raw))
             }
             return items

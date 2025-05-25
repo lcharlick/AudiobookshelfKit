@@ -55,7 +55,7 @@ public extension ResourceRequest {
         using token: String?,
         tokenStrategy: TokenStrategy
     ) throws -> URLRequest {
-        var queryItems = self.queryItems ?? []
+        var queryItems = queryItems ?? []
         if tokenStrategy == .queryItem, let token {
             queryItems.append(URLQueryItem(name: "token", value: token))
         }
@@ -68,7 +68,7 @@ public extension ResourceRequest {
         request.httpMethod = httpMethod
         request.addValue(accept, forHTTPHeaderField: "accept")
 
-        if tokenStrategy == .header, let token = token {
+        if tokenStrategy == .header, let token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
 

@@ -17,16 +17,16 @@ public extension Audiobookshelf.Request {
             var items = [URLQueryItem]()
             items.append(URLQueryItem(name: "limit", value: String(limit)))
             items.append(URLQueryItem(name: "page", value: String(page)))
-            if let sort = sort {
+            if let sort {
                 items.append(URLQueryItem(name: "sort", value: sort))
             }
-            if let desc = desc {
+            if let desc {
                 items.append(URLQueryItem(name: "desc", value: desc))
             }
-            if let collapsedSeries = collapsedSeries {
+            if let collapsedSeries {
                 items.append(URLQueryItem(name: "collapsedSeries", value: String(collapsedSeries ? 1 : 0)))
             }
-            if let include = include {
+            if let include {
                 items.append(URLQueryItem(name: "include", value: include))
             }
             return items
