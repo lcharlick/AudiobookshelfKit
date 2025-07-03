@@ -10,18 +10,15 @@ import Foundation
 
 // MARK: - Client.
 
-public final class Audiobookshelf {
-    private let sessionConfiguration: URLSessionConfiguration
-    lazy var session = URLSession(
-        configuration: sessionConfiguration
-    )
+public struct Audiobookshelf: Sendable {
+    private let session: URLSession
 
     enum Constants {
         static let acceptableStatusCodes = 200 ..< 300
     }
 
     public init(sessionConfiguration: URLSessionConfiguration) {
-        self.sessionConfiguration = sessionConfiguration
+        self.session = URLSession(configuration: sessionConfiguration)
     }
 
     private func request<Response>(

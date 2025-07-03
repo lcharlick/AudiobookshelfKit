@@ -32,7 +32,7 @@ public extension Audiobookshelf.Request.BatchUpdateMediaProgress {
         data
     }
 
-    struct Parameters: Codable, Hashable {
+    struct Parameters: Codable, Hashable, Sendable {
         /// The ID of the library item the media progress is for.
         public let libraryItemId: String
         /// The ID of the podcast episode the media progress is for.

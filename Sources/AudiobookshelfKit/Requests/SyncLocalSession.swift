@@ -49,7 +49,7 @@ public extension Audiobookshelf.Request.SyncLocalSession {
         public let progressSynced: Bool?
     }
 
-    struct Session: Codable {
+    struct Session: Codable, Sendable {
         /// The ID of the playback session.
         public let id: String
         /// The ID of the library item.

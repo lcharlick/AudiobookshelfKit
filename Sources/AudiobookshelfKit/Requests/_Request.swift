@@ -9,7 +9,7 @@
 import Foundation
 
 /// Describes a request to an Audiobookshelf resource (e.g. server).
-public protocol ResourceRequest {
+public protocol ResourceRequest: Sendable {
     associatedtype Response: Sendable
 
     var path: String { get }

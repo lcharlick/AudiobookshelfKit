@@ -58,7 +58,7 @@ public extension Audiobookshelf.Request {
             self.raw = raw
         }
 
-        public enum Format: String {
+        public enum Format: String, Sendable {
             case webp, jpeg
         }
     }
