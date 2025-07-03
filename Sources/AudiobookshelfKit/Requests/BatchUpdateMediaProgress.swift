@@ -38,13 +38,13 @@ public extension Audiobookshelf.Request.BatchUpdateMediaProgress {
         /// The ID of the podcast episode the media progress is for.
         public let episodeId: String?
         /// The total duration (in seconds) of the media.
-        public let duration: TimeInterval?
+        public let duration: TimeInterval
         /// The percentage completion progress of the media. Will automatically be set to 1 if the media is finished.
-        public let progress: Double?
+        public let progress: Double
         /// The current time (in seconds) of your progress.
-        public let currentTime: TimeInterval?
+        public let currentTime: TimeInterval
         /// Whether the media is finished.
-        public let isFinished: Bool?
+        public let isFinished: Bool
         /// Whether the media will be hidden from the "Continue Listening" shelf.
         public let hideFromContinueListening: Bool?
         /// The time when the user finished the media. The default will be Date.now() if isFinished is true.
@@ -55,10 +55,10 @@ public extension Audiobookshelf.Request.BatchUpdateMediaProgress {
         public init(
             libraryItemId: String,
             episodeId: String? = nil,
-            duration: TimeInterval? = nil,
-            progress: Double? = nil,
-            currentTime: TimeInterval? = nil,
-            isFinished: Bool? = nil,
+            duration: TimeInterval,
+            progress: Double,
+            currentTime: TimeInterval,
+            isFinished: Bool,
             hideFromContinueListening: Bool? = nil,
             finishedAt: Date? = nil,
             startedAt: Date? = nil
