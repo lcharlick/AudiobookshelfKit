@@ -43,10 +43,9 @@ struct CreateBookmarkTests {
             for: Audiobookshelf.Request.CreateBookmark.self
         )
 
-        #expect(response.success == true)
-        #expect(response.bookmark.libraryItemId == "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458")
-        #expect(response.bookmark.title == "Chapter 1 - The Beginning")
-        #expect(response.bookmark.time == 6446)
-        #expect(response.bookmark.createdAt == Date(timeIntervalSince1970: 1_723_386_963_225 / 1000))
+        #expect(response.libraryItemId == "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458")
+        #expect(response.title == "Hello, world!")
+        #expect(response.time == 6446)
+        #expect(response.createdAt == Date(timeIntervalSince1970: 1_723_386_963_225 / 1000))
     }
 }

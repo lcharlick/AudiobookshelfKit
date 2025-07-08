@@ -20,24 +20,11 @@ struct RemoveBookmarkTests {
 
         let data = RequestData(request: request)
 
-        #expect(data.baseURL == testURL.appendingPathComponent("/api/me/item/8f2b0e4b-d484-47b8-b357-fbdcbc4e6458/bookmark"))
+        #expect(data.baseURL == testURL.appendingPathComponent("/api/me/item/8f2b0e4b-d484-47b8-b357-fbdcbc4e6458/bookmark/6446"))
         #expect(data.httpMethod == "DELETE")
         #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-
-        #expect(data.queryItems == [
-            "time": "6446",
-        ])
-    }
-
-    @Test func response() throws {
-        let response = try loadResponse(
-            "remove_bookmark",
-            for: Audiobookshelf.Request.RemoveBookmark.self
-        )
-
-        #expect(response.success == true)
     }
 }

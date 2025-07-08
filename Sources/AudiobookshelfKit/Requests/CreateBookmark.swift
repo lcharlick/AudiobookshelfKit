@@ -19,13 +19,13 @@ public extension Audiobookshelf.Request {
 
         private let libraryItemId: String
         private let time: TimeInterval
-        private let title: String
+        private let title: String?
 
         /// - Parameters:
         ///   - libraryItemId: The ID of the library item.
         ///   - time: The time (in seconds) in the book to place the bookmark.
         ///   - title: The title of the bookmark.
-        public init(libraryItemId: String, time: TimeInterval, title: String) {
+        public init(libraryItemId: String, time: TimeInterval, title: String?) {
             self.libraryItemId = libraryItemId
             self.time = time
             self.title = title
@@ -34,13 +34,10 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.CreateBookmark {
+    typealias Response = Bookmark
+
     struct RequestBody: Codable {
         public let time: TimeInterval
-        public let title: String
-    }
-
-    struct Response: Codable, Sendable {
-        public let success: Bool
-        public let bookmark: Bookmark
+        public let title: String?
     }
 }

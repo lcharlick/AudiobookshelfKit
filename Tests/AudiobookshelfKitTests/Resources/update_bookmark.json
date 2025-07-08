@@ -1,9 +1,6 @@
 {
-  "success": true,
-  "bookmark": {
-    "libraryItemId": "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458",
-    "title": "Chapter 1 - Updated Title",
-    "time": 6446,
-    "createdAt": 1723386963225
-  }
+  "libraryItemId": "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458",
+  "title": "Hello, world!!",
+  "time": 6446,
+  "createdAt": 1723386963225
 }

@@ -11,14 +11,8 @@ import Foundation
 public extension Audiobookshelf.Request {
     /// This endpoint removes a bookmark for the authenticated user.
     struct RemoveBookmark: ResourceRequest {
-        public var path: String { "api/me/item/\(libraryItemId)/bookmark" }
+        public var path: String { "api/me/item/\(libraryItemId)/bookmark/\(Int(time))" }
         public let httpMethod = "DELETE"
-
-        public var queryItems: [URLQueryItem]? {
-            [
-                URLQueryItem(name: "time", value: String(Int(time))),
-            ]
-        }
 
         private let libraryItemId: String
         private let time: TimeInterval
@@ -34,7 +28,9 @@ public extension Audiobookshelf.Request {
 }
 
 public extension Audiobookshelf.Request.RemoveBookmark {
-    struct Response: Codable, Sendable {
-        public let success: Bool
+    typealias Response = Data
+
+    static func response(from data: Data) throws -> Data {
+        data
     }
 }
