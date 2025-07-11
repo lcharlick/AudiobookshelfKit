@@ -87,7 +87,7 @@
   "limit": 10,
   "page": 0,
   "sortBy": "name",
-  "sortDesc": false,
+  "desc": false,
   "minified": false,
   "include": null
 }

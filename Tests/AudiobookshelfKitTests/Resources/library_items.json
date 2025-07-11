@@ -1126,7 +1126,7 @@
   "total": 22,
   "limit": 0,
   "page": 0,
-  "sortDesc": false,
+  "desc": false,
   "mediaType": "book",
   "minified": false,
   "collapseseries": false,

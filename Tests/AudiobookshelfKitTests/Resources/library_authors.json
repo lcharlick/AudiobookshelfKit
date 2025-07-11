@@ -1,5 +1,5 @@
 {
-  "authors": [
+  "results": [
     {
       "id": "7e2f3c5b-9778-4505-8719-8fdce133600f",
       "asin": null,
@@ -36,5 +36,8 @@
       "numBooks": 15,
       "lastFirst": "Jordan, Robert"
     }
-  ]
+  ],
+  "total": 3,
+  "page": 1,
+  "limit": 10
 }
