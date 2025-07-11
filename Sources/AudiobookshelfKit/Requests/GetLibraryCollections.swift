@@ -22,10 +22,10 @@ public extension Audiobookshelf.Request {
                 items.append(URLQueryItem(name: "sort", value: sort))
             }
             if let desc {
-                items.append(URLQueryItem(name: "desc", value: desc ? "1" : "0"))
+                items.append(URLQueryItem(name: "desc", value: desc))
             }
             if let minified {
-                items.append(URLQueryItem(name: "minified", value: minified ? "1" : "0"))
+                items.append(URLQueryItem(name: "minified", value: minified))
             }
             if let include {
                 items.append(URLQueryItem(name: "include", value: include))
@@ -82,7 +82,7 @@ public extension Audiobookshelf.Request.GetLibraryCollections {
         /// The sort set in the request. Will not exist if no sort was set.
         public let sortBy: String?
         /// Whether to reverse the sort order.
-        public let sortDesc: Bool?
+        public let desc: Bool?
         /// The filter set in the request, URL decoded. Will not exist if no filter was set.
         public let filterBy: String?
         /// Whether minified was set in the request.

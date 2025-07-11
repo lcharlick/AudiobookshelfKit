@@ -31,7 +31,7 @@ struct GetLibrarySeriesTests {
             "page": "0",
             "limit": "10",
             "sortBy": "name",
-            "sortDesc": "0",
+            "desc": "0",
             "minified": "0",
         ])
     }
@@ -42,7 +42,7 @@ struct GetLibrarySeriesTests {
             page: 2,
             limit: 25,
             sortBy: "numBooks",
-            sortDesc: true,
+            desc: true,
             minified: true
         )
         .asURLRequest(from: testURL, using: "my-token")
@@ -59,7 +59,7 @@ struct GetLibrarySeriesTests {
             "page": "2",
             "limit": "25",
             "sortBy": "numBooks",
-            "sortDesc": "1",
+            "desc": "1",
             "minified": "1",
         ])
     }
@@ -74,7 +74,7 @@ struct GetLibrarySeriesTests {
         #expect(response.limit == 10)
         #expect(response.page == 0)
         #expect(response.sortBy == "name")
-        #expect(response.sortDesc == false)
+        #expect(response.desc == false)
         #expect(response.minified == false)
         #expect(response.include == nil)
         #expect(response.results.count == 1)

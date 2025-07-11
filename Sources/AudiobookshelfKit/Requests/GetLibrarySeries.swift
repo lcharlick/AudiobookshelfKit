@@ -18,7 +18,7 @@ public extension Audiobookshelf.Request {
                 URLQueryItem(name: "page", value: page),
                 URLQueryItem(name: "limit", value: limit),
                 URLQueryItem(name: "sortBy", value: sortBy),
-                URLQueryItem(name: "sortDesc", value: sortDesc),
+                URLQueryItem(name: "desc", value: desc),
                 URLQueryItem(name: "minified", value: minified),
             ]
         }
@@ -27,7 +27,7 @@ public extension Audiobookshelf.Request {
         private let page: Int
         private let limit: Int
         private let sortBy: String
-        private let sortDesc: Bool
+        private let desc: Bool
         private let minified: Bool
 
         /// - Parameters:
@@ -35,21 +35,21 @@ public extension Audiobookshelf.Request {
         ///   - page: The page number (0 indexed) to request.
         ///   - limit: Limit the number of returned results per page. Must be greater than 0.
         ///   - sortBy: What to sort the results by. By default, the results will be sorted by series name. Other sort options are: numBooks, totalDuration, and addedAt.
-        ///   - sortDesc: Whether to reverse the sort order.
+        ///   - desc: Whether to reverse the sort order.
         ///   - minified:
         public init(
             libraryID: String,
             page: Int,
             limit: Int,
             sortBy: String = "name",
-            sortDesc: Bool = false,
+            desc: Bool = false,
             minified: Bool = false
         ) {
             self.libraryID = libraryID
             self.page = page
             self.limit = limit
             self.sortBy = sortBy
-            self.sortDesc = sortDesc
+            self.desc = desc
             self.minified = minified
         }
     }
@@ -62,7 +62,7 @@ public extension Audiobookshelf.Request.GetLibrarySeries {
         public let limit: Int
         public let page: Int
         public let sortBy: String?
-        public let sortDesc: Bool?
+        public let desc: Bool?
         public let minified: Bool?
         public let include: String?
     }
