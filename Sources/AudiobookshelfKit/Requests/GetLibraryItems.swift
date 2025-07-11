@@ -23,6 +23,9 @@ public extension Audiobookshelf.Request {
             if let desc {
                 items.append(URLQueryItem(name: "desc", value: desc))
             }
+            if let filter, let data = filter.value.data(using: .utf8) {
+                items.append(URLQueryItem(name: "filter", value: "\(filter.group).\(data.base64EncodedString())"))
+            }
             if let collapsedSeries {
                 items.append(URLQueryItem(name: "collapsedSeries", value: String(collapsedSeries ? 1 : 0)))
             }
@@ -37,6 +40,7 @@ public extension Audiobookshelf.Request {
         private let page: Int
         private let sort: String?
         private let desc: Bool?
+        private let filter: Filter?
         private let collapsedSeries: Bool?
         private let include: String?
 
@@ -54,6 +58,7 @@ public extension Audiobookshelf.Request {
             page: Int,
             sort: String? = nil,
             desc: Bool? = nil,
+            filter: Filter? = nil,
             collapsedSeries: Bool? = nil,
             include: String? = nil
         ) {
@@ -62,8 +67,19 @@ public extension Audiobookshelf.Request {
             self.page = page
             self.sort = sort
             self.desc = desc
+            self.filter = filter
             self.collapsedSeries = collapsedSeries
             self.include = include
+        }
+        
+        public struct Filter: Codable, Hashable, Sendable {
+            let group: String
+            let value: String
+            
+            public init(group: String, value: String) {
+                self.group = group
+                self.value = value
+            }
         }
     }
 }
@@ -71,5 +87,8 @@ public extension Audiobookshelf.Request {
 public extension Audiobookshelf.Request.GetLibraryItems {
     struct Response: Codable, Sendable {
         public let results: [LibraryItem]
+        public let total: Int
+        public let limit: Int
+        public let page: Int
     }
 }
