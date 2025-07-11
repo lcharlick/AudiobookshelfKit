@@ -12,7 +12,7 @@ import Testing
 
 struct GetLibraryAuthorsTests {
     @Test func request() throws {
-        let request = try Audiobookshelf.Request.GetLibraryAuthors(libraryID: "my-library")
+        let request = try Audiobookshelf.Request.GetLibraryAuthors(libraryID: "my-library", limit: 10, page: 1)
             .asURLRequest(from: testURL, using: "my-token")
 
         let data = RequestData(request: request)
@@ -22,6 +22,10 @@ struct GetLibraryAuthorsTests {
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
+        #expect(data.queryItems == [
+            "limit": "10",
+            "page": "1",
+        ])
     }
 
     @Test func response() throws {
@@ -30,8 +34,8 @@ struct GetLibraryAuthorsTests {
             for: Audiobookshelf.Request.GetLibraryAuthors.self
         )
 
-        #expect(response.authors.count == 3)
-        let author = response.authors[0]
+        #expect(response.results.count == 3)
+        let author = response.results[0]
         #expect(author.id == "7e2f3c5b-9778-4505-8719-8fdce133600f")
         #expect(author.name == "Brandon Sanderson")
         #expect(author.description == nil)
