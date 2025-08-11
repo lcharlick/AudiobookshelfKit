@@ -18,7 +18,7 @@ struct OAuth2AuthorizationRequestTests {
             clientID: "my-client-id",
             state: "random-state-string"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -47,7 +47,7 @@ struct OAuth2AuthorizationRequestTests {
             clientID: "another-client",
             state: "custom-state"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

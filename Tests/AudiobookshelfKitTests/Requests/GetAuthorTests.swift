@@ -15,7 +15,7 @@ struct GetAuthorTests {
         let request = try Audiobookshelf.Request.GetAuthor(
             id: "aut_z3leimgybl7uf3y4ab"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

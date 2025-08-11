@@ -17,7 +17,7 @@ struct UpdateBookmarkTests {
             time: 6446,
             title: "Chapter 1 - Updated Title"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

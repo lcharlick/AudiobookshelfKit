@@ -45,15 +45,17 @@ public extension ResourceRequest {
     func asURLRequest(
         from url: URL,
         using token: String?,
-        tokenStrategy: TokenStrategy = .header
+        tokenStrategy: TokenStrategy = .header,
+        customHeaders: [String: String]
     ) throws -> URLRequest {
-        try _asURLRequest(from: url, using: token, tokenStrategy: tokenStrategy)
+        try _asURLRequest(from: url, using: token, tokenStrategy: tokenStrategy, customHeaders: customHeaders)
     }
 
     internal func _asURLRequest(
         from url: URL,
         using token: String?,
-        tokenStrategy: TokenStrategy
+        tokenStrategy: TokenStrategy,
+        customHeaders: [String: String]
     ) throws -> URLRequest {
         var queryItems = queryItems ?? []
         if tokenStrategy == .queryItem, let token {
@@ -70,6 +72,10 @@ public extension ResourceRequest {
 
         if tokenStrategy == .header, let token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        for (key, value) in customHeaders {
+            request.addValue(value, forHTTPHeaderField: key)
         }
 
         if let httpBody {

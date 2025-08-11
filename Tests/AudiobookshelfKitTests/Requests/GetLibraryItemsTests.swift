@@ -17,7 +17,7 @@ struct GetLibraryItemsTests {
             limit: 5,
             page: 0
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -43,7 +43,7 @@ struct GetLibraryItemsTests {
             collapsedSeries: true,
             include: "rssfeed"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

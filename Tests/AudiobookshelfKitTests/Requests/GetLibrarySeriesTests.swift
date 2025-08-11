@@ -17,7 +17,7 @@ struct GetLibrarySeriesTests {
             page: 0,
             limit: 10
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -45,7 +45,7 @@ struct GetLibrarySeriesTests {
             desc: true,
             minified: true
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

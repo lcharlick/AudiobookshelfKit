@@ -13,7 +13,7 @@ import Testing
 struct GetAuthorImageTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.GetAuthorImage(id: "my-author")
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -32,7 +32,7 @@ struct GetAuthorImageTests {
             format: .jpeg,
             raw: true
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

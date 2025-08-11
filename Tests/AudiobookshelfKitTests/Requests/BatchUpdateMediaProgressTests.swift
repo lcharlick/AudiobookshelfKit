@@ -13,7 +13,7 @@ import Testing
 struct BatchUpdateMediaProgressTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.BatchUpdateMediaProgress([])
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -43,7 +43,7 @@ struct BatchUpdateMediaProgressTests {
             startedAt: Date()
         )
         let request = try Audiobookshelf.Request.BatchUpdateMediaProgress([parameters])
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

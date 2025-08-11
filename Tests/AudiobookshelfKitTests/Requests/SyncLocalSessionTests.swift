@@ -37,7 +37,7 @@ struct SyncLocalSessionTests {
         )
 
         let request = try Audiobookshelf.Request.SyncLocalSession(session)
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -101,7 +101,7 @@ struct SyncLocalSessionTests {
         ]
 
         let request = try Audiobookshelf.Request.SyncLocalSession(sessions)
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

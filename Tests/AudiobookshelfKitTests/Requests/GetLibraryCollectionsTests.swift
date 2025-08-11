@@ -21,7 +21,7 @@ struct GetLibraryCollectionsTests {
             minified: true,
             include: "rssfeed"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -46,7 +46,7 @@ struct GetLibraryCollectionsTests {
             page: 0,
             limit: 0
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

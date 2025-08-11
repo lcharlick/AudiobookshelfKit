@@ -13,7 +13,7 @@ import Testing
 struct LoginTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.Login(username: "juno", password: "w00f")
-            .asURLRequest(from: testURL, using: nil)
+            .asURLRequest(from: testURL, using: nil, customHeaders: [:])
 
         let data = RequestData(request: request)
 

@@ -13,7 +13,7 @@ import Testing
 struct PingTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.Ping()
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

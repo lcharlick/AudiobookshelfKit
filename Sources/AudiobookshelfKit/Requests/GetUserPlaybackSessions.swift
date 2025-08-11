@@ -11,25 +11,19 @@ import Foundation
 public extension Audiobookshelf.Request {
     /// This endpoint retrieves a user's playback sessions.
     struct GetUserPlaybackSessions: ResourceRequest {
-        public var path: String { "api/users/\(userId)/listening-sessions" }
+        public var path: String { "api/me/listening-sessions" }
 
         public var queryItems: [URLQueryItem]? {
-            var items = [URLQueryItem]()
-            if let page {
-                items.append(URLQueryItem(name: "page", value: String(page)))
-            }
-            if let itemsPerPage {
-                items.append(URLQueryItem(name: "itemsPerPage", value: String(itemsPerPage)))
-            }
-            return items
+            [
+                URLQueryItem(name: "page", value: String(page)),
+                URLQueryItem(name: "itemsPerPage", value: String(itemsPerPage)),
+            ]
         }
 
-        private let userId: String
-        private let page: Int?
-        private let itemsPerPage: Int?
+        private let page: Int
+        private let itemsPerPage: Int
 
-        public init(userId: String, page: Int? = nil, itemsPerPage: Int? = nil) {
-            self.userId = userId
+        public init(page: Int, itemsPerPage: Int) {
             self.page = page
             self.itemsPerPage = itemsPerPage
         }

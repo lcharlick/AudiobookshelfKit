@@ -15,7 +15,7 @@ struct GetLibraryItemTests {
         let request = try Audiobookshelf.Request.GetLibraryItem(
             id: "my-item"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

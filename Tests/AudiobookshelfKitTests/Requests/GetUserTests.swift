@@ -13,7 +13,7 @@ import Testing
 struct GetUserTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.GetUser()
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

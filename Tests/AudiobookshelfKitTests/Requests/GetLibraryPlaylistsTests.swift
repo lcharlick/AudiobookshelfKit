@@ -15,7 +15,7 @@ struct GetLibraryPlaylistsTests {
         let request = try Audiobookshelf.Request.GetLibraryPlaylists(
             libraryID: "my-library"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -37,7 +37,7 @@ struct GetLibraryPlaylistsTests {
             limit: 10,
             page: 2
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

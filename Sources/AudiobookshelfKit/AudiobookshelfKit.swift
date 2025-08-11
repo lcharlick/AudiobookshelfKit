@@ -52,14 +52,16 @@ public struct Audiobookshelf: Sendable {
     @discardableResult public func request<Request: ResourceRequest>(
         _ request: Request,
         from url: URL,
-        token: String? = nil
+        token: String? = nil,
+        customHeaders: [String: String] = [:]
     ) async -> Result<Request.Response, AudiobookshelfError> {
         let urlRequest: URLRequest
 
         do {
             urlRequest = try request.asURLRequest(
                 from: url,
-                using: token
+                using: token,
+                customHeaders: customHeaders
             )
         } catch let error as AudiobookshelfError {
             return .failure(error)
@@ -77,7 +79,6 @@ public struct Audiobookshelf: Sendable {
 // MARK: - Namespaces.
 
 public extension Audiobookshelf {
-    /// Namespace for `PlexConnectionRequest` implementations.
     enum Request {}
 }
 

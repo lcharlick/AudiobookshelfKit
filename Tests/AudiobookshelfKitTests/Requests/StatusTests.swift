@@ -13,7 +13,7 @@ import Testing
 struct StatusTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.Status()
-            .asURLRequest(from: testURL, using: nil)
+            .asURLRequest(from: testURL, using: nil, customHeaders: [:])
 
         let data = RequestData(request: request)
 

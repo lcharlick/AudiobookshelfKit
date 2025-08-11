@@ -13,7 +13,7 @@ import Testing
 struct GetLibraryItemCoverTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.GetLibraryItemCover(id: "my-item")
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -32,7 +32,7 @@ struct GetLibraryItemCoverTests {
             format: .jpeg,
             raw: true
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

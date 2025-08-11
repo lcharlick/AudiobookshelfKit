@@ -15,7 +15,7 @@ struct GetMediaProgressTests {
         let request = try Audiobookshelf.Request.GetMediaProgress(
             libraryItemID: "27bec22a-0902-4226-a6ba-677a95fd993d"
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 

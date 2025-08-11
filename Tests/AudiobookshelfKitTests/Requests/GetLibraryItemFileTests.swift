@@ -13,7 +13,7 @@ import Testing
 struct GetLibraryItemFileTests {
     @Test func request() throws {
         let request = try Audiobookshelf.Request.GetLibraryItemFile(id: "my-item", ino: "my-inode")
-            .asURLRequest(from: testURL, using: "my-token")
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
@@ -27,7 +27,7 @@ struct GetLibraryItemFileTests {
 
     @Test func request_queryItemTokenStrategy() throws {
         let request = try Audiobookshelf.Request.GetLibraryItemFile(id: "my-item", ino: "my-inode")
-            .asURLRequest(from: testURL, using: "my-token", tokenStrategy: .queryItem)
+            .asURLRequest(from: testURL, using: "my-token", tokenStrategy: .queryItem, customHeaders: [:])
 
         let data = RequestData(request: request)
 

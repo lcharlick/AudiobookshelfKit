@@ -16,7 +16,7 @@ struct RemoveBookmarkTests {
             libraryItemId: "8f2b0e4b-d484-47b8-b357-fbdcbc4e6458",
             time: 6446
         )
-        .asURLRequest(from: testURL, using: "my-token")
+        .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
