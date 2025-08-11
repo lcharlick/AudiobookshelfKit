@@ -25,8 +25,8 @@ public extension Audiobookshelf.Request {
             if let format {
                 items.append(.init(name: "format", value: format.rawValue))
             }
-            if let raw {
-                items.append(.init(name: "raw", value: raw))
+            if raw {
+                items.append(.init(name: "raw", value: "1"))
             }
             return items
         }
@@ -35,7 +35,7 @@ public extension Audiobookshelf.Request {
         private let width: Int?
         private let height: Int?
         private let format: Format?
-        private let raw: Bool?
+        private let raw: Bool
 
         /// Create a new request to retrieve an author's image.
         /// - Parameters:
@@ -49,7 +49,7 @@ public extension Audiobookshelf.Request {
             width: Int? = nil,
             height: Int? = nil,
             format: Format? = nil,
-            raw: Bool? = nil
+            raw: Bool = false
         ) {
             self.id = id
             self.width = width

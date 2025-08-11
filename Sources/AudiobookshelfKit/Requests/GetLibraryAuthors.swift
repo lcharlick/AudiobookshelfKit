@@ -48,7 +48,7 @@ public extension Audiobookshelf.Request {
             limit: Int,
             page: Int,
             order: String? = nil,
-            desc: Bool? = nil,
+            desc: Bool? = nil
         ) {
             self.libraryID = libraryID
             self.limit = limit

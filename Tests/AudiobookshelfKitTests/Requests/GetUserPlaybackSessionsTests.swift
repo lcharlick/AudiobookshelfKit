@@ -12,26 +12,29 @@ import Testing
 
 struct GetUserSessionsTests {
     @Test func request() throws {
-        let request = try Audiobookshelf.Request.GetUserPlaybackSessions(userId: "user123")
-            .asURLRequest(from: testURL, using: "my-token")
+        let request = try Audiobookshelf.Request.GetUserPlaybackSessions(page: 1, itemsPerPage: 10)
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
-        #expect(data.baseURL == testURL.appendingPathComponent("api/users/user123/listening-sessions"))
+        #expect(data.baseURL == testURL.appendingPathComponent("api/me/listening-sessions"))
         #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",
         ])
-        #expect(data.queryItems == [:])
+        #expect(data.queryItems == [
+            "page": "1",
+            "itemsPerPage": "10",
+        ])
     }
 
     @Test func request_withPaging() throws {
-        let request = try Audiobookshelf.Request.GetUserPlaybackSessions(userId: "user123", page: 2, itemsPerPage: 10)
-            .asURLRequest(from: testURL, using: "my-token")
+        let request = try Audiobookshelf.Request.GetUserPlaybackSessions(page: 2, itemsPerPage: 10)
+            .asURLRequest(from: testURL, using: "my-token", customHeaders: [:])
 
         let data = RequestData(request: request)
 
-        #expect(data.baseURL == testURL.appendingPathComponent("api/users/user123/listening-sessions"))
+        #expect(data.baseURL == testURL.appendingPathComponent("api/me/listening-sessions"))
         #expect(data.headers == [
             "Accept": "application/json",
             "Authorization": "Bearer my-token",

@@ -20,7 +20,7 @@ public struct Collection: Codable, Hashable, Identifiable, Sendable {
     /// The collection's description. Will be null if there is none.
     public let description: String?
     /// The books that belong to the collection.
-    public let books: [LibraryItem]
+    public let books: [LibraryItemExpanded]
     /// The time (in ms since POSIX epoch) when the collection was last updated.
     public let lastUpdate: Date
     /// The time (in ms since POSIX epoch) when the collection was created.

@@ -25,5 +25,5 @@ public struct AuthorExpanded: Codable, Hashable, Sendable {
     public let updatedAt: Date
     /// The ID of the library the author belongs to.
     public let libraryId: String
-    public let libraryItems: [LibraryItem]
+    public let libraryItems: [LibraryItemExpanded]
 }

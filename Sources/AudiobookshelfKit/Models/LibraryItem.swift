@@ -109,5 +109,8 @@ public extension LibraryItem.Book {
         public let explicit: Bool
         /// Whether the book is abridged.
         public let abridged: Bool
+        /// The series the book belongs to, if any.
+        /// Only available when filtering by series.
+        public let series: SeriesSequence?
     }
 }
