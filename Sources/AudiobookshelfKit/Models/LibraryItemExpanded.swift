@@ -86,11 +86,11 @@ public extension LibraryItemExpanded.Book {
         public let isbn: String?
         public let asin: String?
         public let language: String?
-        public let explicit: Bool
-        public let authorName: String
-        public let authorNameLF: String
-        public let narratorName: String
-        public let seriesName: String
-        public let abridged: Bool
+        public let explicit: Bool?
+        public let authorName: String?
+        public let authorNameLF: String?
+        public let narratorName: String?
+        public let seriesName: String?
+        public let abridged: Bool?
     }
 }
