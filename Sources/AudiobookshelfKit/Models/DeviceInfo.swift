@@ -12,7 +12,7 @@ public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
     /// User identifier.
     public let userId: String?
     /// Device identifier, as provided in the request.
-    public let deviceId: String
+    public let deviceId: String?
     /// The IP address that the request came from.
     public let ipAddress: String?
     /// The browser name, taken from the user agent.
@@ -34,9 +34,9 @@ public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
     /// For an Android device, the Android SDK version of the client, as provided in the request.
     public let sdkVersion: Int?
     /// Name of the client, as provided in the request.
-    public let clientName: String
+    public let clientName: String?
     /// Version of the client, as provided in the request.
-    public let clientVersion: String
+    public let clientVersion: String?
 
     public init(
         id: String? = nil,

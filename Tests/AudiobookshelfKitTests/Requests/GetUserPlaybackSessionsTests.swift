@@ -137,7 +137,7 @@ struct GetUserSessionsTests {
         #expect(session.startTime == 0)
         #expect(session.timeListening == 300)
         #expect(session.currentTime == 300)
-        #expect(session.startedAt.timeIntervalSince1970 == 1_710_864_000)
-        #expect(session.updatedAt.timeIntervalSince1970 == 1_710_864_300)
+        #expect(session.startedAt?.timeIntervalSince1970 == 1_710_864_000)
+        #expect(session.updatedAt?.timeIntervalSince1970 == 1_710_864_300)
     }
 }
