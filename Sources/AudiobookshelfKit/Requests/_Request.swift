@@ -16,6 +16,7 @@ public protocol ResourceRequest: Sendable {
     var httpMethod: String { get }
     var accept: String { get }
 
+    var headers: [String: String]? { get }
     var queryItems: [URLQueryItem]? { get }
     var httpBody: Codable? { get }
 
@@ -24,6 +25,7 @@ public protocol ResourceRequest: Sendable {
 
 public extension ResourceRequest {
     var httpMethod: String { "GET" }
+    var headers: [String: String]? { nil }
     var accept: String { "application/json" }
     var queryItems: [URLQueryItem]? { nil }
     var httpBody: Codable? { nil }
@@ -72,6 +74,10 @@ public extension ResourceRequest {
 
         if tokenStrategy == .header, let token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+
+        for (key, value) in headers ?? [:] {
+            request.addValue(value, forHTTPHeaderField: key)
         }
         
         for (key, value) in customHeaders {

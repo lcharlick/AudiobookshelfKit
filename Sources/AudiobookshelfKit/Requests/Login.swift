@@ -13,6 +13,7 @@ public extension Audiobookshelf.Request {
     struct Login: ResourceRequest {
         public let path = "login"
         public let httpMethod = "POST"
+        public let headers: [String : String]? = ["x-return-tokens": "true"]
         public var httpBody: Codable? {
             ["username": username, "password": password]
         }

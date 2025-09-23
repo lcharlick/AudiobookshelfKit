@@ -22,6 +22,7 @@ struct LoginTests {
         #expect(data.headers == [
             "Accept": "application/json",
             "Content-Type": "application/json",
+            "x-return-tokens": "true",
         ])
 
         #expect(data.httpBody == [
