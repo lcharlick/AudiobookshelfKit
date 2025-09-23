@@ -131,7 +131,6 @@ struct GetUserSessionsTests {
         #expect(session.deviceInfo.deviceId == "device123")
         #expect(session.deviceInfo.manufacturer == "Apple")
         #expect(session.deviceInfo.model == "iPhone")
-        #expect(session.deviceInfo.sdkVersion == nil)
         #expect(session.deviceInfo.clientName == "Test Client")
         #expect(session.deviceInfo.clientVersion == "1.0.0")
         #expect(session.startTime == 0)

@@ -11,9 +11,9 @@ import Foundation
 public struct LibrarySettings: Codable, Hashable, Sendable {
     /// Whether the library should use square book covers.
     /// Must be 0 (for false) or 1 (for true).
-    public let coverAspectRatio: Int
+    public let coverAspectRatio: Int?
     /// Whether to disable the folder watcher for the library.
-    public let disableWatcher: Bool
+    public let disableWatcher: Bool?
     /// Whether to skip matching books that already have an ASIN.
     public let skipMatchingMediaWithAsin: Bool?
     /// Whether to skip matching books that already have an ISBN.

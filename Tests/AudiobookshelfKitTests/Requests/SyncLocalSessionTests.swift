@@ -16,7 +16,6 @@ struct SyncLocalSessionTests {
             deviceId: "device123",
             manufacturer: "Apple",
             model: "iPhone",
-            sdkVersion: 17,
             clientName: "AudiobookshelfKit",
             clientVersion: "1.0.0"
         )
@@ -64,7 +63,6 @@ struct SyncLocalSessionTests {
             deviceId: "device123",
             manufacturer: "Apple",
             model: "iPhone",
-            sdkVersion: 17,
             clientName: "AudiobookshelfKit",
             clientVersion: "1.0.0"
         )

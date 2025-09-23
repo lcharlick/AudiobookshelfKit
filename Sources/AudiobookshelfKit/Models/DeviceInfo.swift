@@ -31,8 +31,6 @@ public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
     public let manufacturer: String?
     /// The client device's model, as provided in the request.
     public let model: String?
-    /// For an Android device, the Android SDK version of the client, as provided in the request.
-    public let sdkVersion: Int?
     /// Name of the client, as provided in the request.
     public let clientName: String?
     /// Version of the client, as provided in the request.
@@ -51,7 +49,6 @@ public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
         deviceType: String? = nil,
         manufacturer: String? = nil,
         model: String? = nil,
-        sdkVersion: Int? = nil,
         clientName: String,
         clientVersion: String
     ) {
@@ -67,7 +64,6 @@ public struct DeviceInfo: Codable, Hashable, Identifiable, Sendable {
         self.deviceType = deviceType
         self.manufacturer = manufacturer
         self.model = model
-        self.sdkVersion = sdkVersion
         self.clientName = clientName
         self.clientVersion = clientVersion
     }

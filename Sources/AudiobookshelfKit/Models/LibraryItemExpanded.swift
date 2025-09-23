@@ -58,7 +58,7 @@ public extension LibraryItemExpanded {
         public let id: String
         public let libraryItemId: String
         public let metadata: MediaMetadata
-        public let coverPath: String
+        public let coverPath: String?
         public let tags: [String]
         public let audioFiles: [AudioFile]
         public let chapters: [Chapter]
