@@ -17,7 +17,7 @@ public extension Audiobookshelf.Request {
             [
                 URLQueryItem(name: "page", value: page),
                 URLQueryItem(name: "limit", value: limit),
-                URLQueryItem(name: "sortBy", value: sortBy),
+                URLQueryItem(name: "sort", value: sort),
                 URLQueryItem(name: "desc", value: desc),
                 URLQueryItem(name: "minified", value: minified),
             ]
@@ -26,7 +26,7 @@ public extension Audiobookshelf.Request {
         private let libraryID: String
         private let page: Int
         private let limit: Int
-        private let sortBy: String
+        private let sort: String
         private let desc: Bool
         private let minified: Bool
 
@@ -34,21 +34,21 @@ public extension Audiobookshelf.Request {
         ///   - libraryID: The ID of the library.
         ///   - page: The page number (0 indexed) to request.
         ///   - limit: Limit the number of returned results per page. Must be greater than 0.
-        ///   - sortBy: What to sort the results by. By default, the results will be sorted by series name. Other sort options are: numBooks, totalDuration, and addedAt.
+        ///   - sort: What to sort the results by. By default, the results will be sorted by series name. Other sort options are: numBooks, totalDuration, and addedAt.
         ///   - desc: Whether to reverse the sort order.
         ///   - minified:
         public init(
             libraryID: String,
             page: Int,
             limit: Int,
-            sortBy: String = "name",
+            sort: String = "name",
             desc: Bool = false,
             minified: Bool = false
         ) {
             self.libraryID = libraryID
             self.page = page
             self.limit = limit
-            self.sortBy = sortBy
+            self.sort = sort
             self.desc = desc
             self.minified = minified
         }
