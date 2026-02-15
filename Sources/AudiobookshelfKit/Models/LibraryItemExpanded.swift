@@ -65,8 +65,8 @@ public extension LibraryItemExpanded {
         public let duration: Double
         public let size: Int
         public let tracks: [Track]
-        // TODO:
-        // public let ebookFile: NSNull
+        /// The ebook file for this item, if present.
+        public let ebookFile: EbookFile?
     }
 }
 

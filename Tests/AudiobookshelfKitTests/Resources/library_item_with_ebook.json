@@ -1,0 +1,121 @@
+{
+  "id": "8a8764c9-c22c-4e89-8b9f-3a71db1f4233",
+  "ino": "102872",
+  "oldLibraryItemId": null,
+  "libraryId": "5d8f9658-d52a-44f7-b52a-f7f02480f117",
+  "folderId": "9d904ca5-947f-4070-829b-2dcdde4b737f",
+  "path": "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone",
+  "relPath": "J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone",
+  "isFile": false,
+  "mtimeMs": 1771163764644,
+  "ctimeMs": 1771163764644,
+  "birthtimeMs": 1771163764644,
+  "addedAt": 1744951548874,
+  "updatedAt": 1771163928674,
+  "lastScan": 1771163775223,
+  "scanVersion": "2.31.0",
+  "isMissing": false,
+  "isInvalid": false,
+  "mediaType": "book",
+  "media": {
+    "id": "f20c8d47-d618-438d-a96b-4755095474fa",
+    "libraryItemId": "8a8764c9-c22c-4e89-8b9f-3a71db1f4233",
+    "metadata": {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "subtitle": null,
+      "authors": [
+        {
+          "id": "5e6c1d87-76c2-4add-a90a-8cc6a2bafeaa",
+          "name": "J.K. Rowling"
+        }
+      ],
+      "narrators": [
+        "Stephen Fry"
+      ],
+      "series": [
+        {
+          "id": "6c2893ba-b927-44cc-af4e-f6403c4e6e42",
+          "name": "Harry Potter",
+          "sequence": "1"
+        }
+      ],
+      "genres": [
+        "Children's Audiobooks"
+      ],
+      "publishedYear": "2015-11-20",
+      "publishedDate": null,
+      "publisher": "Pottermore Publishing",
+      "description": "Stephen Fry brings the richness of these magical stories to life in the original British recordings.",
+      "isbn": null,
+      "asin": "B017V54W6O",
+      "language": "English",
+      "explicit": false,
+      "abridged": false,
+      "titleIgnorePrefix": "Harry Potter and the Philosopher's Stone",
+      "authorName": "J.K. Rowling",
+      "authorNameLF": "Rowling, J.K.",
+      "narratorName": "Stephen Fry",
+      "seriesName": "Harry Potter #1"
+    },
+    "coverPath": "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone/cover.jpg",
+    "tags": [],
+    "audioFiles": [],
+    "chapters": [],
+    "ebookFile": {
+      "ino": "114036",
+      "metadata": {
+        "filename": "01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "ext": ".epub",
+        "path": "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone/01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "relPath": "01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "size": 266017,
+        "mtimeMs": 1650460083579,
+        "ctimeMs": 1771163764877,
+        "birthtimeMs": 1771163764877
+      },
+      "addedAt": 1771163775220,
+      "updatedAt": 1771163775220,
+      "ebookFormat": "epub"
+    },
+    "duration": 31445.809342,
+    "size": 250060075,
+    "tracks": []
+  },
+  "libraryFiles": [
+    {
+      "ino": "102873",
+      "metadata": {
+        "filename": "01 - Harry Potter and the Philosopher's Stone, Book 1 (Unabridged).m4b",
+        "ext": ".m4b",
+        "path": "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone/01 - Harry Potter and the Philosopher's Stone, Book 1 (Unabridged).m4b",
+        "relPath": "01 - Harry Potter and the Philosopher's Stone, Book 1 (Unabridged).m4b",
+        "size": 249794058,
+        "mtimeMs": 1744951497273,
+        "ctimeMs": 1744951497273,
+        "birthtimeMs": 1744951497273
+      },
+      "isSupplementary": null,
+      "addedAt": 1744951548727,
+      "updatedAt": 1744951548727,
+      "fileType": "audio"
+    },
+    {
+      "ino": "114036",
+      "metadata": {
+        "filename": "01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "ext": ".epub",
+        "path": "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone/01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "relPath": "01 - Harry Potter and the Philosopher's Stone, Book 1.epub",
+        "size": 266017,
+        "mtimeMs": 1650460083579,
+        "ctimeMs": 1771163764877,
+        "birthtimeMs": 1771163764877
+      },
+      "isSupplementary": false,
+      "addedAt": 1771163775220,
+      "updatedAt": 1771163775220,
+      "fileType": "ebook"
+    }
+  ],
+  "size": 250822199
+}

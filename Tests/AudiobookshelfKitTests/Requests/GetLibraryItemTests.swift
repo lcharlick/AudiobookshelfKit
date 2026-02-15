@@ -143,7 +143,7 @@ struct GetLibraryItemTests {
         #expect(track.metadata.mtimeMs == Date(timeIntervalSince1970: 1_602_044_390_000 / 1000))
         #expect(track.metadata.ctimeMs == Date(timeIntervalSince1970: 1_602_044_390_000 / 1000))
         #expect(track.metadata.birthtimeMs == Date(timeIntervalSince1970: 1_596_369_649_000 / 1000))
-        // #expect(response.media.ebookFile == nil)
+        #expect(response.media.ebookFile == nil)
 
         #expect(response.libraryFiles.count == 1)
         let libraryFile = response.libraryFiles.first!
@@ -161,5 +161,35 @@ struct GetLibraryItemTests {
         #expect(libraryFile.updatedAt == Date(timeIntervalSince1970: 1_654_499_247_031 / 1000))
         #expect(libraryFile.fileType == "audio")
         #expect(response.size == 18_226_998)
+    }
+
+    @Test func response_withEbookFile() throws {
+        let response = try loadResponse(
+            "library_item_with_ebook",
+            for: Audiobookshelf.Request.GetLibraryItem.self
+        )
+
+        let ebookFile = try #require(response.media.ebookFile)
+        #expect(ebookFile.ino == "114036")
+        #expect(ebookFile.metadata.filename == "01 - Harry Potter and the Philosopher's Stone, Book 1.epub")
+        #expect(ebookFile.metadata.ext == ".epub")
+        #expect(ebookFile.metadata.path == "/audiobooks/J.K. Rowling/Harry Potter/1 - Harry Potter and the Philosopher's Stone/01 - Harry Potter and the Philosopher's Stone, Book 1.epub")
+        #expect(ebookFile.metadata.relPath == "01 - Harry Potter and the Philosopher's Stone, Book 1.epub")
+        #expect(ebookFile.metadata.size == 266_017)
+        #expect(ebookFile.metadata.mtimeMs == Date(timeIntervalSince1970: 1_650_460_083_579 / 1000))
+        #expect(ebookFile.metadata.ctimeMs == Date(timeIntervalSince1970: 1_771_163_764_877 / 1000))
+        #expect(ebookFile.metadata.birthtimeMs == Date(timeIntervalSince1970: 1_771_163_764_877 / 1000))
+        #expect(ebookFile.addedAt == Date(timeIntervalSince1970: 1_771_163_775_220 / 1000))
+        #expect(ebookFile.updatedAt == Date(timeIntervalSince1970: 1_771_163_775_220 / 1000))
+        #expect(ebookFile.ebookFormat == "epub")
+
+        let audioLibraryFile = try #require(response.libraryFiles.first(where: { $0.fileType == "audio" }))
+        #expect(audioLibraryFile.ino == "102873")
+        #expect(audioLibraryFile.isSupplementary == nil)
+
+        let ebookLibraryFile = try #require(response.libraryFiles.first(where: { $0.fileType == "ebook" }))
+        #expect(ebookLibraryFile.ino == "114036")
+        #expect(ebookLibraryFile.metadata.ext == ".epub")
+        #expect(ebookLibraryFile.isSupplementary == false)
     }
 }

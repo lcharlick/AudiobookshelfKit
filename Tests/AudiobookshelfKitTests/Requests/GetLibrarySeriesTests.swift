@@ -30,7 +30,7 @@ struct GetLibrarySeriesTests {
         #expect(data.queryItems == [
             "page": "0",
             "limit": "10",
-            "sortBy": "name",
+            "sort": "name",
             "desc": "0",
             "minified": "0",
         ])
@@ -41,7 +41,7 @@ struct GetLibrarySeriesTests {
             libraryID: "my-library",
             page: 2,
             limit: 25,
-            sortBy: "numBooks",
+            sort: "numBooks",
             desc: true,
             minified: true
         )
@@ -58,7 +58,7 @@ struct GetLibrarySeriesTests {
         #expect(data.queryItems == [
             "page": "2",
             "limit": "25",
-            "sortBy": "numBooks",
+            "sort": "numBooks",
             "desc": "1",
             "minified": "1",
         ])
