@@ -9,7 +9,7 @@
 import Foundation
 
 public struct LibraryFile: Codable, Hashable, Sendable {
-    public let ino: String
+    public let ino: String?
     public let metadata: Metadata
     public let isSupplementary: Bool?
     public let addedAt: Date
