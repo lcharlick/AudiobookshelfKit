@@ -18,7 +18,7 @@ public struct LibraryItemExpanded: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library the item belongs to.
     public let libraryId: String
     /// The ID of the folder the library item is in.
-    public let folderId: String
+    public let folderId: String?
     /// The path of the library item on the server.
     public let path: String
     /// The path, relative to the library folder, of the library item.
@@ -26,9 +26,9 @@ public struct LibraryItemExpanded: Codable, Hashable, Identifiable, Sendable {
     /// Whether the library item is a single file in the root of the library folder.
     public let isFile: Bool
     /// The time (in ms since POSIX epoch) when the library item was last modified on disk.
-    public let mtimeMs: Date
+    public let mtimeMs: Date?
     /// The time (in ms since POSIX epoch) when the library item status was changed on disk.
-    public let ctimeMs: Date
+    public let ctimeMs: Date?
     /// The time (in ms since POSIX epoch) when the library item was created on disk. Will be 0 if unknown.
     public let birthtimeMs: Date
     /// The time (in ms since POSIX epoch) when the library item was added to the library.
@@ -50,7 +50,7 @@ public struct LibraryItemExpanded: Codable, Hashable, Identifiable, Sendable {
     /// The files of the library item.
     public let libraryFiles: [LibraryFile]
     /// The size of the library item in bytes.
-    public let size: Int64
+    public let size: Int64?
 }
 
 public extension LibraryItemExpanded {
@@ -92,5 +92,52 @@ public extension LibraryItemExpanded.Book {
         public let narratorName: String?
         public let seriesName: String?
         public let abridged: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case title
+            case titleIgnorePrefix
+            case subtitle
+            case authors
+            case narrators
+            case series
+            case genres
+            case publishedYear
+            case publishedDate
+            case publisher
+            case description
+            case isbn
+            case asin
+            case language
+            case explicit
+            case authorName
+            case authorNameLF
+            case narratorName
+            case seriesName
+            case abridged
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            title = try container.decode(String.self, forKey: .title)
+            titleIgnorePrefix = try container.decodeIfPresent(String.self, forKey: .titleIgnorePrefix)
+            subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
+            authors = try container.decode([AuthorMinified].self, forKey: .authors)
+            narrators = try container.decode([String].self, forKey: .narrators)
+            series = try container.decode([SeriesSequence].self, forKey: .series)
+            genres = try container.decodeIfPresent([String].self, forKey: .genres)
+            publishedYear = try container.decodeIfPresent(String.self, forKey: .publishedYear)
+            publishedDate = try container.decodeAudiobookshelfDateIfPresent(forKey: .publishedDate)
+            publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            isbn = try container.decodeIfPresent(String.self, forKey: .isbn)
+            asin = try container.decodeIfPresent(String.self, forKey: .asin)
+            language = try container.decodeIfPresent(String.self, forKey: .language)
+            explicit = try container.decodeIfPresent(Bool.self, forKey: .explicit)
+            authorName = try container.decodeIfPresent(String.self, forKey: .authorName)
+            authorNameLF = try container.decodeIfPresent(String.self, forKey: .authorNameLF)
+            narratorName = try container.decodeIfPresent(String.self, forKey: .narratorName)
+            seriesName = try container.decodeIfPresent(String.self, forKey: .seriesName)
+            abridged = try container.decodeIfPresent(Bool.self, forKey: .abridged)
+        }
     }
 }

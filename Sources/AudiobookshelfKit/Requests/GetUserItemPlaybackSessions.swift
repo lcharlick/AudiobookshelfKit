@@ -42,5 +42,20 @@ public extension Audiobookshelf.Request.GetUserItemPlaybackSessions {
         public let numPages: Int
         /// The provided itemsPerPage parameter.
         public let itemsPerPage: Int
+
+        enum CodingKeys: String, CodingKey {
+            case sessions
+            case total
+            case numPages
+            case itemsPerPage
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            sessions = try container.decode([PlaybackSession].self, forKey: .sessions)
+            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? sessions.count
+            numPages = try container.decodeIfPresent(Int.self, forKey: .numPages) ?? 1
+            itemsPerPage = try container.decodeIfPresent(Int.self, forKey: .itemsPerPage) ?? sessions.count
+        }
     }
 }

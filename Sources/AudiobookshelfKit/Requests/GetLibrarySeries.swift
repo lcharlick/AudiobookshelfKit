@@ -65,5 +65,28 @@ public extension Audiobookshelf.Request.GetLibrarySeries {
         public let desc: Bool?
         public let minified: Bool?
         public let include: String?
+
+        enum CodingKeys: String, CodingKey {
+            case results
+            case total
+            case limit
+            case page
+            case sortBy
+            case desc
+            case minified
+            case include
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            results = try container.decode([Series].self, forKey: .results)
+            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? results.count
+            limit = try container.decode(Int.self, forKey: .limit)
+            page = try container.decode(Int.self, forKey: .page)
+            sortBy = try container.decodeIfPresent(String.self, forKey: .sortBy)
+            desc = try container.decodeIfPresent(Bool.self, forKey: .desc)
+            minified = try container.decodeIfPresent(Bool.self, forKey: .minified)
+            include = try container.decodeIfPresent(String.self, forKey: .include)
+        }
     }
 }

@@ -46,7 +46,7 @@ public struct AudioFile: Codable, Hashable, Sendable {
     /// The time base of the audio file.
     public let timeBase: String
     /// The number of channels the audio file has.
-    public let channels: Int
+    public let channels: Int?
     /// The layout of the audio file's channels.
     public let channelLayout: String?
     /// If the audio file is part of an audiobook, the chapters the file contains.

@@ -90,5 +90,20 @@ public extension Audiobookshelf.Request.GetLibraryItems {
         public let total: Int
         public let limit: Int
         public let page: Int
+
+        enum CodingKeys: String, CodingKey {
+            case results
+            case total
+            case limit
+            case page
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            results = try container.decode([LibraryItem].self, forKey: .results)
+            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? results.count
+            limit = try container.decode(Int.self, forKey: .limit)
+            page = try container.decode(Int.self, forKey: .page)
+        }
     }
 }

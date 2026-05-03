@@ -17,5 +17,5 @@ public struct EbookFile: Codable, Hashable, Sendable {
     /// The time when the ebook file was last updated.
     public let updatedAt: Date
     /// The ebook format (for example, "epub").
-    public let ebookFormat: String
+    public let ebookFormat: String?
 }

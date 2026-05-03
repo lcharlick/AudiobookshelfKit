@@ -139,4 +139,76 @@ struct GetUserSessionsTests {
         #expect(session.startedAt?.timeIntervalSince1970 == 1_710_864_000)
         #expect(session.updatedAt?.timeIntervalSince1970 == 1_710_864_300)
     }
+
+    @Test func response_nullLibraryItemId() throws {
+        let data = """
+        {
+            "sessions": [
+                {
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
+                    "userId": "user123",
+                    "libraryId": "lib456",
+                    "libraryItemId": null,
+                    "episodeId": null,
+                    "mediaType": "book",
+                    "displayTitle": "Test Book",
+                    "displayAuthor": "Test Author",
+                    "coverPath": "/covers/lib123.jpg",
+                    "duration": 3600,
+                    "playMethod": 0,
+                    "mediaPlayer": "iOS",
+                    "deviceInfo": {
+                        "id": "dev123",
+                        "userId": "user123",
+                        "deviceId": "device123",
+                        "ipAddress": "192.168.1.1",
+                        "browserName": null,
+                        "browserVersion": null,
+                        "osName": "iOS",
+                        "osVersion": "17.0",
+                        "deviceName": "iPhone",
+                        "deviceType": "mobile",
+                        "manufacturer": "Apple",
+                        "model": "iPhone",
+                        "sdkVersion": null,
+                        "clientName": "Test Client",
+                        "clientVersion": "1.0.0"
+                    },
+                    "serverVersion": "2.5.0",
+                    "date": "2024-03-19",
+                    "dayOfWeek": "Tuesday",
+                    "timeListening": 300,
+                    "startTime": 0,
+                    "currentTime": 300,
+                    "startedAt": 1710864000000,
+                    "updatedAt": 1710864300000
+                }
+            ],
+            "total": 1,
+            "numPages": 1,
+            "itemsPerPage": 10
+        }
+        """.data(using: .utf8)!
+
+        let response = try Audiobookshelf.Request.GetUserPlaybackSessions.response(from: data)
+
+        #expect(response.sessions.count == 1)
+        #expect(response.sessions[0].libraryItemId == nil)
+    }
+
+    @Test func response_toleratesMissingPageMetadata() throws {
+        let data = """
+        {
+            "sessions": [],
+            "itemsPerPage": 10
+        }
+        """.data(using: .utf8)!
+
+        let response = try Audiobookshelf.Request.GetUserPlaybackSessions.response(from: data)
+
+        #expect(response.sessions.isEmpty)
+        #expect(response.total == 0)
+        #expect(response.numPages == 1)
+        #expect(response.itemsPerPage == 10)
+    }
 }

@@ -116,4 +116,15 @@ struct GetLibraryItemsTests {
         #expect(firstItem.numFiles == 1)
         #expect(firstItem.size == 18_226_998)
     }
+
+    @Test func response_toleratesMissingTotal() throws {
+        let data = try loadResource("library_items", ext: "json")
+        var json = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        json.removeValue(forKey: "total")
+
+        let responseData = try JSONSerialization.data(withJSONObject: json)
+        let response = try Audiobookshelf.Request.GetLibraryItems.response(from: responseData)
+
+        #expect(response.total == response.results.count)
+    }
 }

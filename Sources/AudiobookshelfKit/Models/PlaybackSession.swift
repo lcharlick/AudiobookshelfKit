@@ -15,8 +15,8 @@ public struct PlaybackSession: Codable, Hashable, Identifiable, Sendable {
     public let userId: String?
     /// The ID of the library that contains the library item.
     public let libraryId: String?
-    /// The ID of the library item.
-    public let libraryItemId: String
+    /// The ID of the library item. Will be null if the server cannot associate the session with an item.
+    public let libraryItemId: String?
     /// The ID of the podcast episode. Will be null if this playback session was started without an episode ID.
     public let episodeId: String?
     /// The media type of the library item. Will be book or podcast.

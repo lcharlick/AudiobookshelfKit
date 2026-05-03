@@ -192,4 +192,82 @@ struct GetLibraryItemTests {
         #expect(ebookLibraryFile.metadata.ext == ".epub")
         #expect(ebookLibraryFile.isSupplementary == false)
     }
+
+    @Test func response_toleratesNullableServerFields() throws {
+        let data = try loadResource("library_item", ext: "json")
+        var json = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+
+        json["folderId"] = NSNull()
+        json["mtimeMs"] = NSNull()
+        json["ctimeMs"] = NSNull()
+        json["size"] = NSNull()
+
+        var media = try #require(json["media"] as? [String: Any])
+        var metadata = try #require(media["metadata"] as? [String: Any])
+        metadata["publishedDate"] = "1937-09-21"
+        media["metadata"] = metadata
+
+        var audioFiles = try #require(media["audioFiles"] as? [[String: Any]])
+        var audioFile = audioFiles[0]
+        audioFile["channels"] = NSNull()
+        var audioMetadata = try #require(audioFile["metadata"] as? [String: Any])
+        audioMetadata.removeValue(forKey: "filename")
+        audioMetadata["size"] = NSNull()
+        audioMetadata["mtimeMs"] = NSNull()
+        audioMetadata.removeValue(forKey: "ctimeMs")
+        audioFile["metadata"] = audioMetadata
+        audioFiles[0] = audioFile
+        media["audioFiles"] = audioFiles
+
+        var libraryFiles = try #require(json["libraryFiles"] as? [[String: Any]])
+        var libraryFile = libraryFiles[0]
+        var libraryFileMetadata = try #require(libraryFile["metadata"] as? [String: Any])
+        libraryFileMetadata["size"] = NSNull()
+        libraryFileMetadata.removeValue(forKey: "mtimeMs")
+        libraryFileMetadata["ctimeMs"] = NSNull()
+        libraryFile["metadata"] = libraryFileMetadata
+        libraryFiles[0] = libraryFile
+        json["libraryFiles"] = libraryFiles
+
+        json["media"] = media
+
+        let responseData = try JSONSerialization.data(withJSONObject: json)
+        let response = try Audiobookshelf.Request.GetLibraryItem.response(from: responseData)
+
+        #expect(response.folderId == nil)
+        #expect(response.mtimeMs == nil)
+        #expect(response.ctimeMs == nil)
+        #expect(response.size == nil)
+        let publishedDate = try #require(response.media.metadata.publishedDate)
+        let publishedDateComponents = Calendar(identifier: .gregorian).dateComponents(
+            in: TimeZone(secondsFromGMT: 0)!,
+            from: publishedDate
+        )
+        #expect(publishedDateComponents.year == 1937)
+        #expect(publishedDateComponents.month == 9)
+        #expect(publishedDateComponents.day == 21)
+        #expect(response.media.audioFiles[0].channels == nil)
+        #expect(response.media.audioFiles[0].metadata.filename == nil)
+        #expect(response.media.audioFiles[0].metadata.size == nil)
+        #expect(response.media.audioFiles[0].metadata.mtimeMs == nil)
+        #expect(response.media.audioFiles[0].metadata.ctimeMs == nil)
+        #expect(response.libraryFiles[0].metadata.size == nil)
+        #expect(response.libraryFiles[0].metadata.mtimeMs == nil)
+        #expect(response.libraryFiles[0].metadata.ctimeMs == nil)
+    }
+
+    @Test func response_toleratesMissingEbookFormat() throws {
+        let data = try loadResource("library_item_with_ebook", ext: "json")
+        var json = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        var media = try #require(json["media"] as? [String: Any])
+        var ebookFile = try #require(media["ebookFile"] as? [String: Any])
+        ebookFile.removeValue(forKey: "ebookFormat")
+        media["ebookFile"] = ebookFile
+        json["media"] = media
+
+        let responseData = try JSONSerialization.data(withJSONObject: json)
+        let response = try Audiobookshelf.Request.GetLibraryItem.response(from: responseData)
+
+        #expect(response.media.ebookFile?.ebookFormat == nil)
+    }
 }

@@ -19,13 +19,13 @@ public struct LibraryFile: Codable, Hashable, Sendable {
 
 public extension LibraryFile {
     struct Metadata: Codable, Hashable, Sendable {
-        public let filename: String
+        public let filename: String?
         public let ext: String
         public let path: String
         public let relPath: String
-        public let size: Int64
-        public let mtimeMs: Date
-        public let ctimeMs: Date
+        public let size: Int64?
+        public let mtimeMs: Date?
+        public let ctimeMs: Date?
         public let birthtimeMs: Date
     }
 }
