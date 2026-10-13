@@ -34,5 +34,18 @@ public extension Audiobookshelf.Request.BatchGetLibraryItems {
 
     struct Response: Codable, Sendable {
         public let libraryItems: [LibraryItemExpanded]
+        /// LibraryItems left out because they couldn't be decoded.
+        public let skippedCount: Int
+
+        enum CodingKeys: String, CodingKey {
+            case libraryItems
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let libraryItems = try container.decodeRequiredLossyArray(LibraryItemExpanded.self, forKey: .libraryItems)
+            self.libraryItems = libraryItems.wrappedValue
+            skippedCount = libraryItems.skippedCount
+        }
     }
 }

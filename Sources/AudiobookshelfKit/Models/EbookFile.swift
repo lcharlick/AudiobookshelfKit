@@ -9,13 +9,13 @@ import Foundation
 
 public struct EbookFile: Codable, Hashable, Sendable {
     /// The inode of the ebook file.
-    public let ino: String
+    @Lenient public var ino: String?
     /// The ebook file metadata.
-    public let metadata: LibraryFile.Metadata
+    @DefaultEmpty public var metadata: LibraryFile.Metadata
     /// The time when the ebook file was added to the library.
-    public let addedAt: Date
+    @Lenient public var addedAt: Date?
     /// The time when the ebook file was last updated.
-    public let updatedAt: Date
+    @Lenient public var updatedAt: Date?
     /// The ebook format (for example, "epub").
-    public let ebookFormat: String?
+    @Lenient public var ebookFormat: String?
 }

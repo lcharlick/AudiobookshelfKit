@@ -19,5 +19,18 @@ public extension Audiobookshelf.Request.GetLibraries {
     struct Response: Codable, Sendable {
         /// The requested libraries.
         public let libraries: [Library]
+        /// Libraries left out because they couldn't be decoded.
+        public let skippedCount: Int
+
+        enum CodingKeys: String, CodingKey {
+            case libraries
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let libraries = try container.decodeRequiredLossyArray(Library.self, forKey: .libraries)
+            self.libraries = libraries.wrappedValue
+            skippedCount = libraries.skippedCount
+        }
     }
 }

@@ -10,86 +10,86 @@ import Foundation
 
 public struct AudioFile: Codable, Hashable, Sendable {
     /// The index of the audio file.
-    public let index: Int
+    @Lenient public var index: Int?
     /// The inode of the audio file.
-    public let ino: String
+    @Lenient public var ino: String?
     /// The audio file's metadata.
-    public let metadata: LibraryFile.Metadata
+    @DefaultEmpty public var metadata: LibraryFile.Metadata
     /// The time when the audio file was added to the library.
-    public let addedAt: Date
+    @Lenient public var addedAt: Date?
     /// The time when the audio file was last updated.
-    public let updatedAt: Date
+    @Lenient public var updatedAt: Date?
     /// The track number of the audio file as pulled from the file's metadata. Will be null if unknown.
-    public let trackNumFromMeta: Int?
+    @Lenient public var trackNumFromMeta: Int?
     /// The disc number of the audio file as pulled from the file's metadata. Will be null if unknown.
-    public let discNumFromMeta: Int?
+    @Lenient public var discNumFromMeta: Int?
     /// The track number of the audio file as determined from the file's name. Will be null if unknown.
-    public let trackNumFromFilename: Int?
+    @Lenient public var trackNumFromFilename: Int?
     /// The disc number of the audio file as determined from the file's name. Will be null if unknown.
-    public let discNumFromFilename: Int?
+    @Lenient public var discNumFromFilename: Int?
     /// Whether the audio file has been manually verified by a user.
-    public let manuallyVerified: Bool
+    @Lenient public var manuallyVerified: Bool?
     /// Whether the audio file has been marked for exclusion.
-    public let exclude: Bool
+    @Lenient public var exclude: Bool?
     /// Any error with the audio file. Will be nil if there is none.
-    public let error: String?
+    @Lenient public var error: String?
     /// The format of the audio file.
-    public let format: String
+    @Lenient public var format: String?
     /// The total length (in seconds) of the audio file.
-    public let duration: TimeInterval?
+    @Lenient public var duration: TimeInterval?
     /// The bit rate (in bit/s) of the audio file.
-    public let bitRate: Int?
+    @Lenient public var bitRate: Int?
     /// The language of the audio file.
-    public let language: String?
+    @Lenient public var language: String?
     /// The codec of the audio file.
-    public let codec: String?
+    @Lenient public var codec: String?
     /// The time base of the audio file.
-    public let timeBase: String
+    @Lenient public var timeBase: String?
     /// The number of channels the audio file has.
-    public let channels: Int?
+    @Lenient public var channels: Int?
     /// The layout of the audio file's channels.
-    public let channelLayout: String?
+    @Lenient public var channelLayout: String?
     /// If the audio file is part of an audiobook, the chapters the file contains.
-    public let chapters: [Chapter]
+    @LossyArray public var chapters: [Chapter]
     /// The type of embedded cover art in the audio file. Will be nil if none exists.
-    public let embeddedCoverArt: String?
+    @Lenient public var embeddedCoverArt: String?
     /// The audio metadata tags from the audio file.
-    public let metaTags: MetaTags
+    @DefaultEmpty public var metaTags: MetaTags
     /// The MIME type of the audio file.
-    public let mimeType: String
+    @Lenient public var mimeType: String?
 }
 
 public extension AudioFile {
     struct MetaTags: Codable, Hashable, Sendable {
-        public let tagAlbum: String?
-        public let tagArtist: String?
-        public let tagGenre: String?
-        public let tagTitle: String?
-        public let tagSeries: String?
-        public let tagSeriesPart: String?
-        public let tagTrack: String?
-        public let tagDisc: String?
-        public let tagSubtitle: String?
-        public let tagAlbumArtist: String?
-        public let tagDate: String?
-        public let tagComposer: String?
-        public let tagPublisher: String?
-        public let tagComment: String?
-        public let tagDescription: String?
-        public let tagEncoder: String?
-        public let tagEncodedBy: String?
-        public let tagIsbn: String?
-        public let tagLanguage: String?
-        public let tagASIN: String?
-        public let tagOverdriveMediaMarker: String?
-        public let tagOriginalYear: String?
-        public let tagReleaseCountry: String?
-        public let tagReleaseType: String?
-        public let tagReleaseStatus: String?
-        public let tagISRC: String?
-        public let tagMusicBrainzTrackId: String?
-        public let tagMusicBrainzAlbumId: String?
-        public let tagMusicBrainzAlbumArtistId: String?
-        public let tagMusicBrainzArtistId: String?
+        @Lenient public var tagAlbum: String?
+        @Lenient public var tagArtist: String?
+        @Lenient public var tagGenre: String?
+        @Lenient public var tagTitle: String?
+        @Lenient public var tagSeries: String?
+        @Lenient public var tagSeriesPart: String?
+        @Lenient public var tagTrack: String?
+        @Lenient public var tagDisc: String?
+        @Lenient public var tagSubtitle: String?
+        @Lenient public var tagAlbumArtist: String?
+        @Lenient public var tagDate: String?
+        @Lenient public var tagComposer: String?
+        @Lenient public var tagPublisher: String?
+        @Lenient public var tagComment: String?
+        @Lenient public var tagDescription: String?
+        @Lenient public var tagEncoder: String?
+        @Lenient public var tagEncodedBy: String?
+        @Lenient public var tagIsbn: String?
+        @Lenient public var tagLanguage: String?
+        @Lenient public var tagASIN: String?
+        @Lenient public var tagOverdriveMediaMarker: String?
+        @Lenient public var tagOriginalYear: String?
+        @Lenient public var tagReleaseCountry: String?
+        @Lenient public var tagReleaseType: String?
+        @Lenient public var tagReleaseStatus: String?
+        @Lenient public var tagISRC: String?
+        @Lenient public var tagMusicBrainzTrackId: String?
+        @Lenient public var tagMusicBrainzAlbumId: String?
+        @Lenient public var tagMusicBrainzAlbumArtistId: String?
+        @Lenient public var tagMusicBrainzArtistId: String?
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public struct Chapter: Codable, Hashable, Identifiable, Sendable {
     public let id: Int
-    public let start: TimeInterval
-    public let end: TimeInterval
-    public let title: String
+    @Lenient public var start: TimeInterval?
+    @Lenient public var end: TimeInterval?
+    @Lenient public var title: String?
 }

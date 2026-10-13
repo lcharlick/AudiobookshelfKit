@@ -8,6 +8,6 @@
 
 public struct SeriesSequence: Codable, Hashable, Identifiable, Sendable {
     public let id: String
-    public let name: String
-    public let sequence: String?
+    @Lenient public var name: String?
+    @Lenient public var sequence: String?
 }

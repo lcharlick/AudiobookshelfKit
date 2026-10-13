@@ -10,17 +10,17 @@ import Foundation
 
 public struct Permissions: Codable, Hashable, Sendable {
     /// Whether the user can download items to the server.
-    public let download: Bool
+    @Lenient public var download: Bool?
     /// Whether the user can update library items.
-    public let update: Bool
+    @Lenient public var update: Bool?
     /// Whether the user can delete library items.
-    public let delete: Bool
+    @Lenient public var delete: Bool?
     /// Whether the user can upload items to the server.
-    public let upload: Bool
+    @Lenient public var upload: Bool?
     /// Whether the user can access all libraries.
-    public let accessAllLibraries: Bool
+    @Lenient public var accessAllLibraries: Bool?
     /// Whether the user can access all tags.
-    public let accessAllTags: Bool
+    @Lenient public var accessAllTags: Bool?
     /// Whether the user can access explicit content.
-    public let accessExplicitContent: Bool
+    @Lenient public var accessExplicitContent: Bool?
 }

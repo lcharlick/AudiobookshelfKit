@@ -10,82 +10,82 @@ import Foundation
 
 public struct ServerSettings: Codable, Hashable, Sendable {
     /// The ID of the server settings.
-    public let id: String
+    @Lenient public var id: String?
     /// Whether the scanner will attempt to find a cover if your audiobook does not have an embedded cover or a cover image inside the folder.
     /// Note: This will extend scan time.
-    public let scannerFindCovers: Bool
+    @Lenient public var scannerFindCovers: Bool?
     /// If scannerFindCovers is true, which metadata provider to use.
-    public let scannerCoverProvider: String
+    @Lenient public var scannerCoverProvider: String?
     /// Whether to extract subtitles from audiobook folder names.
     /// Subtitles must be separated by -, i.e. `/audiobooks/Book Title - A Subtitle Here/` has the subtitle `A Subtitle Here`.
-    public let scannerParseSubtitle: Bool
+    @Lenient public var scannerParseSubtitle: Bool?
     /// Whether to use audio file ID3 meta tags instead of folder names for book details.
-    public let scannerPreferAudioMetadata: Bool?
+    @Lenient public var scannerPreferAudioMetadata: Bool?
     /// Whether to use OPF file metadata instead of folder names for book details.
-    public let scannerPreferOpfMetadata: Bool?
+    @Lenient public var scannerPreferOpfMetadata: Bool?
     /// Whether matched data will override item details when using Quick Match.
     /// By default, Quick Match will only fill in missing details.
-    public let scannerPreferMatchedMetadata: Bool
+    @Lenient public var scannerPreferMatchedMetadata: Bool?
     /// Whether to disable the automatic adding/updating of items when file changes are detected.
     /// Requires server restart for changes to take effect.
-    public let scannerDisableWatcher: Bool
+    @Lenient public var scannerDisableWatcher: Bool?
     /// Whether to use the custom metadata in MP3 files from Overdrive for chapter timings automatically.
-    public let scannerPreferOverdriveMediaMarker: Bool?
+    @Lenient public var scannerPreferOverdriveMediaMarker: Bool?
     ///
-    public let scannerUseSingleThreadedProber: Bool?
+    @Lenient public var scannerUseSingleThreadedProber: Bool?
     ///
-    public let scannerMaxThreads: Int?
+    @Lenient public var scannerMaxThreads: Int?
     ///
-    public let scannerUseTone: Bool?
+    @Lenient public var scannerUseTone: Bool?
     /// Whether to store covers in the library item's folder.
     /// By default, covers are stored in `/metadata/items`.
     /// Only one file named cover will be kept.
-    public let storeCoverWithItem: Bool
+    @Lenient public var storeCoverWithItem: Bool?
     /// Whether to store metadata files in the library item's folder.
     /// By default, metadata files are stored in `/metadata/items`.
     /// Uses the `.abs` file extension.
-    public let storeMetadataWithItem: Bool
+    @Lenient public var storeMetadataWithItem: Bool?
     /// Must be either `json` or `abs`.
-    public let metadataFileFormat: MetatadataFileFormat
+    @Lenient public var metadataFileFormat: MetatadataFileFormat?
     /// The maximum number of login requests per `rateLimitLoginWindow`.
-    public let rateLimitLoginRequests: Int
+    @Lenient public var rateLimitLoginRequests: Int?
     /// The length (in ms) of each login rate limit window.
-    public let rateLimitLoginWindow: Int
+    @Lenient public var rateLimitLoginWindow: Int?
     /// The cron expression for when to do automatic backups.
     // TODO: This seems to be a string OR boolean, but the API docs don't specify.
     // public let backupSchedule: String
     /// The number of backups to keep.
-    public let backupsToKeep: Int
+    @Lenient public var backupsToKeep: Int?
     /// The maximum backup size (in GB) before they fail, a safeguard against misconfiguration.
-    public let maxBackupSize: Int
+    @Lenient public var maxBackupSize: Int?
     /// Whether backups should include library item covers and author images located in metadata.
     // public let backupMetadataCovers: Bool
     /// The number of daily logs to keep.
-    public let loggerDailyLogsToKeep: Int
+    @Lenient public var loggerDailyLogsToKeep: Int?
     /// The number of scanner logs to keep.
-    public let loggerScannerLogsToKeep: Int
+    @Lenient public var loggerScannerLogsToKeep: Int?
     /// Whether the home page should use a skeuomorphic design with wooden shelves.
-    public let homeBookshelfView: Int
+    @Lenient public var homeBookshelfView: Int?
     /// Whether other bookshelf pages should use a skeuomorphic design with wooden shelves.
-    public let bookshelfView: Int
+    @Lenient public var bookshelfView: Int?
     /// Whether to ignore prefixes when sorting.
-    public let sortingIgnorePrefix: Bool
+    @Lenient public var sortingIgnorePrefix: Bool?
     /// If `sortingIgnorePrefix` is true, what prefixes to ignore.
-    public let sortingPrefixes: [String]
+    @LossyArray public var sortingPrefixes: [String]
     /// Whether to enable streaming to Chromecast devices.
-    public let chromecastEnabled: Bool
+    @Lenient public var chromecastEnabled: Bool?
     /// What date format to use.
     /// Options are `MM/dd/yyyy`, `dd/MM/yyyy`, `dd.MM.yyyy`, `yyyy-MM-dd`, `MMM do, yyyy`, `MMMM do, yyyy`, `dd MMM yyyy`, or `dd MMMM yyyy`.
-    public let dateFormat: String
+    @Lenient public var dateFormat: String?
     /// What time format to use.
-    public let timeFormat: String
+    @Lenient public var timeFormat: String?
     /// The default server language.
-    public let language: String
+    @Lenient public var language: String?
     /// What log level the server should use when logging.
     /// 1 for debug, 2 for info, or 3 for warnings.
-    public let logLevel: Int
+    @Lenient public var logLevel: Int?
     /// The server's version.
-    public let version: String
+    @Lenient public var version: String?
 }
 
 public enum MetatadataFileFormat: String, Codable, Sendable {

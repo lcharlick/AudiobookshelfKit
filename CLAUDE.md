@@ -41,8 +41,14 @@ New requests should be added to the `Audiobookshelf.Request` namespace and follo
 Data models represent Audiobookshelf API responses:
 - All models are `Codable` with camelCase Swift properties
 - Use `@CodingKey` annotations when API uses snake_case
-- Optional properties should match API documentation
 - Models often have "Expanded" and "Minified" variants
+- Servers leave out, null or retype almost any field, so decoding is lenient (`Extensions/LenientDecoding.swift`):
+  - Only identifiers (`id`) are required
+  - Other values are `@Lenient` optionals: missing, null or unreadable values decode as nil
+  - Arrays are `@LossyArray`: elements that fail are skipped and counted in `$array.skippedCount`
+  - Nested objects the app always reads through (`media`, `metadata`) are `@DefaultEmpty`
+  - Page responses keep `results` required, skip bad elements and report `skippedCount`, so a non-page response is never read as an empty page
+- Reproduce reported decoding failures in `Tests/AudiobookshelfKitTests/Decoding/SentryDecodingTests.swift`
 
 ### Testing (`Tests/`)
 - Tests use mock JSON responses stored in `Resources/`

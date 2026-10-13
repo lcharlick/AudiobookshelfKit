@@ -71,23 +71,16 @@ public extension Audiobookshelf.Request {
 
 public extension Audiobookshelf.Request.GetLibraryCollections {
     struct Response: Codable, Sendable {
-        /// The requested collections.
         public let results: [Collection]
-        /// The total number of results.
+        /// Results left out because they couldn't be decoded.
+        public let skippedCount: Int
         public let total: Int
-        /// The limit set in the request.
-        public let limit: Int
-        /// The page set in request.
-        public let page: Int
-        /// The sort set in the request. Will not exist if no sort was set.
+        public let limit: Int?
+        public let page: Int?
         public let sortBy: String?
-        /// Whether to reverse the sort order.
         public let desc: Bool?
-        /// The filter set in the request, URL decoded. Will not exist if no filter was set.
         public let filterBy: String?
-        /// Whether minified was set in the request.
         public let minified: Bool?
-        /// The requested include.
         public let include: String?
 
         enum CodingKeys: String, CodingKey {
@@ -104,15 +97,17 @@ public extension Audiobookshelf.Request.GetLibraryCollections {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            results = try container.decode([Collection].self, forKey: .results)
-            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? results.count
-            limit = try container.decode(Int.self, forKey: .limit)
-            page = try container.decode(Int.self, forKey: .page)
-            sortBy = try container.decodeIfPresent(String.self, forKey: .sortBy)
-            desc = try container.decodeIfPresent(Bool.self, forKey: .desc)
-            filterBy = try container.decodeIfPresent(String.self, forKey: .filterBy)
-            minified = try container.decodeIfPresent(Bool.self, forKey: .minified)
-            include = try container.decodeIfPresent(String.self, forKey: .include)
+            let results = try container.decodeRequiredLossyArray(Collection.self, forKey: .results)
+            self.results = results.wrappedValue
+            skippedCount = results.skippedCount
+            total = container.decodeLeniently(Int.self, forKey: .total) ?? results.wrappedValue.count + results.skippedCount
+            limit = container.decodeLeniently(Int.self, forKey: .limit)
+            page = container.decodeLeniently(Int.self, forKey: .page)
+            sortBy = container.decodeLeniently(String.self, forKey: .sortBy)
+            desc = container.decodeLeniently(Bool.self, forKey: .desc)
+            filterBy = container.decodeLeniently(String.self, forKey: .filterBy)
+            minified = container.decodeLeniently(Bool.self, forKey: .minified)
+            include = container.decodeLeniently(String.self, forKey: .include)
         }
     }
 }

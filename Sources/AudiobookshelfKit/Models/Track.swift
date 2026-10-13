@@ -9,12 +9,12 @@
 import Foundation
 
 public struct Track: Codable, Hashable, Sendable {
-    public let index: Int
-    public let startOffset: TimeInterval
-    public let duration: TimeInterval?
-    public let title: String
-    public let contentUrl: String
-    public let mimeType: String
-    public let codec: String?
-    public let metadata: LibraryFile.Metadata
+    @Lenient public var index: Int?
+    @Lenient public var startOffset: TimeInterval?
+    @Lenient public var duration: TimeInterval?
+    @Lenient public var title: String?
+    @Lenient public var contentUrl: String?
+    @Lenient public var mimeType: String?
+    @Lenient public var codec: String?
+    @DefaultEmpty public var metadata: LibraryFile.Metadata
 }

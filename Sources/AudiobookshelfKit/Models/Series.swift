@@ -10,11 +10,11 @@ import Foundation
 
 public struct Series: Codable, Identifiable, Sendable {
     public let id: String
-    public let name: String
-    public let nameIgnorePrefix: String
-    public let description: String?
-    public let addedAt: Date
-    public let updatedAt: Date
-    public let libraryId: String
-    public let books: [LibraryItem]
+    @Lenient public var name: String?
+    @Lenient public var nameIgnorePrefix: String?
+    @Lenient public var description: String?
+    @Lenient public var addedAt: Date?
+    @Lenient public var updatedAt: Date?
+    @Lenient public var libraryId: String?
+    @LossyArray public var books: [LibraryItem]
 }

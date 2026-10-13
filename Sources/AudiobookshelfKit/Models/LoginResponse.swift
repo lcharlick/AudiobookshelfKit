@@ -12,11 +12,11 @@ public struct LoginResponse: Codable, Hashable, Sendable {
     /// The authenticated user.
     public let user: User
     /// The ID of the first library in the list the user has access to.
-    public let userDefaultLibraryId: String
+    @Lenient public var userDefaultLibraryId: String?
     /// The server's settings.
-    public let serverSettings: ServerSettings
+    @DefaultEmpty public var serverSettings: ServerSettings
     /// The server's installation source.
-    private let Source: String
+    @Lenient private var Source: String?
     /// The server's installation source.
-    public var source: String { Source }
+    public var source: String? { Source }
 }

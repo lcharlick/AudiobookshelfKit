@@ -58,9 +58,11 @@ public extension Audiobookshelf.Request {
 public extension Audiobookshelf.Request.GetLibrarySeries {
     struct Response: Codable, Sendable {
         public let results: [Series]
+        /// Results left out because they couldn't be decoded.
+        public let skippedCount: Int
         public let total: Int
-        public let limit: Int
-        public let page: Int
+        public let limit: Int?
+        public let page: Int?
         public let sortBy: String?
         public let desc: Bool?
         public let minified: Bool?
@@ -79,14 +81,16 @@ public extension Audiobookshelf.Request.GetLibrarySeries {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            results = try container.decode([Series].self, forKey: .results)
-            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? results.count
-            limit = try container.decode(Int.self, forKey: .limit)
-            page = try container.decode(Int.self, forKey: .page)
-            sortBy = try container.decodeIfPresent(String.self, forKey: .sortBy)
-            desc = try container.decodeIfPresent(Bool.self, forKey: .desc)
-            minified = try container.decodeIfPresent(Bool.self, forKey: .minified)
-            include = try container.decodeIfPresent(String.self, forKey: .include)
+            let results = try container.decodeRequiredLossyArray(Series.self, forKey: .results)
+            self.results = results.wrappedValue
+            skippedCount = results.skippedCount
+            total = container.decodeLeniently(Int.self, forKey: .total) ?? results.wrappedValue.count + results.skippedCount
+            limit = container.decodeLeniently(Int.self, forKey: .limit)
+            page = container.decodeLeniently(Int.self, forKey: .page)
+            sortBy = container.decodeLeniently(String.self, forKey: .sortBy)
+            desc = container.decodeLeniently(Bool.self, forKey: .desc)
+            minified = container.decodeLeniently(Bool.self, forKey: .minified)
+            include = container.decodeLeniently(String.self, forKey: .include)
         }
     }
 }

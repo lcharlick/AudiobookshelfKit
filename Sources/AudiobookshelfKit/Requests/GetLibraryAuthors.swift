@@ -62,8 +62,27 @@ public extension Audiobookshelf.Request {
 public extension Audiobookshelf.Request.GetLibraryAuthors {
     struct Response: Codable, Sendable {
         public let results: [Author]
+        /// Results left out because they couldn't be decoded.
+        public let skippedCount: Int
         public let total: Int
-        public let limit: Int
-        public let page: Int
+        public let limit: Int?
+        public let page: Int?
+
+        enum CodingKeys: String, CodingKey {
+            case results
+            case total
+            case limit
+            case page
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let results = try container.decodeRequiredLossyArray(Author.self, forKey: .results)
+            self.results = results.wrappedValue
+            skippedCount = results.skippedCount
+            total = container.decodeLeniently(Int.self, forKey: .total) ?? results.wrappedValue.count + results.skippedCount
+            limit = container.decodeLeniently(Int.self, forKey: .limit)
+            page = container.decodeLeniently(Int.self, forKey: .page)
+        }
     }
 }

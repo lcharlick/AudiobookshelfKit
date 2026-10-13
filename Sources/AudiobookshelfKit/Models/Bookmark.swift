@@ -10,11 +10,11 @@ import Foundation
 
 public struct Bookmark: Codable, Hashable, Sendable {
     /// The ID of the library item the bookmark is for.
-    public let libraryItemId: String
+    @Lenient public var libraryItemId: String?
     /// The title of the bookmark.
-    public let title: String
+    @Lenient public var title: String?
     /// The time (in seconds) the bookmark is at in the book.
-    public let time: TimeInterval
+    @Lenient public var time: TimeInterval?
     /// The time the bookmark was created.
-    public let createdAt: Date
+    @Lenient public var createdAt: Date?
 }

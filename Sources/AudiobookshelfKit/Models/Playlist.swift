@@ -12,28 +12,28 @@ public struct Playlist: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the playlist.
     public let id: String
     /// The ID of the library the playlist belongs to.
-    public let libraryId: String
+    @Lenient public var libraryId: String?
     /// The ID of the user the playlist belongs to.
-    public let userId: String
+    @Lenient public var userId: String?
     /// The name of the playlist.
-    public let name: String
+    @Lenient public var name: String?
     /// The description of the playlist.
-    public let description: String?
+    @Lenient public var description: String?
     /// The absolute path on the server of the cover file. Will be null if there is no cover.
-    public let coverPath: String?
+    @Lenient public var coverPath: String?
     /// The items in the playlist.
-    public let items: [PlaylistItem]
+    @LossyArray public var items: [PlaylistItem]
     /// The time (in ms since POSIX epoch) when the playlist was last updated.
-    public let lastUpdate: Date
+    @Lenient public var lastUpdate: Date?
     /// The time (in ms since POSIX epoch) when the playlist was created.
-    public let createdAt: Date
+    @Lenient public var createdAt: Date?
 }
 
 public struct PlaylistItem: Codable, Hashable, Sendable {
     /// The ID of the library item.
-    public let libraryItemId: String
+    @Lenient public var libraryItemId: String?
     /// The ID of the podcast episode.
-    public let episodeId: String?
+    @Lenient public var episodeId: String?
     /// The library item, expanded.
-    public let libraryItem: LibraryItemExpanded?
+    @Lenient public var libraryItem: LibraryItemExpanded?
 }

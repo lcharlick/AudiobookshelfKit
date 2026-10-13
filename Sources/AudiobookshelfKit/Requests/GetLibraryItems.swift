@@ -87,9 +87,11 @@ public extension Audiobookshelf.Request {
 public extension Audiobookshelf.Request.GetLibraryItems {
     struct Response: Codable, Sendable {
         public let results: [LibraryItem]
+        /// Results left out because they couldn't be decoded.
+        public let skippedCount: Int
         public let total: Int
-        public let limit: Int
-        public let page: Int
+        public let limit: Int?
+        public let page: Int?
 
         enum CodingKeys: String, CodingKey {
             case results
@@ -100,10 +102,12 @@ public extension Audiobookshelf.Request.GetLibraryItems {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            results = try container.decode([LibraryItem].self, forKey: .results)
-            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? results.count
-            limit = try container.decode(Int.self, forKey: .limit)
-            page = try container.decode(Int.self, forKey: .page)
+            let results = try container.decodeRequiredLossyArray(LibraryItem.self, forKey: .results)
+            self.results = results.wrappedValue
+            skippedCount = results.skippedCount
+            total = container.decodeLeniently(Int.self, forKey: .total) ?? results.wrappedValue.count + results.skippedCount
+            limit = container.decodeLeniently(Int.self, forKey: .limit)
+            page = container.decodeLeniently(Int.self, forKey: .page)
         }
     }
 }

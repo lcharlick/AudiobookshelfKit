@@ -12,18 +12,18 @@ public struct AuthorExpanded: Codable, Hashable, Sendable {
     /// The ID of the author.
     public let id: String
     /// The ASIN of the author. Will be null if unknown.
-    public let asin: String?
+    @Lenient public var asin: String?
     /// The name of the author.
-    public let name: String
+    @Lenient public var name: String?
     /// A description of the author. Will be null if there is none.
-    public let description: String?
+    @Lenient public var description: String?
     /// The absolute path for the author image. Will be null if there is no image.
-    public let imagePath: String?
+    @Lenient public var imagePath: String?
     /// The time (in ms since POSIX epoch) when the author was added.
-    public let addedAt: Date
+    @Lenient public var addedAt: Date?
     /// The time (in ms since POSIX epoch) when the author was last updated.
-    public let updatedAt: Date
+    @Lenient public var updatedAt: Date?
     /// The ID of the library the author belongs to.
-    public let libraryId: String
-    public let libraryItems: [LibraryItemExpanded]
+    @Lenient public var libraryId: String?
+    @LossyArray public var libraryItems: [LibraryItemExpanded]
 }

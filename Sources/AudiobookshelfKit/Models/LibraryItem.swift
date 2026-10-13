@@ -13,147 +13,104 @@ public struct LibraryItem: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library item.
     public let id: String
     /// The inode of the library item.
-    public let ino: String
+    @Lenient public var ino: String?
     ///
-    public let oldLibraryItemId: String?
+    @Lenient public var oldLibraryItemId: String?
     /// The ID of the library the item belongs to.
-    public let libraryId: String
+    @Lenient public var libraryId: String?
     /// The ID of the folder the library item is in.
-    public let folderId: String?
+    @Lenient public var folderId: String?
     /// The path of the library item on the server.
-    public let path: String
+    @Lenient public var path: String?
     /// The path, relative to the library folder, of the library item.
-    public let relPath: String
+    @Lenient public var relPath: String?
     /// Whether the library item is a single file in the root of the library folder.
-    public let isFile: Bool
+    @Lenient public var isFile: Bool?
     /// The time (in ms since POSIX epoch) when the library item was last modified on disk.
-    public let mtimeMs: Date?
+    @Lenient public var mtimeMs: Date?
     /// The time (in ms since POSIX epoch) when the library item status was changed on disk.
-    public let ctimeMs: Date?
+    @Lenient public var ctimeMs: Date?
     /// The time (in ms since POSIX epoch) when the library item was created on disk. Will be 0 if unknown.
-    public let birthtimeMs: Date
+    @Lenient public var birthtimeMs: Date?
     /// The time (in ms since POSIX epoch) when the library item was added to the library.
-    public let addedAt: Date
+    @Lenient public var addedAt: Date?
     /// The time (in ms since POSIX epoch) when the library item was last updated.
-    public let updatedAt: Date
+    @Lenient public var updatedAt: Date?
     /// Whether the library item was scanned and no longer exists.
-    public let isMissing: Bool
+    @Lenient public var isMissing: Bool?
     /// Whether the library item was scanned and no longer has media files.
-    public let isInvalid: Bool
+    @Lenient public var isInvalid: Bool?
     /// What kind of media the library item contains.
-    public let mediaType: MediaType
+    @Lenient public var mediaType: MediaType?
     /// The media of the library item.
-    public let media: Book
+    @DefaultEmpty public var media: Book
     /// The number of files the library item contains.
-    public let numFiles: Int?
+    @Lenient public var numFiles: Int?
     /// The size of the library item in bytes.
-    public let size: Int64?
+    @Lenient public var size: Int64?
 }
 
 public extension LibraryItem {
     struct Book: Codable, Hashable, Identifiable, Sendable {
         /// The ID of the book.
-        public let id: String
+        @Lenient public var id: String?
         /// The book's metadata.
-        public let metadata: Metadata
+        @DefaultEmpty public var metadata: Metadata
         /// The absolute path on the server of the cover file. Will be null if there is no cover.
-        public let coverPath: String?
+        @Lenient public var coverPath: String?
         /// The book's tags.
-        public let tags: [String]
+        @LossyArray public var tags: [String]
         /// The number of tracks the book contains.
-        public let numTracks: Int?
+        @Lenient public var numTracks: Int?
         /// The number of audio files the book contains.
-        public let numAudioFiles: Int?
+        @Lenient public var numAudioFiles: Int?
         /// The number of chapters the book contains.
-        public let numChapters: Int?
+        @Lenient public var numChapters: Int?
         /// The duration of the book in seconds.
-        public let duration: TimeInterval
+        @Lenient public var duration: TimeInterval?
         /// The size of the book in bytes.
-        public let size: Int64
+        @Lenient public var size: Int64?
     }
 }
 
 public extension LibraryItem.Book {
     struct Metadata: Codable, Hashable, Sendable {
         /// The title of the book.
-        public let title: String
+        @Lenient public var title: String?
         /// The sort title of the book.
-        public let titleIgnorePrefix: String?
+        @Lenient public var titleIgnorePrefix: String?
         /// The subtitle of the book.
-        public let subtitle: String?
+        @Lenient public var subtitle: String?
         /// The authors of the book.
-        public let authorName: String
+        @Lenient public var authorName: String?
         /// The author's last name, first name.
-        public let authorNameLF: String
+        @Lenient public var authorNameLF: String?
         /// The narrators of the audiobook.
-        public let narratorName: String
+        @Lenient public var narratorName: String?
         /// The series the book belongs to.
-        public let seriesName: String?
+        @Lenient public var seriesName: String?
         /// The genres of the book.
-        public let genres: [String]?
+        @LossyArray public var genres: [String]
         /// The year the book was published.
-        public let publishedYear: String?
+        @Lenient public var publishedYear: String?
         /// The date the book was published.
-        public let publishedDate: Date?
+        @Lenient public var publishedDate: Date?
         /// The publisher of the book.
-        public let publisher: String?
+        @Lenient public var publisher: String?
         /// A description for the book.
-        public let description: String?
+        @Lenient public var description: String?
         /// The ISBN of the book.
-        public let isbn: String?
+        @Lenient public var isbn: String?
         /// The ASIN of the book.
-        public let asin: String?
+        @Lenient public var asin: String?
         /// The language of the book.
-        public let language: String?
+        @Lenient public var language: String?
         /// Whether the book has been marked as explicit.
-        public let explicit: Bool
+        @Lenient public var explicit: Bool?
         /// Whether the book is abridged.
-        public let abridged: Bool
+        @Lenient public var abridged: Bool?
         /// The series the book belongs to, if any.
         /// Only available when filtering by series.
-        public let series: SeriesSequence?
-
-        enum CodingKeys: String, CodingKey {
-            case title
-            case titleIgnorePrefix
-            case subtitle
-            case authorName
-            case authorNameLF
-            case narratorName
-            case seriesName
-            case genres
-            case publishedYear
-            case publishedDate
-            case publisher
-            case description
-            case isbn
-            case asin
-            case language
-            case explicit
-            case abridged
-            case series
-        }
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            title = try container.decode(String.self, forKey: .title)
-            titleIgnorePrefix = try container.decodeIfPresent(String.self, forKey: .titleIgnorePrefix)
-            subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
-            authorName = try container.decode(String.self, forKey: .authorName)
-            authorNameLF = try container.decode(String.self, forKey: .authorNameLF)
-            narratorName = try container.decode(String.self, forKey: .narratorName)
-            seriesName = try container.decodeIfPresent(String.self, forKey: .seriesName)
-            genres = try container.decodeIfPresent([String].self, forKey: .genres)
-            publishedYear = try container.decodeIfPresent(String.self, forKey: .publishedYear)
-            publishedDate = try container.decodeAudiobookshelfDateIfPresent(forKey: .publishedDate)
-            publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-            description = try container.decodeIfPresent(String.self, forKey: .description)
-            isbn = try container.decodeIfPresent(String.self, forKey: .isbn)
-            asin = try container.decodeIfPresent(String.self, forKey: .asin)
-            language = try container.decodeIfPresent(String.self, forKey: .language)
-            explicit = try container.decode(Bool.self, forKey: .explicit)
-            abridged = try container.decode(Bool.self, forKey: .abridged)
-            series = try container.decodeIfPresent(SeriesSequence.self, forKey: .series)
-        }
+        @Lenient public var series: SeriesSequence?
     }
 }

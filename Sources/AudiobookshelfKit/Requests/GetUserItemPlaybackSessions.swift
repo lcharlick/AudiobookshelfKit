@@ -36,6 +36,8 @@ public extension Audiobookshelf.Request.GetUserItemPlaybackSessions {
     struct Response: Codable, Sendable {
         /// The requested sessions.
         public let sessions: [PlaybackSession]
+        /// Sessions left out because they couldn't be decoded.
+        public let skippedCount: Int
         /// The total number of sessions.
         public let total: Int
         /// The number of pages.
@@ -52,10 +54,12 @@ public extension Audiobookshelf.Request.GetUserItemPlaybackSessions {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            sessions = try container.decode([PlaybackSession].self, forKey: .sessions)
-            total = try container.decodeIfPresent(Int.self, forKey: .total) ?? sessions.count
-            numPages = try container.decodeIfPresent(Int.self, forKey: .numPages) ?? 1
-            itemsPerPage = try container.decodeIfPresent(Int.self, forKey: .itemsPerPage) ?? sessions.count
+            let sessions = try container.decodeRequiredLossyArray(PlaybackSession.self, forKey: .sessions)
+            self.sessions = sessions.wrappedValue
+            skippedCount = sessions.skippedCount
+            total = container.decodeLeniently(Int.self, forKey: .total) ?? sessions.wrappedValue.count + sessions.skippedCount
+            numPages = container.decodeLeniently(Int.self, forKey: .numPages) ?? 1
+            itemsPerPage = container.decodeLeniently(Int.self, forKey: .itemsPerPage) ?? sessions.wrappedValue.count + sessions.skippedCount
         }
     }
 }

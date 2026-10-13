@@ -12,39 +12,39 @@ public struct User: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the user. Only the root user has the root ID.
     public let id: String
     ///
-    public let oldUserId: String?
+    @Lenient public var oldUserId: String?
     /// The username of the user.
-    public let username: String
+    @Lenient public var username: String?
     /// The email of the user.
-    public let email: String?
+    @Lenient public var email: String?
     /// The type of the user. There will be only one root user which is created when the server first starts.
-    public let type: UserType
+    @Lenient public var type: UserType?
     /// The authentication token of the user. Old method of authentication, replaced by access and refresh tokens in ABS 2.26.0+.
-    public let token: String
+    @Lenient public var token: String?
     /// Long-lived token used to create new access tokens. ABS 2.26.0+.
-    public let refreshToken: String?
+    @Lenient public var refreshToken: String?
     /// Short-lived tokens used for requests. ABS 2.26.0+.
-    public let accessToken: String?
+    @Lenient public var accessToken: String?
     /// The user's media progress.
-    public let mediaProgress: [MediaProgress]
+    @LossyArray public var mediaProgress: [MediaProgress]
     /// The IDs of series to hide from the user's "Continue Series" shelf.
-    public let seriesHideFromContinueListening: [String]
+    @LossyArray public var seriesHideFromContinueListening: [String]
     /// The user's bookmarks.
-    public let bookmarks: [Bookmark]
+    @LossyArray public var bookmarks: [Bookmark]
     /// Whether the user's account is active.
-    public let isActive: Bool
+    @Lenient public var isActive: Bool?
     /// Whether the user is locked.
-    public let isLocked: Bool
+    @Lenient public var isLocked: Bool?
     /// The time (in ms since POSIX epoch) when the user was last seen by the server. Will be null if the user has never logged in.
-    public let lastSeen: Date?
+    @Lenient public var lastSeen: Date?
     /// The time (in ms since POSIX epoch) when the user was created.
-    public let createdAt: Date
+    @Lenient public var createdAt: Date?
     /// The user's permissions.
-    public let permissions: Permissions
+    @DefaultEmpty public var permissions: Permissions
     /// The IDs of libraries accessible to the user. An empty array means all libraries are accessible.
-    public let librariesAccessible: [String]
+    @LossyArray public var librariesAccessible: [String]
     /// The tags accessible to the user. An empty array means all tags are accessible.
-    public let itemTagsAccessible: [String]?
+    @LossyArray public var itemTagsAccessible: [String]
 }
 
 public enum UserType: String, Codable, Sendable {

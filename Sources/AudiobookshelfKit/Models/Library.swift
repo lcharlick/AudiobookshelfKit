@@ -12,23 +12,23 @@ public struct Library: Codable, Hashable, Identifiable, Sendable {
     /// The ID of the library.
     public let id: String
     /// The name of the library.
-    public let name: String
+    @Lenient public var name: String?
     /// The folders that the library is composed of on the server.
-    public let folders: [Folder]
+    @LossyArray public var folders: [Folder]
     /// Display position of the library in the list of libraries. Must be >= 1.
-    public let displayOrder: Int
+    @Lenient public var displayOrder: Int?
     /// The selected icon for the library. See Library Icons for a list of possible icons.
-    public let icon: String
+    @Lenient public var icon: String?
     /// The type of media that the library contains.
-    public let mediaType: MediaType
+    @Lenient public var mediaType: MediaType?
     /// Preferred metadata provider for the library.
-    public let provider: String
+    @Lenient public var provider: String?
     /// The settings for the library.
-    public let settings: LibrarySettings
+    @DefaultEmpty public var settings: LibrarySettings
     /// The time when the library was created.
-    public let createdAt: Date
+    @Lenient public var createdAt: Date?
     /// The time when the library was last updated.
-    public let lastUpdate: Date
+    @Lenient public var lastUpdate: Date?
     /// The time when the library was last scanned.
-    public let lastScan: Date?
+    @Lenient public var lastScan: Date?
 }
