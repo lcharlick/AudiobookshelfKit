@@ -49,12 +49,14 @@ public struct Audiobookshelf: Sendable {
         }
     }
 
+    /// Performs a request. A response that decodes succeeds with any issues found while decoding
+    /// it: values the kit couldn't read, and list items it left out.
     @discardableResult public func request<Request: ResourceRequest>(
         _ request: Request,
         from url: URL,
         token: String? = nil,
         customHeaders: [String: String] = [:]
-    ) async -> Result<Request.Response, AudiobookshelfError> {
+    ) async -> Result<Decoded<Request.Response>, AudiobookshelfError> {
         let urlRequest: URLRequest
 
         do {
@@ -71,7 +73,7 @@ public struct Audiobookshelf: Sendable {
 
         return await self.request(
             urlRequest,
-            transformer: Request.response(from:)
+            transformer: Request.decodedResponse(from:)
         )
     }
 }

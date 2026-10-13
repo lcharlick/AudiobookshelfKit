@@ -10,6 +10,9 @@ import Foundation
 // Audiobookshelf servers send whatever their database holds: fields go missing or arrive as null
 // across server versions and scanner states, and SQLite booleans can arrive as numbers. These
 // wrappers keep one odd value from failing a whole response. Only identifiers stay required.
+//
+// Values that are present but can't be read, and array elements that are left out, are recorded
+// as `DecodingIssue`s for `ResourceRequest.decodedResponse(from:)`. Missing and null values aren't.
 
 /// A value that decodes as nil when the server leaves it out, sends null, or sends a type that
 /// can't be read as the expected one.
@@ -76,9 +79,14 @@ extension LossyArray: Decodable where Element: Decodable {
         var elements = [Element]()
         var skippedCount = 0
         while !container.isAtEnd {
-            if let element = try? container.decode(Element.self) {
-                elements.append(element)
-            } else {
+            do {
+                try elements.append(container.decode(Element.self))
+            } catch {
+                DecodingIssueCollector.record(
+                    .skippedElement,
+                    error,
+                    codingPath: container.codingPath + [IndexKey(container.currentIndex)]
+                )
                 // A failed decode leaves the container on the same element, so step over it.
                 _ = try container.decode(SkippedElement.self)
                 skippedCount += 1
@@ -126,6 +134,24 @@ private struct SkippedElement: Decodable {
     init(from _: Decoder) {}
 }
 
+private struct IndexKey: CodingKey {
+    let intValue: Int?
+    let stringValue: String
+
+    init(_ index: Int) {
+        intValue = index
+        stringValue = "Index \(index)"
+    }
+
+    init?(intValue: Int) {
+        self.init(intValue)
+    }
+
+    init?(stringValue _: String) {
+        nil
+    }
+}
+
 private extension Decodable {
     static func decodedFromEmptyObject() throws -> Self {
         try JSONDecoder().decode(Self.self, from: Data("{}".utf8))
@@ -143,17 +169,24 @@ extension KeyedDecodingContainer {
     }
 
     func decode<Element: Decodable>(_: LossyArray<Element>.Type, forKey key: Key) throws -> LossyArray<Element> {
-        guard hasValue(forKey: key), let decoder = try? superDecoder(forKey: key),
-              let array = try? LossyArray<Element>(from: decoder)
-        else {
+        guard hasValue(forKey: key) else {
             return LossyArray(wrappedValue: [])
         }
-        return array
+        do {
+            return try LossyArray<Element>(from: superDecoder(forKey: key))
+        } catch {
+            DecodingIssueCollector.record(.unreadableValue, error, codingPath: codingPath + [key])
+            return LossyArray(wrappedValue: [])
+        }
     }
 
     func decode<Value: Decodable>(_: DefaultEmpty<Value>.Type, forKey key: Key) throws -> DefaultEmpty<Value> {
-        if hasValue(forKey: key), let value = try? decode(Value.self, forKey: key) {
-            return DefaultEmpty(wrappedValue: value)
+        if hasValue(forKey: key) {
+            do {
+                return try DefaultEmpty(wrappedValue: decode(Value.self, forKey: key))
+            } catch {
+                DecodingIssueCollector.record(.unreadableValue, error, codingPath: codingPath + [key])
+            }
         }
         return try DefaultEmpty(wrappedValue: Value.decodedFromEmptyObject())
     }
@@ -171,12 +204,28 @@ extension KeyedDecodingContainer {
     func decodeLeniently<Value: Decodable>(_: Value.Type, forKey key: Key) -> Value? {
         guard hasValue(forKey: key) else { return nil }
         if Value.self == Date.self {
-            return (try? decodeAudiobookshelfDateIfPresent(forKey: key)) as? Value
+            if let date = try? decodeAudiobookshelfDateIfPresent(forKey: key) {
+                return date as? Value
+            }
+            DecodingIssueCollector.record(
+                .unreadableValue,
+                DecodingError.typeMismatch(Date.self, .init(
+                    codingPath: codingPath + [key],
+                    debugDescription: "Expected a date in milliseconds or a date string."
+                )),
+                codingPath: codingPath + [key]
+            )
+            return nil
         }
-        if let value = try? decode(Value.self, forKey: key) {
-            return value
+        do {
+            return try decode(Value.self, forKey: key)
+        } catch {
+            if let value = (Value.self as? LenientlyCoercible.Type)?.coerced(from: self, forKey: key) as? Value {
+                return value
+            }
+            DecodingIssueCollector.record(.unreadableValue, error, codingPath: codingPath + [key])
+            return nil
         }
-        return (Value.self as? LenientlyCoercible.Type)?.coerced(from: self, forKey: key) as? Value
     }
 
     private func hasValue(forKey key: Key) -> Bool {

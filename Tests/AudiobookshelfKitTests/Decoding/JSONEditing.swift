@@ -57,6 +57,19 @@ func decode<R: ResourceRequest>(
     return try R.response(from: JSONSerialization.data(withJSONObject: json))
 }
 
+/// Decodes a request's response from a fixture after applying edits to it, with its issues.
+func decodeWithIssues<R: ResourceRequest>(
+    _: R.Type,
+    from resource: String,
+    editing edits: [JSONEdit]
+) throws -> Decoded<R.Response> {
+    var json = try JSONSerialization.jsonObject(with: loadResource(resource, ext: "json"))
+    for edit in edits {
+        json = try apply(edit.change, at: PathComponent.parse(edit.path)[...], to: json)
+    }
+    return try R.decodedResponse(from: JSONSerialization.data(withJSONObject: json))
+}
+
 func loadJSONObject(_ resource: String) throws -> [String: Any] {
     try JSONSerialization.jsonObject(with: loadResource(resource, ext: "json")) as! [String: Any]
 }
