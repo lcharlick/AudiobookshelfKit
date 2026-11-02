@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// Describes a request to an Audiobookshelf resource (e.g. server).
 public protocol ResourceRequest: Sendable {
